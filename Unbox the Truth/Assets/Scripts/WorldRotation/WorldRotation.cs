@@ -1,0 +1,125 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class WorldRotation : MonoBehaviour
+{
+
+    private GameObject player;
+    private Transform world;
+    private bool isRotating = false;
+    public float rotationDuration = 1f;
+    private float rotationAmount = 0f;
+    private float currentRotationTime = 0f;
+    private float targetRotation = 90f;
+    private Vector3 playerPosition;
+    private Vector3 rotationDirection;
+    private Vector3 rotationCorrectionDirection;
+    private Vector2 velocitySafe;
+
+    
+    void Start()
+    {
+        //Get the player and world objects by tag
+        player = GameObject.FindWithTag("Player");
+        world = GameObject.FindWithTag("WorldRoot").transform;
+
+        if (player == null)
+        {
+            Debug.LogError("Player not found");
+        }
+        
+        if (world == null)
+        {
+            Debug.LogError("WorldRoot not found");
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check for input to rotate the world and set the rotation direction
+        if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
+        {
+            StartRotation();
+            rotationDirection = Vector3.forward;
+            rotationCorrectionDirection = Vector3.back;
+        } 
+        else if (Input.GetKeyDown(KeyCode.E) && !isRotating)
+        {
+            StartRotation();
+            rotationDirection = Vector3.back;
+            rotationCorrectionDirection = Vector3.forward;
+        }
+    }
+
+    private void StartRotation()
+    {
+        // Safe velocity to reapply after rotation
+        //Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        //velocitySafe = playerRb.velocity;
+
+
+        PausePhysicsSimulation();  // Pause the physics simulation while rotating
+        isRotating = true;
+        currentRotationTime = 0f;  // Reset the timer for this rotation
+        rotationAmount = 0f;       // Reset the current rotation amount
+
+
+        // Get the player's position (as the pivot)
+        playerPosition = player.transform.position;
+        playerPosition = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
+    }
+
+     void FixedUpdate()
+    {
+        if (isRotating)
+        {
+            PerformRotation(playerPosition);
+        }
+    }
+
+    private void PerformRotation(Vector3 rotatePosition)
+    {
+        // Increment the timer
+        currentRotationTime += Time.fixedDeltaTime;
+
+        // Calculate how much rotation should happen this frame
+        float stepRotation = (targetRotation / rotationDuration) * Time.fixedDeltaTime;
+
+        // Accumulate the rotation
+        rotationAmount += stepRotation;
+
+        
+
+        // Rotate the world around the player
+        world.RotateAround(rotatePosition, rotationDirection, stepRotation);
+
+        // Stop rotating after 1 second or when rotation reaches 90 degrees
+        if (currentRotationTime >= rotationDuration || Mathf.Abs(rotationAmount) >= targetRotation)
+        {
+            isRotating = false;
+
+            // Snap the final rotation in case of small discrepancies due to floating point precision
+            float correction = targetRotation - rotationAmount;
+            if (Mathf.Abs(correction) > 0)
+            {
+                world.RotateAround(playerPosition, rotationCorrectionDirection, correction);
+            }
+
+            ResumePhysicsSimulation();  // Resume the physics simulation after rotation
+        }
+    }
+
+    private void PausePhysicsSimulation()
+    {
+        Physics2D.simulationMode = SimulationMode2D.Script;;  // Stops all physics calculations globally
+    }
+
+    private void ResumePhysicsSimulation()
+    {
+        Physics2D.simulationMode = SimulationMode2D.FixedUpdate;  // Resume physics calculations globally
+    }
+}
