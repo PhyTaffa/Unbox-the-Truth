@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class OnWorldRotationChanged : UnityEvent<Vector3, Vector3, float> { }
+public class OnWorldRotationFinished: UnityEvent { }
+
 
 public class WorldRotation : MonoBehaviour
 {
@@ -17,6 +23,9 @@ public class WorldRotation : MonoBehaviour
     private Vector3 rotationDirection;
     private Vector3 rotationCorrectionDirection;
     private Vector2 velocitySafe;
+
+    public OnWorldRotationChanged onWorldRotationChangedEvent;
+    public OnWorldRotationFinished onWorldRotationFinishedEvent;
 
     
     void Start()
@@ -34,7 +43,6 @@ public class WorldRotation : MonoBehaviour
         {
             Debug.LogError("WorldRoot not found");
         }
-
     }
 
     // Update is called once per frame
@@ -43,15 +51,15 @@ public class WorldRotation : MonoBehaviour
         // Check for input to rotate the world and set the rotation direction
         if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {
-            StartRotation();
             rotationDirection = Vector3.forward;
             rotationCorrectionDirection = Vector3.back;
+            StartRotation();
         } 
         else if (Input.GetKeyDown(KeyCode.E) && !isRotating)
         {
-            StartRotation();
             rotationDirection = Vector3.back;
             rotationCorrectionDirection = Vector3.forward;
+            StartRotation();
         }
     }
 
@@ -63,6 +71,7 @@ public class WorldRotation : MonoBehaviour
 
 
         PausePhysicsSimulation();  // Pause the physics simulation while rotating
+        
         isRotating = true;
         currentRotationTime = 0f;  // Reset the timer for this rotation
         rotationAmount = 0f;       // Reset the current rotation amount
@@ -71,6 +80,8 @@ public class WorldRotation : MonoBehaviour
         // Get the player's position (as the pivot)
         playerPosition = player.transform.position;
         playerPosition = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
+
+        onWorldRotationChangedEvent.Invoke(playerPosition, rotationDirection, targetRotation);
     }
 
      void FixedUpdate()
@@ -92,8 +103,6 @@ public class WorldRotation : MonoBehaviour
         // Accumulate the rotation
         rotationAmount += stepRotation;
 
-        
-
         // Rotate the world around the player
         world.RotateAround(rotatePosition, rotationDirection, stepRotation);
 
@@ -108,7 +117,7 @@ public class WorldRotation : MonoBehaviour
             {
                 world.RotateAround(playerPosition, rotationCorrectionDirection, correction);
             }
-
+            //onWorldRotationFinishedEvent.Invoke();
             ResumePhysicsSimulation();  // Resume the physics simulation after rotation
         }
     }
