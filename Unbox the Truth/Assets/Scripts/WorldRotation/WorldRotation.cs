@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 [System.Serializable]
 public class OnWorldRotationChanged : UnityEvent<Vector3, Vector3, float> { }
+[System.Serializable]
 public class OnWorldRotationFinished: UnityEvent { }
 
 
@@ -117,7 +118,7 @@ public class WorldRotation : MonoBehaviour
             {
                 world.RotateAround(playerPosition, rotationCorrectionDirection, correction);
             }
-            //onWorldRotationFinishedEvent.Invoke();
+            onWorldRotationFinishedEvent?.Invoke();
             ResumePhysicsSimulation();  // Resume the physics simulation after rotation
         }
     }
