@@ -13,6 +13,10 @@ public class MoveTest : MonoBehaviour
     private Rigidbody2D rb;                // Reference to the Rigidbody2D component
     private bool isGrounded;               // Is the player on the ground?
 
+    protected float moveInput = 0;                   // Horizontal input from the player
+
+    protected int direction = 1;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
@@ -22,11 +26,38 @@ public class MoveTest : MonoBehaviour
     {
         Move();  // Call the Move function to handle player movement
         Jump();  // Call the Jump function to handle jumping
+        testDirection();
     }
+
+    protected int getLastDirection()
+    {
+       if(moveInput*direction > 0)
+       {
+           return direction;
+       }
+       else if(moveInput*direction < 0)
+       {
+           direction = -direction;
+       }
+       return direction;
+    }
+
+    private void testDirection()
+    {
+        if(getLastDirection() == 1)
+        {
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+    }
+
 
     private void Move()
     {
-        float moveInput = Input.GetAxis("Horizontal"); // Get input from the horizontal axis (A/D or Left/Right arrows)
+        moveInput = Input.GetAxis("Horizontal"); // Get input from the horizontal axis (A/D or Left/Right arrows)
 
         // Move the player
         //rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);

@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IPressurePlateInteractable
 {
     void interact();
+    void unInteract();
 }
    
 
