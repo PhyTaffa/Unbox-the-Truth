@@ -16,6 +16,7 @@ public class MoveTest : MonoBehaviour
     protected float moveInput = 0;                   // Horizontal input from the player
 
     protected int direction = 1;
+    
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class MoveTest : MonoBehaviour
         testDirection();
     }
 
-    protected int getLastDirection()
+    public int getLastDirection()
     {
        if(moveInput*direction > 0)
        {
