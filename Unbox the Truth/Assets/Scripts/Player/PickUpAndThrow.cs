@@ -5,9 +5,10 @@ using UnityEngine;
 public class PickUpAndThrow : MonoBehaviour
 {
     
-    float playerDirection = 1f;
+    private float playerDirection = 1f;
     MoveTest move;
     GameObject player;
+    private float width = 1;
     
     [SerializeField] float distance = 1.5f;
     
@@ -18,6 +19,11 @@ public class PickUpAndThrow : MonoBehaviour
         
         player = GameObject.FindGameObjectWithTag("Player");
         
+        BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
+        
+        width = playerCol.size.x;
+
+        
     }
 
     // Update is called once per frame
@@ -25,25 +31,11 @@ public class PickUpAndThrow : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R))
         {
-            Debug.Log("");
-            /*
-            Ray raycastRay = camera.ScreenPointToRay(
-                new Vector3
-                (
-                    Input.mousePosition.x,
-                    Input.mousePosition.y,
-                    1.0f
-                )
-            );
-            */
-
-            BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
-            float width = playerCol.size.x;
-            
             playerDirection = move.getLastDirection()*1f;
             Vector3 direction = new Vector3(playerDirection, 0, 0);
             Vector3 rayOrig = new Vector3(player.transform.position.x + (width/2 + 0.01f)*playerDirection, player.transform.position.y, 0);
             Ray pickUpRay = new Ray(rayOrig, direction);
+            
             
             Debug.DrawRay(pickUpRay.origin, pickUpRay.direction * distance);
             
@@ -52,10 +44,10 @@ public class PickUpAndThrow : MonoBehaviour
 
             if (HitInformation.collider)
             {
-                IPressurePlateTrigger interactibleObject = HitInformation.collider.GetComponent<IPressurePlateTrigger>();
+                IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
                 if (interactibleObject != null)
                 {
-                    PickUp();
+                    interactibleObject.Interact(gameObject);
                 }
             }
             else
@@ -65,9 +57,5 @@ public class PickUpAndThrow : MonoBehaviour
             
         }
     }
-
-    protected void PickUp()
-    {
-        Debug.Log("Box was interacted with");
-    }
+    
 }
