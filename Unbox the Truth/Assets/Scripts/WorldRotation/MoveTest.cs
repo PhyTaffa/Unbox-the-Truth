@@ -16,8 +16,9 @@ public class MoveTest : MonoBehaviour
     protected float moveInput = 0;                   // Horizontal input from the player
 
     protected int direction = 1;
-    
 
+    [SerializeField] public bool isCarryingObject = false;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
@@ -62,6 +63,16 @@ public class MoveTest : MonoBehaviour
 
         // Move the player
         //rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        if (!isCarryingObject)
+        {
+            moveSpeed = 0.1f;
+        }
+        else
+        {
+            moveSpeed = 0.06f;
+        }
+        
         rb.AddForce(new Vector2(moveInput * moveSpeed, 0), ForceMode2D.Impulse);
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -5, 5), rb.velocity.y);
     }

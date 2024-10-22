@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpAndThrow : MonoBehaviour
+public class PickUp : MonoBehaviour
 {
     
     private float playerDirection = 1f;
@@ -18,9 +18,7 @@ public class PickUpAndThrow : MonoBehaviour
         move = GetComponent<MoveTest>();
         
         player = GameObject.FindGameObjectWithTag("Player");
-        
         BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
-        
         width = playerCol.size.x;
 
         
@@ -29,7 +27,7 @@ public class PickUpAndThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && move.isCarryingObject == false)
         {
             playerDirection = move.getLastDirection()*1f;
             Vector3 direction = new Vector3(playerDirection, 0, 0);
@@ -47,7 +45,7 @@ public class PickUpAndThrow : MonoBehaviour
                 IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
                 if (interactibleObject != null)
                 {
-                    interactibleObject.Interact(gameObject);
+                    interactibleObject.Interact(gameObject, gameObject);
                 }
             }
             else
@@ -57,5 +55,5 @@ public class PickUpAndThrow : MonoBehaviour
             
         }
     }
-    
+
 }

@@ -15,7 +15,7 @@ public class IButton : MonoBehaviour, IInteractibles
     {
         
     }
-    public void Interact(GameObject Instigator)
+    public void Interact(GameObject Instigator, GameObject instigatedObject)
     {
         Debug.Log("Button was interacted with");
     }
