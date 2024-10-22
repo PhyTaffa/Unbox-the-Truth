@@ -45,7 +45,7 @@ public class PickUp : MonoBehaviour
                 IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
                 if (interactibleObject != null)
                 {
-                    interactibleObject.Interact(gameObject, gameObject);
+                    interactibleObject.Interact(gameObject);
                 }
             }
             else

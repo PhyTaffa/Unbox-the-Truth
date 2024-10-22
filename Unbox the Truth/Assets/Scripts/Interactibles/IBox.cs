@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class IBox : MonoBehaviour, IInteractibles
 {
-    private IBox iBox;
+    //private IBox iBox;
     // Start is called before the first frame update
     void Start()
     {
-        iBox = gameObject.GetComponent<IBox>();
+        //iBox = gameObject.GetComponent<IBox>();
     }
 
     // Update is called once per frame
@@ -18,32 +18,30 @@ public class IBox : MonoBehaviour, IInteractibles
     {
         
     }
-    public void Interact(GameObject instigator, GameObject instigatedObject)
-    {   //instigator is the player, so things can happen to him
-        
-        //the pick up stuff should happen here
+    public void Interact(GameObject instigator)
+    {   
         Debug.Log("Box was interacted with");
         
-        MoveTest p = instigator.GetComponent<MoveTest>();
+        MoveTest playerProperty = instigator.GetComponent<MoveTest>();
 
-        p.isCarryingObject = true;
+        playerProperty.isCarryingObject = true;
         
-        SerializedObject serializedObject = new SerializedObject(p);
-        //not being detected
-        SerializedProperty playerCarryingObjProperty = serializedObject.FindProperty("isCarryingObject");
-        
-        //playerCarryingObjProperty.boolValue = true;
-        
-        GettingPickedUp(instigator, iBox);
+        GettingPickedUp(instigator);
+        Parenting(instigator);
     }
 
-    private void GettingPickedUp(GameObject player, IBox pickedUpObject)
+    private void Parenting(GameObject player)
+    {
+        transform.parent = player.transform;
+    }
+
+    private void GettingPickedUp(GameObject player)
     {
         //Current position of player
         Vector3 currentPosition = player.transform.position;
         
         //Size pf the box
-        BoxCollider2D boxCol = iBox.GetComponent<BoxCollider2D>();
+        BoxCollider2D boxCol = GetComponent<BoxCollider2D>();
         float boxHeight = boxCol.size.y;
         
         //Calculating the appropriate position

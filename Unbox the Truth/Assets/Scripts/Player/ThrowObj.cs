@@ -1,8 +1,8 @@
-
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class IButton : MonoBehaviour, IInteractibles
+public class ThrowObj : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,9 +14,5 @@ public class IButton : MonoBehaviour, IInteractibles
     void Update()
     {
         
-    }
-    public void Interact(GameObject Instigator)
-    {
-        Debug.Log("Button was interacted with");
     }
 }
