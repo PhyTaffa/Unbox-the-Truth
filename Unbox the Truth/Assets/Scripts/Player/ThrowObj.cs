@@ -34,21 +34,7 @@ public class ThrowObj : MonoBehaviour
             playerDirection = move.getLastDirection()*1f;
       
             Vector3 direction = new Vector3(playerDirection, 0, 0);
-            Vector3 throwVector = new Vector3(player.transform.position.x + (width/2 + 0.01f)*playerDirection, player.transform.position.y, 0);
 
-            
-            if (HitInformation.collider)
-            {
-                IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
-                if (interactibleObject != null)
-                {
-                    interactibleObject.Interact(gameObject);
-                }
-            }
-            else
-            {
-                Debug.Log("NOTHING was interacted with");
-            }
             
         }
     }

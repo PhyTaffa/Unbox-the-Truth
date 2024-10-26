@@ -21,6 +21,7 @@ public class IBox : MonoBehaviour, IInteractibles
     }
     public void Interact(GameObject instigator)
     {   
+        //called by the interactive stuff
         Debug.Log("Box was interacted with");
         
         MoveTest playerProperty = instigator.GetComponent<MoveTest>();
@@ -28,9 +29,22 @@ public class IBox : MonoBehaviour, IInteractibles
         
         playerProperty.isCarryingObject = true;
         //playerProperty.moveSpeed = 0.06f;
+        if (playerProperty.isCarryingObject == true)
+        {
+            GettingPickedUp(instigator);
+            Parenting(instigator);
+        }
+        else
+        {
+            GettingPickedUp(instigator);
+            DeParenting(instigator);
+        }
         
-        GettingPickedUp(instigator);
-        Parenting(instigator);
+    }
+
+    private void DeParenting(GameObject instigator)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void Parenting(GameObject player)
