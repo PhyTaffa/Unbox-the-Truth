@@ -7,7 +7,8 @@ using UnityEngine;
 public class IBox : MonoBehaviour, IInteractibles
 {
     //private IBox iBox;
-    // Start is called before the first frame update
+    [SerializeField] private bool isBeingCarried = false;
+    //Start is called before the first frame update
     void Start()
     {
         //iBox = gameObject.GetComponent<IBox>();
@@ -24,7 +25,9 @@ public class IBox : MonoBehaviour, IInteractibles
         
         MoveTest playerProperty = instigator.GetComponent<MoveTest>();
 
+        
         playerProperty.isCarryingObject = true;
+        //playerProperty.moveSpeed = 0.06f;
         
         GettingPickedUp(instigator);
         Parenting(instigator);
@@ -49,5 +52,11 @@ public class IBox : MonoBehaviour, IInteractibles
 
         // To be Changed with more smooth movement
         transform.position = pickUpPosition;
+    }
+
+    private void GettingThrown()
+    {
+        
+        isBeingCarried = false;
     }
 }

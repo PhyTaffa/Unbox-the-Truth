@@ -8,7 +8,7 @@ public class PickUp : MonoBehaviour
     private float playerDirection = 1f;
     MoveTest move;
     GameObject player;
-    private float width = 1;
+    private float width = 0.1f;
     
     [SerializeField] float distance = 1.5f;
     

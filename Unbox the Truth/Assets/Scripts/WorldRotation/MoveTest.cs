@@ -33,11 +33,11 @@ public class MoveTest : MonoBehaviour
 
     public int getLastDirection()
     {
-       if(moveInput*direction > 0)
+       if(moveInput * direction > 0)
        {
            return direction;
        }
-       else if(moveInput*direction < 0)
+       else if(moveInput * direction < 0)
        {
            direction = -direction;
        }
