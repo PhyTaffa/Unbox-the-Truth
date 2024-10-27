@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayerDied()
     {
         //Debug.Log("Game Over");
+        //shpuld change to the current scene
         SceneManager.LoadScene("SpikesScene");
     }
     
