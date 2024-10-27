@@ -11,8 +11,7 @@ public class PickUp : MonoBehaviour
     private float width = 0.1f;
     
     [SerializeField] float distance = 1.5f;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         move = GetComponent<MoveTest>();
@@ -23,8 +22,7 @@ public class PickUp : MonoBehaviour
 
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKey(KeyCode.R) && move.isCarryingObject == false)

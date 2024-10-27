@@ -8,44 +8,42 @@ public class IBox : MonoBehaviour, IInteractibles
 {
     //private IBox iBox;
     [SerializeField] private bool isBeingCarried = false;
-    //Start is called before the first frame update
+    private WorldRotation worldRotation;
+    
+    private float boxHeight;
+
+    
     void Start()
     {
         //iBox = gameObject.GetComponent<IBox>();
+        worldRotation = transform.parent.GetComponent<WorldRotation>();
+        
+        //here due to small usage of boxes, most likely it's better to let it exist just in the interact fundtion
+        BoxCollider2D boxCol = GetComponent<BoxCollider2D>();
+        boxHeight = boxCol.size.y;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Interact(GameObject instigator)
     {   
-        //called by the interactive stuff
-        Debug.Log("Box was interacted with");
-        
         MoveTest playerProperty = instigator.GetComponent<MoveTest>();
 
-        
         playerProperty.isCarryingObject = true;
-        //playerProperty.moveSpeed = 0.06f;
-        if (playerProperty.isCarryingObject == true)
-        {
-            GettingPickedUp(instigator);
-            Parenting(instigator);
-        }
-        else
-        {
-            GettingPickedUp(instigator);
-            DeParenting(instigator);
-        }
         
+        GettingPickedUp(instigator);
+        Parenting(instigator);
+    }
+    
+    //mystical polymorphism
+    public void Interact(GameObject instigator, Vector3 trajectory)
+    {
+        //Debug.Log("Box was thrown");
+        MoveTest playerProperty = instigator.GetComponent<MoveTest>();
+        
+        playerProperty.isCarryingObject = false;
+        GettingThrown(trajectory);
+        DeParenting();
     }
 
-    private void DeParenting(GameObject instigator)
-    {
-        throw new System.NotImplementedException();
-    }
 
     private void Parenting(GameObject player)
     {
@@ -54,23 +52,42 @@ public class IBox : MonoBehaviour, IInteractibles
 
     private void GettingPickedUp(GameObject player)
     {
-        //Current position of player
-        Vector3 currentPosition = player.transform.position;
-        
-        //Size pf the box
-        BoxCollider2D boxCol = GetComponent<BoxCollider2D>();
-        float boxHeight = boxCol.size.y;
-        
         //Calculating the appropriate position
         Vector3 pickUpPosition = player.transform.position + new Vector3(0, boxHeight, 0);
 
-        // To be Changed with more smooth movement
+        // To be Changed with more smooth movement Bézier curve
         transform.position = pickUpPosition;
+        isBeingCarried = true;
     }
 
-    private void GettingThrown()
+    private void DeParenting()
     {
+        transform.parent = worldRotation.transform;
+    }
+
+    public void GettingThrown(Vector3 thrownDirection)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        
+        rb.velocity = thrownDirection;
         
         isBeingCarried = false;
+    }
+    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("Collision with " + col.gameObject.name);
+        if (col.gameObject.layer == 6 && isBeingCarried)
+        {
+            //changes the value of isCarryingObj
+            isBeingCarried = false;
+            DeParenting();
+            
+            GameObject player = GameObject.FindWithTag("Player");
+            MoveTest playerProperty = player.GetComponent<MoveTest>();
+            playerProperty.isCarryingObject = false;
+            
+            //Debug.Log("Touched a GROUDON");
+        }
     }
 }

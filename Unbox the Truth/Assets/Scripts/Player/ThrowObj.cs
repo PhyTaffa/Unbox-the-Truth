@@ -1,41 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrowObj : MonoBehaviour
 {
-        
+    [SerializeField] private float throwForceX = 5f;
+    [SerializeField] private float throwForceY = 7f;
+    private Rigidbody rb;
+    
     private float playerDirection = 1f;
-    MoveTest move; //used to check the isCarryingObj
-    private float width = 0.1f;
-
-    IBox box;
-
-    // Start is called before the first frame update
+    private GameObject player;
+    private MoveTest move; //used to check and change the isCarryingObj
+    
     void Start()
     {
-        
+        player = GameObject.FindWithTag("Player");
         move = GetComponent<MoveTest>();
-        
-        //move.isCarryingObject = true;
-        //player = GameObject.FindGameObjectWithTag("Player");
-
-        //BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
-        //width = playerCol.size.x;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && move.isCarryingObject == true)
+        if (Input.GetKey(KeyCode.F) && move.isCarryingObject == true)
         {
-            //thorw the obj: applies forces to it, -> changes the value of isCarrying obj and deparent it.
             playerDirection = move.getLastDirection()*1f;
-      
-            Vector3 direction = new Vector3(playerDirection, 0, 0);
+            Vector3 throwDirection = new Vector3(playerDirection * throwForceX, throwForceY, 0);
+            
+            GameObject boxTag = FindChildWithTag("Box");
 
+            if (boxTag != null)
+            {
+                IBox box = boxTag.GetComponent<IBox>();
+                box.Interact(player, throwDirection);
+            }
+            else
+            {
+               //Debug.Log("No Box found among children.");
+            }
             
         }
     }
+    
+    private GameObject FindChildWithTag(string tag)
+    {
+        // Iterate through each child of the player
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject; // Return the first child found with the tag
+            }
+        }
+        return null; // Return null if no child with the tag is found
+    }
+    
 }

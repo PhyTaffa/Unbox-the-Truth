@@ -74,7 +74,8 @@ public class MoveTest : MonoBehaviour
         }
         
         rb.AddForce(new Vector2(moveInput * moveSpeed, 0), ForceMode2D.Impulse);
-        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -5, 5), rb.velocity.y);
+        //rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -5, 5), rb.velocity.y);
+
     }
 
     private void Jump()

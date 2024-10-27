@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WorldRoot
+  - Box
   layers:
   - Default
   - TransparentFX
