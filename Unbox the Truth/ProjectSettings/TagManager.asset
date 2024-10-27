@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WorldRoot
   - Box
+  - GM
   layers:
   - Default
   - TransparentFX
