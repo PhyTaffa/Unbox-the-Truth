@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 2f;           // Speed of player movement
-    public float jumpForce = 15f;          // Force applied when the player jumps
+    public float moveSpeed = 4f;           // Speed of player movement
+    public float jumpForce = 11f;          // Force applied when the player jumps
     public LayerMask groundLayer;          // Layer to identify ground
     public Transform groundCheck;           // Transform to check if the player is grounded
     public float groundCheckRadius = 0.2f; // Radius of ground check
@@ -34,11 +34,12 @@ public class Movement : MonoBehaviour
     {
         if(moveInput * direction > 0)
         { 
-            return direction;
+           
         }
         else if(moveInput * direction < 0)
         {
-            direction = -direction;
+            direction = -direction; 
+            Debug.Log("going backwards");
         }
         return direction;
     }
@@ -47,11 +48,12 @@ public class Movement : MonoBehaviour
     {
         if(getLastDirection() == 1)
         {
-            GetComponent<SpriteRenderer>().color = Color.green;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
         else
         {
             GetComponent<SpriteRenderer>().color = Color.red;
+            
         }
     }
     
@@ -61,7 +63,7 @@ public class Movement : MonoBehaviour
 
         if (!isCarryingObject)
         {
-            moveSpeed = 3f;
+            moveSpeed = 4f;
         }
         else
         {
@@ -77,7 +79,7 @@ public class Movement : MonoBehaviour
         }
     
 
-        _rb.AddForce(new Vector2(moveInput * moveSpeed, 0), ForceMode2D.Force);
+        _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
         //_rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5, 5), _rb.velocity.y);
 
         
@@ -93,7 +95,7 @@ public class Movement : MonoBehaviour
         _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Debugging output
-        Debug.Log("Is Grounded: " + _isGrounded);
+       // Debug.Log("Is Grounded: " + _isGrounded);
 
         // If the player is grounded and presses the jump button (space)
         if (_isGrounded && Input.GetButtonDown("Jump"))
