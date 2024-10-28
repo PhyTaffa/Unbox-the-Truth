@@ -171,4 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4bb6ba3fc1c0f446ac77d6c7b7bbc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {fileID: 6478034395197677874, guid: aff992292def134489cdd383e98c0ce8, type: 3}
+  endPointGameObject: {fileID: 6478034395197677874, guid: aff992292def134489cdd383e98c0ce8, type: 3}
+  moveSpeed: 0.1

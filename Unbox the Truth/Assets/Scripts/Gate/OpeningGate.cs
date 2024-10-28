@@ -24,6 +24,7 @@ public class OpeningGate : MonoBehaviour
         while (transform.position != endCoordinate)
         {
             // Dynamically updates the target position
+            //do this twhen the world is rotated and also add a check for this so that the world doesn't constantly updates it uselessly
             endCoordinate = endPointGameObject.transform.position;
             
             // Move towards the target position

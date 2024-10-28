@@ -66,11 +66,11 @@ public class MoveTest : MonoBehaviour
 
         if (!isCarryingObject)
         {
-            moveSpeed = 0.1f;
+            moveSpeed = 1f;
         }
         else
         {
-            moveSpeed = 0.06f;
+            moveSpeed = 0.6f;
         }
         
         rb.AddForce(new Vector2(moveInput * moveSpeed, 0), ForceMode2D.Impulse);
