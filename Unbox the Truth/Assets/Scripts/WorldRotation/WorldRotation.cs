@@ -16,7 +16,7 @@ public class WorldRotation : MonoBehaviour
     private GameObject player;
     private Transform world;
     private bool isRotating = false;
-    public float rotationDuration = 1f;
+    public float rotationDuration;
     private float rotationAmount = 0f;
     private float currentRotationTime = 0f;
     private float targetRotation = 90f;
@@ -109,7 +109,7 @@ public class WorldRotation : MonoBehaviour
 
         // work on correction!!
         // Stop rotating after 1 second or when rotation reaches 90 degrees
-        if (currentRotationTime >= rotationDuration || Mathf.Abs(rotationAmount) >= targetRotation)
+        if (Mathf.Abs(rotationAmount) >= targetRotation)
         {
             isRotating = false;
 
@@ -117,7 +117,7 @@ public class WorldRotation : MonoBehaviour
             float correction = targetRotation - rotationAmount;
             if (Mathf.Abs(correction) > 0)
             {
-                world.RotateAround(playerPosition, rotationCorrectionDirection, correction);
+                world.RotateAround(playerPosition, -rotationCorrectionDirection, correction);
             }
             onWorldRotationFinishedEvent.Invoke();
             ResumePhysicsSimulation();  // Resume the physics simulation after rotation

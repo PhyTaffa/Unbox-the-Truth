@@ -139,6 +139,8 @@ public class PressurePlate : MonoBehaviour
         tempObject.transform.RotateAround(pivot, direction, rotationAmount);
         originalPosition = tempObject.transform.position;
 
+        Destroy(tempObject);
+
     }
 
     private void OnWorldRotationFinished()
