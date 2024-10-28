@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //OnPlayerDied();
+        Exit Exit = FindObjectOfType<Exit>();
+        if(Exit)
+        {
+            Exit.onLevelExitEvent.AddListener(OnLevelExit);
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +24,12 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Game Over");
         //shpuld change to the current scene
+        SceneManager.LoadScene("SpikesScene");
+    }
+
+    void OnLevelExit()
+    {
+        Debug.Log("Level Exit");
         SceneManager.LoadScene("SpikesScene");
     }
     
