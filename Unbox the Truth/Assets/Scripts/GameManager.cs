@@ -24,13 +24,14 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Game Over");
         //shpuld change to the current scene
-        SceneManager.LoadScene("SpikesScene");
+        Scene curScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(curScene.name);
     }
 
     void OnLevelExit()
     {
         Debug.Log("Level Exit");
-        SceneManager.LoadScene("SpikesScene");
+        SceneManager.LoadScene("HubLevel");
     }
     
 }

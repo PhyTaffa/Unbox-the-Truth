@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpikesScene.unity
     guid: 9af356a78f2eca74ab72e51616493610
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 3475051a46d60e64180afacc0686a85c
   m_configObjects: {}
