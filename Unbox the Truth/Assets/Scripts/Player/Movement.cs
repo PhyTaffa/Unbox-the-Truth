@@ -34,12 +34,11 @@ public class Movement : MonoBehaviour
     {
         if(moveInput * direction > 0)
         { 
-           
+           return direction;
         }
         else if(moveInput * direction < 0)
         {
             direction = -direction; 
-            Debug.Log("going backwards");
         }
         return direction;
     }
@@ -59,7 +58,7 @@ public class Movement : MonoBehaviour
     
     private void Move()
     {
-        float moveInput = Input.GetAxis("Horizontal"); // Get input from the horizontal axis (A/D or Left/Right arrows)
+        moveInput = Input.GetAxis("Horizontal"); // Get input from the horizontal axis (A/D or Left/Right arrows)
 
         if (!isCarryingObject)
         {
