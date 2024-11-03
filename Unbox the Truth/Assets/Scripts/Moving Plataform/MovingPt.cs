@@ -1,15 +1,19 @@
 using UnityEngine;
 public class MovingPt : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] public float speed;
     public int startingPoint; 
     public Transform[] points;
     private int i;
+
+    private GameObject worldRoot;
     void Start()
 
     {
-        transform.position = points[startingPoint].position;
+        //transform.position = points[startingPoint].position;
         i = startingPoint; 
+        
+        worldRoot = GameObject.FindGameObjectWithTag("WorldRoot");
     }
     void Update()
     {
@@ -33,7 +37,15 @@ public class MovingPt : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             if (transform.position.y < collision.transform.position.y)
-            collision.transform.SetParent(transform);
+            {
+                //being able to move the player while still being in the world root.
+                //Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                //Debug.Log(rb.velocity);
+                //transform.parent = collision.transform.parent;
+                //collision.rigidbody.velocity = new Vector2(speed * Time.deltaTime, 0f);
+                
+                collision.transform.SetParent(transform);
+            }
         }
         
     }
@@ -42,6 +54,10 @@ public class MovingPt : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
+            //Transform wrT = worldRoot.transform;
+            //transform.parent = worldRoot.transform.parent;
+
+            
             collision.transform.SetParent(null);
         } 
     }

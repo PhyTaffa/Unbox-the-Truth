@@ -52,12 +52,17 @@ public class WorldRotation : MonoBehaviour
         // Check for input to rotate the world and set the rotation direction
         if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {
+            //if setting the parent is heavy we can perform an early check.
+            player.transform.SetParent(null);
+            
             rotationDirection = Vector3.forward;
             rotationCorrectionDirection = Vector3.back;
             StartRotation();
         } 
         else if (Input.GetKeyDown(KeyCode.E) && !isRotating)
         {
+            player.transform.SetParent(null);
+            
             rotationDirection = Vector3.back;
             rotationCorrectionDirection = Vector3.forward;
             StartRotation();
