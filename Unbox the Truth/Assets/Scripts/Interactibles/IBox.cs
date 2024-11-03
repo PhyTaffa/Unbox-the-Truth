@@ -9,9 +9,9 @@ public class IBox : MonoBehaviour, IInteractibles
     //private IBox iBox;
     [SerializeField] private bool isBeingCarried = false;
     private WorldRotation worldRotation;
+    private Rigidbody2D boxRB;
     
     private float boxHeight;
-
     
     void Start()
     {
@@ -21,11 +21,13 @@ public class IBox : MonoBehaviour, IInteractibles
         //here due to small usage of boxes, most likely it's better to let it exist just in the interact fundtion
         BoxCollider2D boxCol = GetComponent<BoxCollider2D>();
         boxHeight = boxCol.size.y;
+        
+        boxRB = GetComponent<Rigidbody2D>();
     }
 
     public void Interact(GameObject instigator)
     {   
-        MoveTest playerProperty = instigator.GetComponent<MoveTest>();
+        Movement playerProperty = instigator.GetComponent<Movement>();
 
         playerProperty.isCarryingObject = true;
         
@@ -37,7 +39,7 @@ public class IBox : MonoBehaviour, IInteractibles
     public void Interact(GameObject instigator, Vector3 trajectory)
     {
         //Debug.Log("Box was thrown");
-        MoveTest playerProperty = instigator.GetComponent<MoveTest>();
+        Movement playerProperty = instigator.GetComponent<Movement>();
         
         playerProperty.isCarryingObject = false;
         GettingThrown(trajectory);
@@ -55,6 +57,9 @@ public class IBox : MonoBehaviour, IInteractibles
         //Calculating the appropriate position
         Vector3 pickUpPosition = player.transform.position + new Vector3(0, boxHeight, 0);
 
+        //velocity of box 0
+        boxRB.velocity = Vector2.zero;
+        
         // To be Changed with more smooth movement Bézier curve
         transform.position = pickUpPosition;
         isBeingCarried = true;
@@ -76,6 +81,8 @@ public class IBox : MonoBehaviour, IInteractibles
     
     void OnCollisionEnter2D(Collision2D col)
     {
+        //When a box touches the ground, the player stops carrying it
+        
         //Debug.Log("Collision with " + col.gameObject.name);
         if (col.gameObject.layer == 6 && isBeingCarried)
         {
@@ -84,10 +91,8 @@ public class IBox : MonoBehaviour, IInteractibles
             DeParenting();
             
             GameObject player = GameObject.FindWithTag("Player");
-            MoveTest playerProperty = player.GetComponent<MoveTest>();
+            Movement playerProperty = player.GetComponent<Movement>();
             playerProperty.isCarryingObject = false;
-            
-            //Debug.Log("Touched a GROUDON");
         }
     }
 }

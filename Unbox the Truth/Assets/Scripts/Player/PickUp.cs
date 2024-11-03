@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    
     private float playerDirection = 1f;
-    MoveTest move;
-    GameObject player;
+    private Movement playerMovementComponent;
+    private GameObject player;
     private float width = 0.1f;
     
-    [SerializeField] float distance = 1.5f;
+    [SerializeField] private float range = 1.0f;
 
     void Start()
     {
-        move = GetComponent<MoveTest>();
+        playerMovementComponent = GetComponent<Movement>();
         
         player = GameObject.FindGameObjectWithTag("Player");
         BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
@@ -25,18 +22,18 @@ public class PickUp : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && move.isCarryingObject == false)
+        if (Input.GetKey(KeyCode.R) && playerMovementComponent.isCarryingObject == false)
         {
-            playerDirection = move.getLastDirection()*1f;
+            playerDirection = playerMovementComponent.getLastDirection()*1f;
             Vector3 direction = new Vector3(playerDirection, 0, 0);
             Vector3 rayOrig = new Vector3(player.transform.position.x + (width/2 + 0.01f)*playerDirection, player.transform.position.y, 0);
             Ray pickUpRay = new Ray(rayOrig, direction);
             
             
-            Debug.DrawRay(pickUpRay.origin, pickUpRay.direction * distance);
+            Debug.DrawRay(pickUpRay.origin, pickUpRay.direction * range);
             
             
-            RaycastHit2D HitInformation = Physics2D.Raycast(pickUpRay.origin, pickUpRay.direction, distance);
+            RaycastHit2D HitInformation = Physics2D.Raycast(pickUpRay.origin, pickUpRay.direction, range);
 
             if (HitInformation.collider)
             {
@@ -48,7 +45,7 @@ public class PickUp : MonoBehaviour
             }
             else
             {
-                Debug.Log("NOTHING was interacted with");
+                //Debug.Log("NOTHING was interacted with");
             }
             
         }

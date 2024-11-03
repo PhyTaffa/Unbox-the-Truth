@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1087781061831720002}
   - component: {fileID: 6747027181584472373}
   - component: {fileID: 4284229867017526557}
+  - component: {fileID: 2751713845133045998}
+  - component: {fileID: 5221600549220182023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455077531456872956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.0020474491, w: -0.9999979}
+  m_LocalRotation: {x: 0, y: 0, z: 0.002050799, w: 0.9999979}
   m_LocalPosition: {x: 2.47, y: 3.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,7 +39,7 @@ Transform:
   - {fileID: 2657403613597635893}
   - {fileID: 359287890634057209}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.235}
 --- !u!212 &8936747354997114467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -174,13 +176,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d97668ace47b4499589f933d4d15c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  minMoveSpeed: 4
+  maxMoveSpeed: 8
   jumpForce: 11
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 2657403613597635893}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.43
   isCarryingObject: 0
 --- !u!114 &4284229867017526557
 MonoBehaviour:
@@ -194,6 +197,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471150ed778dd3942bebba9829f57cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2751713845133045998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455077531456872956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0253d13b3d72642a840f7bb625c0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+--- !u!114 &5221600549220182023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455077531456872956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5e782e475a6344888ee3079d5dfc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForceX: 5
+  throwForceY: 7
 --- !u!1 &3518703407645385669
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,5 +360,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485c410d3f7750643b644ceadc6a69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}

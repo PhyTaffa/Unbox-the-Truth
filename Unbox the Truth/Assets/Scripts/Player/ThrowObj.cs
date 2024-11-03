@@ -8,13 +8,12 @@ public class ThrowObj : MonoBehaviour
     
     private float playerDirection = 1f;
     private GameObject player;
-    private MoveTest move; //used to check and change the isCarryingObj
+    private Movement move; //used to check and change the isCarryingObj
     
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        move = GetComponent<MoveTest>();
-
+        move = GetComponent<Movement>();
     }
 
     void Update()
@@ -31,11 +30,6 @@ public class ThrowObj : MonoBehaviour
                 IBox box = boxTag.GetComponent<IBox>();
                 box.Interact(player, throwDirection);
             }
-            else
-            {
-               //Debug.Log("No Box found among children.");
-            }
-            
         }
     }
     

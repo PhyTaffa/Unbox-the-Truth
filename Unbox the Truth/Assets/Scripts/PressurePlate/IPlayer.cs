@@ -10,7 +10,7 @@ public class IPlayer : MonoBehaviour, IPressurePlateTrigger
 
     private bool CanRotateWorld;
     
-    [SerializeField] float distance = 1.5f;
+    //[SerializeField] float distance = 1.5f;
 
     void Start()
     {

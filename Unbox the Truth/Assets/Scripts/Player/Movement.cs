@@ -3,17 +3,22 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 4f;           // Speed of player movement
-    public float jumpForce = 11f;          // Force applied when the player jumps
+    [SerializeField] public float minMoveSpeed = 4f;           // Min speed of player movement
+    [SerializeField] public float maxMoveSpeed = 8f;           // Max speed of player movement
+    private float moveSpeed = 8f;           //Base move speed
+    
+    [SerializeField] public float jumpForce = 11f;          // Force applied when the player jumps
+    
+    //Gizmo for jumping
     public LayerMask groundLayer;          // Layer to identify ground
-    public Transform groundCheck;           // Transform to check if the player is grounded
-    public float groundCheckRadius = 0.2f; // Radius of ground check
+    [SerializeField] private Transform groundCheck;           // Transform to check if the player is grounded
+    [SerializeField] private float groundCheckRadius = 0.2f; // Radius of ground check
 
     private Rigidbody2D _rb;                // Reference to the Rigidbody2D component
     private bool _isGrounded;               // Is the player on the ground?
 
+    
     protected float moveInput = 0;                   // Horizontal input from the player
-
     protected int direction = 1;
     
     [SerializeField] public bool isCarryingObject = false;
@@ -62,11 +67,11 @@ public class Movement : MonoBehaviour
 
         if (!isCarryingObject)
         {
-            moveSpeed = 4f;
+            moveSpeed = maxMoveSpeed;
         }
         else
         {
-            moveSpeed = 0.06f;
+            moveSpeed = minMoveSpeed;
         }
         
         // Move the player
