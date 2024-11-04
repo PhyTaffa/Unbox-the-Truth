@@ -7,10 +7,17 @@ public class ConveyorBelt : MonoBehaviour
 {
     [SerializeField] private Vector2 direction;
     [SerializeField] private float rotationalSpeed = 5f;
+
+    private float directionX;
+    private float directionY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //X direction
+        //direction = direction.x;
+    
+        //Y direction
+
     }
 
     // Update is called once per frame
@@ -21,10 +28,10 @@ public class ConveyorBelt : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        Transform t = other.gameObject.GetComponent<Transform>();
+        Transform collidedObjTransform = other.gameObject.GetComponent<Transform>();
         
         
-        if (t.position.y > transform.position.y) //on top
+        if (collidedObjTransform.position.y > transform.position.y) //on top
         {
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * rotationalSpeed);
         }

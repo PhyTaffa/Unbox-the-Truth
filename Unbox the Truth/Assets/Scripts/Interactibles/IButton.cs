@@ -1,39 +1,53 @@
 
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class IButton : MonoBehaviour, IInteractibles
 {
-    [SerializeField] private GameObject willInteractWith;
+    [FormerlySerializedAs("gameObject")] [SerializeField] private GameObject gameObjectToBeInteractedWith;
+    private IInteractibles willInteractWith;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    public void Interact(GameObject Instigator)
+
+    public void Start()
     {
+        willInteractWith = gameObjectToBeInteractedWith.GetComponent<IInteractibles>();
+    }
+
+public void Interact(GameObject Instigator)
+    {  
         //instigator = player. use willInteractWith to do the funny
         if (willInteractWith != null)
         {
-            MoveTheDamnDoor(willInteractWith);
+            willInteractWith.Interact(Instigator);
+            //MoveTheDamnDoor(willInteractWith);
         }
         else
         {
-            Debug.Log("Button bind to NOTHING.");
+            Debug.Log("Button binded to NOTHING.");
         }
     }
 
-    private void MoveTheDamnDoor(GameObject door)
+    public void UnInteract(GameObject Instigator)
     {
-        OpeningGate openingGate = door.GetComponent<OpeningGate>();
-        if (openingGate != null)
-        {
-            openingGate.Interact();    
-        }
-        else
-        {
-            OpeningGateUsingChild openingGate2 = door.GetComponent<OpeningGateUsingChild>();
-            openingGate2.Interact();
-        }
-        
-
-        //GameObject endPosition = door.GetComponent<GameObject>();
+        Debug.Log("Button un-iteracted with");
     }
+    
+    // private void MoveTheDamnDoor(GameObject door)
+    // {
+    //     OpeningGate openingGate = door.GetComponent<OpeningGate>();
+    //     if (openingGate != null)
+    //     {
+    //         openingGate.Interact();    
+    //     }
+    //     else
+    //     {
+    //         OpeningGateUsingChild openingGate2 = door.GetComponent<OpeningGateUsingChild>();
+    //         openingGate2.Interact();
+    //     }
+    //     
+    //
+    //     //GameObject endPosition = door.GetComponent<GameObject>();
+    // }
 }
