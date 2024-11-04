@@ -15,19 +15,27 @@ public class IPlayer : MonoBehaviour, IPressurePlateTrigger
     
     [SerializeField] float distance = 1.5f;
 
+    private Transform playerT;
+    private Vector3 rotate;
+
     void Start()
     {
         move = GetComponent<Movement>();
         player = GameObject.FindGameObjectWithTag("Player"); 
         worldRoot = GameObject.FindGameObjectWithTag("WorldRoot"); 
         canRotateWorld = true;
+        
+        //test(icle)
+        playerT = player.transform;
+        rotate = new Vector3(0, 0, 1);
     }
     
 
     // Update is called once per frame
     void Update()
     {
-        //canRotateWorld = CanRotateWorld();
+        //playerT.Rotate(rotate, 2);
+        
     }
 
     /*
