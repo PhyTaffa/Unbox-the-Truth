@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpeningGateUsingChild : MonoBehaviour
+public class OpeningGateUsingChild : MonoBehaviour, IInteractibles
 {
     private GameObject endPointGameObject;
     private Transform sibling;
@@ -41,13 +41,18 @@ public class OpeningGateUsingChild : MonoBehaviour
 
         return null; // Return null if no sibling found
     }
-    public void Interact()
+    public void Interact(GameObject Instigator)
     {
         endCoordinate = endPointGameObject.transform.position;
         if (transform.position != endCoordinate)
         {
             StartCoroutine(MoveToTarget());
         }
+    }
+
+    public void UnInteract(GameObject Instigator)
+    {
+        // Do nothing
     }
     
     private IEnumerator MoveToTarget()

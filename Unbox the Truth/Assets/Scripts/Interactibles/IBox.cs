@@ -95,4 +95,9 @@ public class IBox : MonoBehaviour, IInteractibles
             playerProperty.isCarryingObject = false;
         }
     }
+
+    public void UnInteract(GameObject instigator)
+    {
+        // do nothing
+    }
 }
