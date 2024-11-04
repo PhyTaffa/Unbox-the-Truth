@@ -6,7 +6,7 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     [SerializeField] private GameObject interactableObject;
-    private IPressurePlateInteractable interactable;
+    private IInteractibles interactable;
     private Vector3 originalPosition;
     private Vector3 targetPosition;
     private Vector3 direction;
@@ -25,7 +25,7 @@ public class PressurePlate : MonoBehaviour
     {
         originalPosition = transform.position;
         targetPosition = transform.TransformPoint(Vector3.down * 0.5f);
-        interactable = interactableObject.GetComponent<IPressurePlateInteractable>();
+        interactable = interactableObject.GetComponent<IInteractibles>();
         direction = (targetPosition - originalPosition).normalized;
         isRotating = false;
 
@@ -98,7 +98,7 @@ public class PressurePlate : MonoBehaviour
                 if(distance < 0.01f)
                 {
                     GetComponent<SpriteRenderer>().color = Color.green;
-                    interactable.interact();
+                    interactable.Interact(interactableObject);
                 }
             }
             
@@ -114,7 +114,7 @@ public class PressurePlate : MonoBehaviour
                 //collision.transform.parent = null;
                 reachedTarget = false;
                 moveBack = true;
-                interactable.unInteract();
+                interactable.UnInteract(interactableObject);
         }
     }
 
