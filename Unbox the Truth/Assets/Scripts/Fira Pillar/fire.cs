@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class fire : MonoBehaviour
+public class fire : MonoBehaviour, IInteractibles
 {     
     float active;
     float inactive;
@@ -28,6 +28,17 @@ public class fire : MonoBehaviour
         {
             Debug.Log("died");
         }
+    }
+
+    public void Interact(GameObject instigator)
+    {
+        
+        
+        Debug.Log("permanently off");
+    }
+    public void UnInteract(GameObject instigator)
+    {
+        
     }
 }
 

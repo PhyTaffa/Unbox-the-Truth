@@ -9,7 +9,7 @@ public class KillPlayerOnTouch : MonoBehaviour
     
     public OnPlayerDied onPlayerDiedEvent;
     private GameObject gm;
-    private GameManager gms;
+    protected GameManager gms;
     private void Start()
     {
         gm = GameObject.FindWithTag("GM");

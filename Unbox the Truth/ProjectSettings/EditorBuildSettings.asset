@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/HubLevel.unity
     guid: ff5b92ff810931249823c567ffec5b4e
+  - enabled: 1
+    path: Assets/Scenes/Fire Pillars.unity
+    guid: e3f8702eea9176d47975f125397c8f01
   m_configObjects: {}
