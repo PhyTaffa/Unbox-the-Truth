@@ -16,7 +16,7 @@ public class WorldRotation : MonoBehaviour
     private GameObject player;
     private Movement playerMoveComponent;
     private Transform world;
-    private int rotCount = 0;
+    private bool canRotate = true;
     private bool isRotating = false;
     public float rotationDuration;
     private float rotationAmount = 0f;
@@ -56,11 +56,8 @@ public class WorldRotation : MonoBehaviour
         // Check for input to rotate the world and set the rotation direction
         if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {
-            if(playerMoveComponent.IsGrounded() && !playerMoveComponent.isCarryingObject){
-                rotCount = 0;
-            }
 
-            if(rotCount == 0)
+            if(canRotate && !playerMoveComponent.isCarryingObject)
             {
                //if setting the parent is heavy we can perform an early check.
                 player.transform.SetParent(null);
@@ -68,7 +65,7 @@ public class WorldRotation : MonoBehaviour
                 rotationDirection = Vector3.forward;
                 rotationCorrectionDirection = Vector3.back;
                 if(!playerMoveComponent.IsGrounded()){
-                    rotCount = 1;
+                    canRotate = false;
                 }
                 StartRotation();
             }
@@ -76,22 +73,18 @@ public class WorldRotation : MonoBehaviour
         } 
         else if (Input.GetKeyDown(KeyCode.E) && !isRotating)
         {
-            if(playerMoveComponent.IsGrounded()){
-                rotCount = 0;
-            }
 
-            if(rotCount == 0 && !playerMoveComponent.isCarryingObject)
+            if(canRotate && !playerMoveComponent.isCarryingObject)
             {
                 player.transform.SetParent(null);
             
                 rotationDirection = Vector3.back;
                 rotationCorrectionDirection = Vector3.forward;
                 if(!playerMoveComponent.IsGrounded()){
-                    rotCount = 1;
+                    canRotate = false;
                 }
                 StartRotation();
-            }
-            
+            } 
         }
     }
 
@@ -163,5 +156,10 @@ public class WorldRotation : MonoBehaviour
     private void ResumePhysicsSimulation()
     {
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;  // Resume physics calculations globally
+    }
+
+    public void SetCanRotate(bool value)
+    {
+        canRotate = value;
     }
 }
