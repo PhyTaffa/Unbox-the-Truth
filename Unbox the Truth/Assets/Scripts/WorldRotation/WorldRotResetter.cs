@@ -6,7 +6,6 @@ public class WorldRotResetter : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    GameObject player;
     WorldRotation  worldRotation;
     void Start()
     {
@@ -23,7 +22,7 @@ public class WorldRotResetter : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.gameObject.CompareTag("Player")) //&& direction == Vector3.down
+        if (collision.gameObject) //&& direction == Vector3.down
         {
                 worldRotation.SetCanRotate(true);
                 //collision.transform.parent = transform;
