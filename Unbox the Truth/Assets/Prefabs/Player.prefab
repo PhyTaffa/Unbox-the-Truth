@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471150ed778dd3942bebba9829f57cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 1.5
 --- !u!114 &2751713845133045998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &359287890634057209
 Transform:
   m_ObjectHideFlags: 0
@@ -360,3 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485c410d3f7750643b644ceadc6a69af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minFOV: 80
+  maxFOV: 120
+  FOVChangeRate: 1
+  cameraDepth: -10

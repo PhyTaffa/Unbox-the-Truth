@@ -8,6 +8,7 @@ TagManager:
   - Box
   - GM
   - Target
+  - BufferZone
   layers:
   - Default
   - TransparentFX
