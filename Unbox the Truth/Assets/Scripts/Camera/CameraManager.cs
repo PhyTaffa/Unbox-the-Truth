@@ -64,18 +64,18 @@ public class CameraManager : MonoBehaviour
         // }
         
         // If the key is pressed, increase the value
-        if (Input.GetKey(KeyCode.B))  // If the "B" key is pressed
-        {
-            // Increase the value, but clamp it to the maxValue
-            currFov = Mathf.Min(currFov + increaseSpeed, maxValue);
-        }
-        else if (currFov != startValue)  // If the key is not pressed and the value isn't at the start
-        {
-            // Smoothly reset the value back to the start value
-            currFov = Mathf.MoveTowards(currFov, startValue, resetSpeed);
-        }
-        
-        Camera.main.fieldOfView = currFov;
+        // if (Input.GetKey(KeyCode.B))  // If the "B" key is pressed
+        // {
+        //     // Increase the value, but clamp it to the maxValue
+        //     currFov = Mathf.Min(currFov + increaseSpeed, maxValue);
+        // }
+        // else if (currFov != startValue)  // If the key is not pressed and the value isn't at the start
+        // {
+        //     // Smoothly reset the value back to the start value
+        //     currFov = Mathf.MoveTowards(currFov, startValue, resetSpeed);
+        // }
+        //
+        // Camera.main.fieldOfView = currFov;
     }
 
     private IEnumerator PanCameraOut()
