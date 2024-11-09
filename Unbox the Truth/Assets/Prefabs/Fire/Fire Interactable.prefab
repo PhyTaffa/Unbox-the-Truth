@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465f1cec42ae47c4f8dee47c308c3faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsToDeactivate: 240
+  secondsToDeactivate: 180
 --- !u!114 &8300266341069265529
 MonoBehaviour:
   m_ObjectHideFlags: 0

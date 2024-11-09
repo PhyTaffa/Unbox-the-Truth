@@ -7,7 +7,7 @@ public class fire : MonoBehaviour, IInteractibles
     private bool isActive = false;
     private void Start()
     {
-        StartCoroutine(FirePillarCycle());
+        //StartCoroutine(FirePillarCycle());
     }
     private IEnumerator FirePillarCycle()
     {
@@ -21,20 +21,18 @@ public class fire : MonoBehaviour, IInteractibles
             yield return new WaitForSeconds(inactive);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        
-        if (isActive && other.CompareTag("Player"))
-        {
-            Debug.Log("died");
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     
+    //     if (isActive && other.CompareTag("Player"))
+    //     {
+    //         Debug.Log("died");
+    //     }
+    // }
 
     public void Interact(GameObject instigator)
     {
-        
-        
-        Debug.Log("permanently off");
+        //Debug.Log("permanently off");
     }
     public void UnInteract(GameObject instigator)
     {

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3915687600803441424}
   - component: {fileID: 714677535675774776}
-  - component: {fileID: 3365715134189506616}
   - component: {fileID: -2942128156742231476}
+  - component: {fileID: 3365715134189506616}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: Untagged
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3365715134189506616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7629721607349650081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8e257010bde794fa69a0630069578b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onPlayerDiedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &-2942128156742231476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3365715134189506616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629721607349650081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8e257010bde794fa69a0630069578b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlayerDiedEvent:
+    m_PersistentCalls:
+      m_Calls: []

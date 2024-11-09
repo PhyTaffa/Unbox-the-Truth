@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BufferZoneAttachment : MonoBehaviour
 {
@@ -14,6 +8,7 @@ public class BufferZoneAttachment : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 8f;
     [SerializeField] private float chaseDurationSeconds = 0.5f;
 
+    //useless stuff for now
     //private float speedDelta = 0.1f;
     private const float MaxChaseDuration = 2f;
     private const float MinChaseDuration = 1f;

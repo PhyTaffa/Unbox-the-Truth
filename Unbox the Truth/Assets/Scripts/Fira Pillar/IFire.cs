@@ -15,14 +15,14 @@ public class IFire : MonoBehaviour, IInteractibles
         scaleChange = new Vector3(0f, -startScale.y / secondsToDeactivate, 0f);
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("died");
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         Debug.Log("died");
+    //     }
+    // }
 
     
     
@@ -35,8 +35,6 @@ public class IFire : MonoBehaviour, IInteractibles
             transform.localScale += scaleChange;
 
             yield return null;
-
-
         }
         transform.localScale = Vector3.zero;
     }
@@ -46,7 +44,7 @@ public class IFire : MonoBehaviour, IInteractibles
         //transform.localScale = targetScale;
         StartCoroutine(FirePillarCycle());
         
-        Debug.Log("permanently off");
+        //Debug.Log("permanently off");
     }
     public void UnInteract(GameObject instigator)
     {
