@@ -1,14 +1,19 @@
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] public float minMoveSpeed = 4f;           // Min speed of player movement
-    [SerializeField] public float maxMoveSpeed = 8f;           // Max speed of player movement
+    [Header("SPEED SETTINGS")]
+    [SerializeField] public float carryingMovementSpeed = 4f;           // Min speed of player movement
+    [SerializeField] public float normalMovementSpeed = 8f;           // Max speed of player movement
     private float moveSpeed = 8f;           //Base move speed
+    [SerializeField] public bool isCarryingObject = false;
     
+    [Header("JUMP SETTINGS")]
     [SerializeField] public float jumpForce = 11f;          // Force applied when the player jumps
     
+    [Header("JUMP CHECK SETTINGS")]
     //Gizmo for jumping
     public LayerMask groundLayer;          // Layer to identify ground
     [SerializeField] private Transform groundCheck;           // Transform to check if the player is grounded
@@ -21,7 +26,7 @@ public class Movement : MonoBehaviour
     protected float moveInput = 0;                   // Horizontal input from the player
     protected int direction = 1;
     
-    [SerializeField] public bool isCarryingObject = false;
+
     
     void Start()
     {
@@ -52,11 +57,13 @@ public class Movement : MonoBehaviour
     {
         if(getLastDirection() == 1)
         {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            //GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().flipX = true;
+            //GetComponent<SpriteRenderer>().color = Color.red;
             
         }
     }
@@ -67,11 +74,11 @@ public class Movement : MonoBehaviour
 
         if (!isCarryingObject)
         {
-            moveSpeed = maxMoveSpeed;
+            moveSpeed = normalMovementSpeed;
         }
         else
         {
-            moveSpeed = minMoveSpeed;
+            moveSpeed = carryingMovementSpeed;
         }
         
         // Move the player
@@ -84,6 +91,7 @@ public class Movement : MonoBehaviour
     
 
         _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
+        
         //_rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5, 5), _rb.velocity.y);
 
         

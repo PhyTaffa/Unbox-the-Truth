@@ -31,13 +31,21 @@ public class ConveyorBelt : MonoBehaviour
         Transform collidedObjTransform = other.gameObject.GetComponent<Transform>();
         
         
-        if (collidedObjTransform.position.y > transform.position.y) //on top
+        if (collidedObjTransform.position.y >= transform.position.y) //on top
         {
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * rotationalSpeed);
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(direction.x, 0f) * rotationalSpeed, ForceMode2D.Force);
         }
-        else
+        else if (collidedObjTransform.position.y < transform.position.y)
         {
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(-direction * rotationalSpeed);
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction.x, 0f) * rotationalSpeed, ForceMode2D.Force);
+        }
+        else if (collidedObjTransform.position.x >= transform.position.x)
+        {
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,-direction.y) * rotationalSpeed, ForceMode2D.Force);
+        }
+        else if (collidedObjTransform.position.x < transform.position.x)
+        {
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,direction.y) * rotationalSpeed, ForceMode2D.Force);
         }
         
         
