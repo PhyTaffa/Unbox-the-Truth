@@ -29,6 +29,8 @@ public class RotationCorrection : MonoBehaviour
         if(leftPlatform){
             if(!Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)){
                 player.transform.rotation = Quaternion.Euler(0, 0, 0);   
+                playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
+                //player.transform.parent = null;
             }
         }
     }
@@ -38,7 +40,9 @@ public class RotationCorrection : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player")) //&& direction == Vector3.down
         {
-               //playerRB.constraints = RigidbodyConstraints2D.None;    
+            //collision.transform.parent = transform;
+            playerRB.constraints = RigidbodyConstraints2D.None;  
+            
         }
     }
 
@@ -49,7 +53,8 @@ public class RotationCorrection : MonoBehaviour
         {
                
                 pendulumUp = transform.up;
-                RotateToMatchPendulum(player.transform, pendulumUp);   
+                RotateToMatchPendulum(player.transform, pendulumUp); 
+                //playerRB.gravityScale = 0;   
         }
     }
 
@@ -58,9 +63,11 @@ public class RotationCorrection : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player")) //&& direction == Vector3.down
         {
-               //playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
+               //playerRB.gravityScale = 1;
+               //collision.transform.parent = null;
 
                //player.transform.rotation = Quaternion.Euler(0, 0, 0);   
+               playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
                leftPlatform = true;
         }
     }
