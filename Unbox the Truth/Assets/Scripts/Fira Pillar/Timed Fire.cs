@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TimedFire : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class TimedFire : MonoBehaviour
     [SerializeField] private bool isActive = true;
     [SerializeField] private float currTimer = 3f;
     [SerializeField] private float timeOfSwitch = 3f;
+    [SerializeField] private float timeDelay = 0f;
     //[SerializeField] private float scaleDeltaDuration = 2f;
 
     private void Start()
@@ -23,7 +25,7 @@ public class TimedFire : MonoBehaviour
     {
         currTimer += Time.deltaTime;
 
-        if (currTimer >= timeOfSwitch)
+        if (currTimer >= (timeOfSwitch + timeDelay))
         {
             if (isActive)
             {
