@@ -9,6 +9,7 @@ TagManager:
   - GM
   - Target
   - BufferZone
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - FishTank
+  - Fish
   - 
   - 
   - 

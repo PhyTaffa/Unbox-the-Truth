@@ -37,8 +37,9 @@ public class PickUp : MonoBehaviour
 
             if (HitInformation.collider)
             {
+                //gotta ignore a few stuff, level doors messes everything up
                 IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
-                if (interactibleObject != null)
+                if (interactibleObject != null )
                 {
                     interactibleObject.Interact(gameObject);
                 }
