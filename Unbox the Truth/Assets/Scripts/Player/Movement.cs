@@ -88,10 +88,12 @@ public class Movement : MonoBehaviour
             _rb.velocity = new Vector2(moveInput * moveSpeed, _rb.velocity.y);
             return;
         }
-    
 
-        _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
-        
+
+        if (_rb.velocity.magnitude < moveSpeed || Mathf.Sign(_rb.velocity.x) != Mathf.Sign(moveInput) )
+        {
+            _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
+        }
         //_rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5, 5), _rb.velocity.y);
 
         
