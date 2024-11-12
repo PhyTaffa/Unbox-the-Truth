@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
         }
 
 
-        if (_rb.velocity.magnitude < moveSpeed || Mathf.Sign(_rb.velocity.x) != Mathf.Sign(moveInput) )
+        //if (_rb.velocity.magnitude < moveSpeed || Mathf.Sign(_rb.velocity.x) != Mathf.Sign(moveInput) )
         {
             _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
         }
