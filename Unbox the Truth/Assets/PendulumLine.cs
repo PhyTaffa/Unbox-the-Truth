@@ -12,15 +12,15 @@ public class PendulumLine : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         hingeJoint2D = GetComponent<HingeJoint2D>();
-        Vector3 anchorPos = new Vector3(transform.position.x, transform.position.y + hingeJoint2D.connectedAnchor.y, 0);
-        lineRenderer.SetPosition(0, anchorPos);
+        //Vector3 anchorPos = new Vector3(hingeJoint2D.connectedAnchor.y, hingeJoint2D.connectedAnchor.y, 0);
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        lineRenderer.SetPosition(0, hingeJoint2D.connectedAnchor);
         lineRenderer.SetPosition(1, transform.position);
     }
 }
