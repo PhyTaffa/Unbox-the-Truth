@@ -10,6 +10,7 @@ TagManager:
   - Target
   - Door
   - Box
+  - Interactable
   layers:
   - Default
   - TransparentFX

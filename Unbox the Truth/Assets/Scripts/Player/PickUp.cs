@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
@@ -22,7 +23,7 @@ public class PickUp : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(KeyCode.R) && playerMovementComponent.isCarryingObject == false)
+        if (Input.GetKey(KeyCode.R))
         {
             playerDirection = playerMovementComponent.getLastDirection()*1f;
             Vector3 direction = new Vector3(playerDirection, 0, 0);
@@ -33,21 +34,32 @@ public class PickUp : MonoBehaviour
             Debug.DrawRay(pickUpRay.origin, pickUpRay.direction * range);
             
             
-            RaycastHit2D HitInformation = Physics2D.Raycast(pickUpRay.origin, pickUpRay.direction, range);
+            RaycastHit2D[] HitInformation = Physics2D.RaycastAll(pickUpRay.origin, pickUpRay.direction, range);
 
-            if (HitInformation.collider)
+            for (int i = 0; i < HitInformation.Length; i++)
             {
-                //gotta ignore a few stuff, level doors messes everything up
-                IInteractibles interactibleObject = HitInformation.collider.GetComponent<IInteractibles>();
-                if (interactibleObject != null )
-                {
-                    interactibleObject.Interact(gameObject);
-                }
+                if (HitInformation[i].collider)
+              {
+                  IInteractibles interactibleObject = HitInformation[i].collider.GetComponent<IInteractibles>();
+                  if (interactibleObject != null)
+                  {
+                      if(HitInformation[i].collider.CompareTag("Box"))
+                      {
+                        interactibleObject.Interact(gameObject);
+                      }
+                      else if (HitInformation[i].collider.CompareTag("Interactable"))
+                      {
+                          interactibleObject.Interact(gameObject);
+                      }
+                  }
+                  else
+                  {
+                      //Debug.Log("NOTHING was interacted with");
+                  }
+              }
             }
-            else
-            {
-                //Debug.Log("NOTHING was interacted with");
-            }
+            
+
             
         }
     }
