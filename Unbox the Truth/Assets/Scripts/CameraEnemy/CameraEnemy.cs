@@ -1,0 +1,82 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraEnemy : MonoBehaviour
+{
+    [SerializeField] private float rotationSpeed = 0.5f;
+    [SerializeField] private float rotationAngle = 45f;
+    [SerializeField] private float fovAngle = 60f; // Field of view angle
+    [SerializeField] private float viewDistance = 10f; // Distance the enemy can see
+    private Transform playerTransform; 
+    private float startAngle;
+
+    //private Light spotLight;
+    public OnPlayerDied onPlayerDiedEvent;
+
+    void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        startAngle = transform.rotation.eulerAngles.z;
+        //spotLight = GetComponentInChildren<Light>();
+        //spotLight.spotAngle = fovAngle;
+    }
+
+        void Update()
+    {
+        // Rotate the camera back and forth
+        float angle = Mathf.Sin(Time.time * rotationSpeed) * rotationAngle;
+        transform.rotation = Quaternion.Euler(0, 0, startAngle + angle);
+
+        // Check if the player is within the field of view
+        DetectPlayer();
+    }
+
+    private void DetectPlayer()
+    {
+    
+        // Get the direction to the player
+        Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
+
+        // Get the camera's forward direction (use 'right' in 2D for local forward axis)
+        Vector3 cameraForward = transform.right;
+
+        // Calculate the dot product
+        float dotProduct = Vector3.Dot(cameraForward, directionToPlayer);
+
+        // Calculate the threshold dot product based on the FOV angle
+        float threshold = Mathf.Cos(fovAngle * 0.5f * Mathf.Deg2Rad);
+
+        // Check if the player is within the FOV
+        if (dotProduct > threshold)
+        {
+            // Player is within the field of view
+
+            if(CheckVisibility()){
+                onPlayerDiedEvent.Invoke();
+            }
+            
+
+        }
+    }
+
+    private bool CheckVisibility()
+    {
+        Vector3 directionToPlayer = playerTransform.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude+1;
+
+        Debug.DrawRay(transform.position, directionToPlayer.normalized*viewDistance, Color.yellow); 
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer.normalized, viewDistance);
+        if(hit.collider.CompareTag("Player"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+}

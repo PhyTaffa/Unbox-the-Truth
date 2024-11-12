@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
         {
             Exit.onLevelExitEvent.AddListener(OnLevelExit);
         }
+        
+        CameraEnemy CameraEnemy = FindObjectOfType<CameraEnemy>();
+        if(CameraEnemy)
+        {
+            CameraEnemy.onPlayerDiedEvent.AddListener(OnPlayerDied);
+        }
     }
 
     // Update is called once per frame

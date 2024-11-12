@@ -120,11 +120,9 @@ public class PressurePlate : MonoBehaviour
 
     private void OnWorldRotationChanged(Vector3 pivot, Vector3 direction, float rotationAmount)   
     {
-        Debug.Log("OnWorldRotationChanged");
         moveBackSafe = moveBack;
         //moveBack = false;
         isRotating = true;
-        Debug.Log(isRotating);
 
         
         // Create a temporary GameObject to use the Transform component
@@ -147,7 +145,6 @@ public class PressurePlate : MonoBehaviour
     {
         moveBack = moveBackSafe;
         isRotating = false;
-        Debug.Log("OnWorldRotationFinished");
     }
 
 

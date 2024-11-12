@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Unbox the Truth.sln"
+    "dotnet.defaultSolution": "URP 2D.sln"
 }
