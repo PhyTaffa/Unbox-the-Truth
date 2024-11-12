@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 4284229867017526557}
   - component: {fileID: 2751713845133045998}
   - component: {fileID: 5221600549220182023}
-  - component: {fileID: 4312048416569318000}
   - component: {fileID: 4395425815671996266}
   m_Layer: 0
   m_Name: Player
@@ -185,7 +184,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 2657403613597635893}
-  groundCheckRadius: 0.52
+  groundCheckRadius: 0.48
 --- !u!114 &4284229867017526557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,22 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwForceX: 9
   throwForceY: 7
---- !u!114 &4312048416569318000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455077531456872956}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b6e15e7f504844c9546d4226071daf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundCheckRadius: 0.4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &4395425815671996266
 MonoBehaviour:
   m_ObjectHideFlags: 0
