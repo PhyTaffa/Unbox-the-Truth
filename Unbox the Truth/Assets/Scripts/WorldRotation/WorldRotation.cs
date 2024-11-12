@@ -67,6 +67,7 @@ public class WorldRotation : MonoBehaviour
                 if(!playerMoveComponent.IsGrounded()){
                     canRotate = false;
                 }
+                canRotate = false;
                 StartRotation();
             }
             
@@ -83,6 +84,7 @@ public class WorldRotation : MonoBehaviour
                 if(!playerMoveComponent.IsGrounded()){
                     canRotate = false;
                 }
+                canRotate = false;
                 StartRotation();
             } 
         }
