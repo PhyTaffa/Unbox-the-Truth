@@ -1,5 +1,7 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
@@ -25,19 +27,46 @@ public class Movement : MonoBehaviour
     
     protected float moveInput = 0;                   // Horizontal input from the player
     protected int direction = 1;
+
+    private bool IsHiding = false;
+    private SpriteRenderer playerSprite;
+
+
+    [SerializeField] private Sprite HidingSprite;
+    [SerializeField] private Sprite DefaultSprite;
     
 
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        Move();  // Call the Move function to handle player movement
-        Jump();  // Call the Jump function to handle jumping
-        testDirection();
+        Hide();
+        
+        if(!IsHiding)
+        {
+            Move();  // Call the Move function to handle player movement
+            Jump();  // Call the Jump function to handle jumping
+            testDirection();
+        }
+        
+    }
+
+    private void Hide()
+    {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            IsHiding = true;
+            playerSprite.sprite = HidingSprite;
+
+        }else{
+            IsHiding = false;
+            playerSprite.sprite = DefaultSprite;
+        }
     }
 
     public int getLastDirection()
@@ -117,6 +146,10 @@ public class Movement : MonoBehaviour
             // Apply an upward force to the player's Rigidbody2D to make them jump
             _rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
+    }
+
+    public bool GetIsHiding(){
+        return IsHiding;
     }
 
     // Optional: Visualize the ground check in the Scene view

@@ -11,6 +11,7 @@ public class CameraEnemy : MonoBehaviour
     [SerializeField] private float fovAngle = 60f; // Field of view angle
     [SerializeField] private float viewDistance = 20f; // Distance the enemy can see
     private Transform playerTransform; 
+    private Movement playerMovement;
     private float startAngle;
 
     private Light2D spotLight;
@@ -19,6 +20,7 @@ public class CameraEnemy : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
         startAngle = transform.rotation.eulerAngles.z;
         spotLight = GetComponentInChildren<Light2D>();
         spotLight.pointLightInnerRadius = 0;
@@ -34,7 +36,10 @@ public class CameraEnemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, startAngle + angle);
 
         // Check if the player is within the field of view
-        DetectPlayer();
+        if(!playerMovement.GetIsHiding()){
+            DetectPlayer();
+        }
+        
     }
 
     private void DetectPlayer()
