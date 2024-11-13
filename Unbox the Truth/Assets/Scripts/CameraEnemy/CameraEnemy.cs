@@ -2,25 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CameraEnemy : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.5f;
     [SerializeField] private float rotationAngle = 45f;
     [SerializeField] private float fovAngle = 60f; // Field of view angle
-    [SerializeField] private float viewDistance = 10f; // Distance the enemy can see
+    [SerializeField] private float viewDistance = 20f; // Distance the enemy can see
     private Transform playerTransform; 
     private float startAngle;
 
-    //private Light spotLight;
+    private Light2D spotLight;
     public OnPlayerDied onPlayerDiedEvent;
 
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         startAngle = transform.rotation.eulerAngles.z;
-        //spotLight = GetComponentInChildren<Light>();
-        //spotLight.spotAngle = fovAngle;
+        spotLight = GetComponentInChildren<Light2D>();
+        spotLight.pointLightInnerRadius = 0;
+        spotLight.pointLightOuterRadius = viewDistance;
+        spotLight.pointLightOuterAngle = fovAngle+1;
+        spotLight.pointLightInnerAngle = fovAngle;
     }
 
         void Update()
@@ -69,14 +73,17 @@ public class CameraEnemy : MonoBehaviour
         Debug.DrawRay(transform.position, directionToPlayer.normalized*viewDistance, Color.yellow); 
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer.normalized, viewDistance);
-        if(hit.collider.CompareTag("Player"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        if(hit.collider != null){
+            if(hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        } 
+        return false;
         
     }
 }
