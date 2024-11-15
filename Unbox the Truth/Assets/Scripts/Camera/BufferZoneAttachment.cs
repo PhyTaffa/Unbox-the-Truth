@@ -4,8 +4,8 @@ public class BufferZoneAttachment : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private float moveSpeed = 4.0f;
-    [SerializeField] private float minMoveSpeed = 4f;
-    [SerializeField] private float maxMoveSpeed = 8f;
+    //[SerializeField] private float minMoveSpeed = 4f;
+    //[SerializeField] private float maxMoveSpeed = 8f;
     [SerializeField] private float chaseDurationSeconds = 0.5f;
 
     //useless stuff for now

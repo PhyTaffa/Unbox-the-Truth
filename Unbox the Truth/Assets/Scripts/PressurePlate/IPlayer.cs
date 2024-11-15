@@ -12,8 +12,10 @@ public class IPlayer : MonoBehaviour, IPressurePlateTrigger
     private bool canRotateWorld;
 
     private int worldRotCount = 0;
+
+
     
-    [SerializeField] float distance = 1.5f;
+    //[SerializeField] float distance = 1.5f;
 
     private Transform playerT;
     private Vector3 rotate;

@@ -30,6 +30,8 @@ public class WorldRotation : MonoBehaviour
     public OnWorldRotationChanged onWorldRotationChangedEvent;
     public OnWorldRotationFinished onWorldRotationFinishedEvent;
 
+    //Cheats
+    private Cheats cheats;
     
     void Start()
     {
@@ -48,11 +50,17 @@ public class WorldRotation : MonoBehaviour
         {
             Debug.LogError("WorldRoot not found");
         }
+        
+        cheats = player.GetComponent<Cheats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cheats.canSpamRotation)
+        {
+            canRotate = true;
+        }
         // Check for input to rotate the world and set the rotation direction
         if (Input.GetKeyDown(KeyCode.Q) && !isRotating)
         {

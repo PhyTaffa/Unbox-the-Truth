@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Gate/Using Child/Gate With Child.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Gate/Using Child/Gate With Child.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LevelDoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/LevelDoor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level3.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/camera testing.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/camera testing.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/BufferZoneAttachment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/BufferZoneAttachment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/CameraManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exit/Exit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exit/Exit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Fira Pillar/fire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Fira Pillar/fire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/KillPlayerOnTouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/KillPlayerOnTouch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PressurePlate/IPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PressurePlate/IPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Text/TextReposition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Text/TextReposition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WorldRotation/WorldRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WorldRotation/WorldRotation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextAllocator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextAllocator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +71,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/9f/71db1525/IntPtr.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/ab/29dfb582/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/fe/e0d27acd/SynchronizationContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Cheats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Fira Pillar/Timed Fire.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/zToBeDeleted/DynamicPlatformMover.cs" root0="FORCE_HIGHLIGHTING" />
@@ -135,6 +158,7 @@
       <workItem from="1730830837984" duration="3079000" />
       <workItem from="1731085747983" duration="20957000" />
       <workItem from="1731175611051" duration="14222000" />
+      <workItem from="1731681782708" duration="7803000" />
     </task>
     <servers />
   </component>
@@ -182,26 +206,13 @@
           <line>42</line>
           <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Player\PickUp.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="1491" />
+              <option value="1384" />
             </startOffsets>
             <endOffsets>
-              <option value="1531" />
+              <option value="1478" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs</url>
-          <line>37</line>
-          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Player\PickUp.cs" containingFunctionPresentation="Method 'Update'">
-            <startOffsets>
-              <option value="1254" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1282" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -7,13 +7,13 @@ public class TextReposition : MonoBehaviour
     [SerializeField] private GameObject levelDoor;
     private Transform levelDoorTransform;
 
-    private Camera camera;
+    private Camera mainCamera;
     private Vector3 camPos;
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        camPos = camera.transform.position;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        camPos = mainCamera.transform.position;
         
         levelDoorTransform = levelDoor.GetComponent<Transform>();
     }

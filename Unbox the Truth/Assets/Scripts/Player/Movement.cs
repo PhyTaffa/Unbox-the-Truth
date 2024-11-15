@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     //Gizmo for jumping
     public LayerMask groundLayer;          // Layer to identify ground
     [SerializeField] private Transform groundCheck;           // Transform to check if the player is grounded
-    [SerializeField] private float groundCheckRadius = 0.2f; // Radius of ground check
+    [SerializeField] internal float groundCheckRadius = 0.2f; // Radius of ground check
 
     private Rigidbody2D _rb;                // Reference to the Rigidbody2D component
     private bool _isGrounded;               // Is the player on the ground?
@@ -100,7 +100,8 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         moveInput = Input.GetAxis("Horizontal"); // Get input from the horizontal axis (A/D or Left/Right arrows)
-
+        
+        
         if (!isCarryingObject)
         {
             moveSpeed = normalMovementSpeed;
@@ -124,7 +125,6 @@ public class Movement : MonoBehaviour
             _rb.AddForce(new Vector2(moveInput * 3, 0), ForceMode2D.Force);
         }
         //_rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5, 5), _rb.velocity.y);
-
         
     }
     public bool IsGrounded()

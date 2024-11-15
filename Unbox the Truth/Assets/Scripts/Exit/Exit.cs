@@ -11,7 +11,7 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.C))
         {
             if (col.gameObject.CompareTag("Player"))
             {

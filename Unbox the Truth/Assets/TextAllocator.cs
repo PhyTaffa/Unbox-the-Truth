@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,8 +15,16 @@ public class TextAllocator : MonoBehaviour
         
         AllocateChildren();
 
-        DisplayNameOfDoors();
+        //DisplayNameOfDoors();
         //Vector2 ScreenSpace = Camera.main.WorldToScreenPoint(objecttranform.position);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            AllocateChildren();
+        }
     }
 
     private void DisplayNameOfDoors()

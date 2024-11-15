@@ -51,6 +51,8 @@ public class PickUp : MonoBehaviour
                       {
                           interactibleObject.Interact(gameObject);
                       }
+
+                      return;
                   }
                   else
                   {

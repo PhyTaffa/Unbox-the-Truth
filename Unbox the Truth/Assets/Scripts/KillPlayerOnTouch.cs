@@ -10,6 +10,7 @@ public class KillPlayerOnTouch : MonoBehaviour
     public OnPlayerDied onPlayerDiedEvent;
     private GameObject gm;
     protected GameManager gms;
+    
     private void Start()
     {
         gm = GameObject.FindWithTag("GM");
@@ -18,7 +19,7 @@ public class KillPlayerOnTouch : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player") && collider.gameObject.GetComponent<Cheats>().isKillable == true)
         {
             gms.OnPlayerDied();
             //onPlayerDiedEvent.Invoke();

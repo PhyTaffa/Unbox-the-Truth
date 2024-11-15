@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5221600549220182023}
   - component: {fileID: 4395425815671996266}
   - component: {fileID: 5835291913754760616}
+  - component: {fileID: 6634870705056305932}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -115,7 +116,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -200,7 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471150ed778dd3942bebba9829f57cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1.5
 --- !u!114 &2751713845133045998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +290,21 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &6634870705056305932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455077531456872956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843dfc3e3e5df054e920e5ce36644cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isKillable: 1
+  isCheating: 0
+  moveSpeed: 10
 --- !u!1 &3518703407645385669
 GameObject:
   m_ObjectHideFlags: 0
