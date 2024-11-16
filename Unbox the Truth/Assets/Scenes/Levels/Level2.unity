@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4284229867017526557, guid: d38a30581ecf9b141b56681ae3f28f59, type: 3}
+      propertyPath: givenSprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: 10d9e702d6af8d64982f5655d1947b86, type: 3}
     - target: {fileID: 6315979891265325685, guid: d38a30581ecf9b141b56681ae3f28f59, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.06

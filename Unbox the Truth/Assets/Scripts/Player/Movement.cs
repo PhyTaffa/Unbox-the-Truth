@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
     private bool IsHiding = false;
     private SpriteRenderer playerSprite;
 
-
+    [Header("Sprites")]
     [SerializeField] private Sprite HidingSprite;
     [SerializeField] private Sprite DefaultSprite;
     
@@ -41,6 +41,12 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
         playerSprite = GetComponent<SpriteRenderer>();
+        
+        //debug
+        // if (SpriteManager.selectedSprite != null)
+        // {
+        //     SpriteManager.SetSprite(DefaultSprite);
+        // }
     }
 
     void Update()
@@ -58,14 +64,24 @@ public class Movement : MonoBehaviour
 
     private void Hide()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        // if(Input.GetKey(KeyCode.LeftShift))
+        // {
+        //     IsHiding = true;
+        //     playerSprite.sprite = HidingSprite;
+        //
+        // }else{
+        //     IsHiding = false;
+        //     playerSprite.sprite = DefaultSprite;
+        // }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             IsHiding = true;
             playerSprite.sprite = HidingSprite;
-
-        }else{
+        }else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             IsHiding = false;
-            playerSprite.sprite = DefaultSprite;
+            playerSprite.sprite = SpriteManager.selectedSprite;
         }
     }
 

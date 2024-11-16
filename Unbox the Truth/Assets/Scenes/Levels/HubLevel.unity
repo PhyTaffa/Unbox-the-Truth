@@ -731,11 +731,11 @@ GameObject:
   - component: {fileID: 358348358}
   m_Layer: 0
   m_Name: Level Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &358348357
 Transform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.835309, a: 0.34117648}
+  m_Color: {r: 1, g: 0, b: 0.835309, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4815,15 +4815,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4670415385367853564, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580630766164395650, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7140935949422833190, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
       propertyPath: m_Name
       value: LevelDoor 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140935949422833190, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7613248920997242146, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4983449325154731201, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2589998970906308589, guid: 1fb31a212223a5a4e85b96c449c9fbf1, type: 3}
