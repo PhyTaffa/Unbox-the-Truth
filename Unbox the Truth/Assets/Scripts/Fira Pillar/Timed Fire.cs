@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 public class TimedFire : MonoBehaviour
@@ -12,11 +13,18 @@ public class TimedFire : MonoBehaviour
     [SerializeField] private float currTimer = 3f;
     [SerializeField] private float timeOfSwitch = 3f;
     [SerializeField] private float timeDelay = 0f;
+
+    private Light2D Light;
+    private Light2D SaveLight;
+    private GameObject childGo;
     //[SerializeField] private float scaleDeltaDuration = 2f;
 
     private void Start()
     {
         startScale = transform.localScale;
+        Light = GetComponentInChildren<Light2D>();
+        SaveLight = Light;
+        childGo = transform.GetChild(0).gameObject;
         
         //scaleDelta = new Vector3(0f, startScale.y / scaleDeltaDuration, 0f);
     }
@@ -35,6 +43,8 @@ public class TimedFire : MonoBehaviour
                 
                 isActive = false;
                 currTimer = 0f;
+                childGo.SetActive(false);
+                
             }
             else if (!isActive)
             {
@@ -45,6 +55,8 @@ public class TimedFire : MonoBehaviour
                 
                 isActive = true;
                 currTimer = 0f;
+                
+                childGo.SetActive(true);
             }
         }
 

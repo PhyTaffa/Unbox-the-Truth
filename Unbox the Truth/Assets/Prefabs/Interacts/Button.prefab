@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6252392282489483091}
   - component: {fileID: 1110059609853069024}
   - component: {fileID: 420431341732990093}
+  - component: {fileID: 6443278420150641089}
   m_Layer: 6
   m_Name: Button
   m_TagString: Interactable
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: be72f4429b00f23418b629d230665ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,3 +173,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObjectToBeInteractedWith: {fileID: 0}
+--- !u!114 &6443278420150641089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455957460057684886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.5000005, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5000005, y: 0.5, z: 0}
+  - {x: 0.5000005, y: -0.5000005, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -78152
+  m_LocalBounds:
+    m_Center: {x: 0.00000023841858, y: -0.00000023841858, z: 0}
+    m_Extent: {x: 0.50000024, y: 0.50000024, z: 0}

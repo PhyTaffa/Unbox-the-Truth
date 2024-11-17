@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class IFire : MonoBehaviour, IInteractibles
 {
     [SerializeField] private int secondsToDeactivate = 240;
     private Vector3 startScale;
     private Vector3 scaleChange;
+    private bool hasInteracted = false;
 
     public void Start()
     {
@@ -42,7 +44,13 @@ public class IFire : MonoBehaviour, IInteractibles
     public void Interact(GameObject instigator)
     {
         //transform.localScale = targetScale;
+       if(hasInteracted) return;
         StartCoroutine(FirePillarCycle());
+        Light2D Light = GetComponentInChildren<Light2D>();
+        Light.intensity = 0;
+
+        Destroy(Light);
+        hasInteracted = true;
         
         //Debug.Log("permanently off");
     }

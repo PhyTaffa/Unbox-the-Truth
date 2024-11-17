@@ -16,13 +16,16 @@ public class PressurePlate : MonoBehaviour
     private bool moveBackSafe;
     private bool isRotating;
 
+    private Color originalColor;
+
 
     
     [SerializeField] private Vector3 spherePosition = Vector3.zero; // Position where the sphere will be drawn
 
 
     void Start()
-    {
+    {   
+        originalColor = GetComponent<SpriteRenderer>().color;
         originalPosition = transform.position;
         targetPosition = transform.TransformPoint(Vector3.down * 0.5f);
         interactable = interactableObject.GetComponent<IInteractibles>();
@@ -97,7 +100,7 @@ public class PressurePlate : MonoBehaviour
 
                 if(distance < 0.01f)
                 {
-                    GetComponent<SpriteRenderer>().color = Color.green;
+                    GetComponent<SpriteRenderer>().color = new Color(0.1f,1f,0.1f);
                     interactable.Interact(interactableObject);
                 }
             }
@@ -110,7 +113,7 @@ public class PressurePlate : MonoBehaviour
         IPressurePlateTrigger trigger = collision.gameObject.GetComponent<IPressurePlateTrigger>();
         if (trigger != null)
         {
-                GetComponent<SpriteRenderer>().color = Color.white;
+                GetComponent<SpriteRenderer>().color = originalColor;
                 //collision.transform.parent = null;
                 reachedTarget = false;
                 moveBack = true;

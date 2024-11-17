@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 714677535675774776}
   - component: {fileID: 2855964972331207002}
   - component: {fileID: 3365715134189506616}
+  - component: {fileID: 3266627507616929832}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: be72f4429b00f23418b629d230665ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.9528302, g: 0.38203096, b: 0.38203096, a: 1}
+  m_Color: {r: 0.5283019, g: 0.042363837, b: 0.042363837, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,3 +150,33 @@ MonoBehaviour:
   onPlayerDiedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3266627507616929832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629721607349650081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5595823, y: -0.27191117, z: 0.000000040938655}
+  - {x: -0.04568124, y: 0.5716846, z: 0.00000011012262}
+  - {x: 0.03823393, y: 0.58658034, z: 0.000000115444465}
+  - {x: 0.49999964, y: -0.30170262, z: 0.000000083513406}
+  m_ShapePathHash: -279486251
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 38032
+  m_LocalBounds:
+    m_Center: {x: -0.029791296, y: 0.14243886, z: 0}
+    m_Extent: {x: 0.529791, y: 0.44414148, z: 0}
