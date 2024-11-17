@@ -16,6 +16,7 @@ public class Cheats : MonoBehaviour
     private BoxCollider2D box2d;
     
     private float originalGravityScale;
+    private float originalRadius;
 
     void Start()
     {
@@ -24,6 +25,8 @@ public class Cheats : MonoBehaviour
         
         rb2d = GetComponent<Rigidbody2D>();
         originalGravityScale = rb2d.gravityScale;
+
+        originalRadius = moveComp.groundCheckRadius;
         
         box2d = GetComponent<BoxCollider2D>();
                                                    
@@ -70,10 +73,15 @@ public class Cheats : MonoBehaviour
             if (isCheating)
             {
                 rb2d.gravityScale = 0f;
+                
+                moveComp.groundCheckRadius = 0f;
             }
             else
             {
+                
                 rb2d.gravityScale = originalGravityScale;
+                
+                moveComp.groundCheckRadius = originalRadius;
             }
         }
 
