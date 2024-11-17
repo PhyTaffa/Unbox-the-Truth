@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 7126123493613778561}
   - component: {fileID: 5091479915150497559}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Hub level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 349230493981806178}
   - component: {fileID: 308265690998115331}
   m_Layer: 5
-  m_Name: resume
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/InGamePauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InGamePauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +143,7 @@
       <workItem from="1731085747983" duration="20957000" />
       <workItem from="1731175611051" duration="14222000" />
       <workItem from="1731681782708" duration="8398000" />
-      <workItem from="1731789703166" duration="14232000" />
+      <workItem from="1731789703166" duration="14800000" />
     </task>
     <servers />
   </component>
