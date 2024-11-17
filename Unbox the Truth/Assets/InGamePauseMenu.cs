@@ -63,6 +63,7 @@ public class InGamePauseMenu : MonoBehaviour
     // Options button action (not implemented yet)
     private void OnOptions()
     {
+        SceneManager.LoadScene("HubLevel");
         Debug.Log("Options button pressed.");
     }
 
