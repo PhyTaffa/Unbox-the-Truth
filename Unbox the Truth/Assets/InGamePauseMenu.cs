@@ -6,7 +6,7 @@ public class InGamePauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;  // Reference to the pause menu panel (overlay)
     public Button resumeButton;   // Reference to the Resume button
-    public Button optionsButton;  // Reference to the Options button
+    public Button hubLevelButton;  // Reference to the Options button
     public Button quitButton;     // Reference to the Quit button
 
     private bool isPaused = false;  // Track whether the game is paused
@@ -18,7 +18,7 @@ public class InGamePauseMenu : MonoBehaviour
 
         // Add listeners for buttons (currently, we'll just print a message)
         resumeButton.onClick.AddListener(OnResume);
-        optionsButton.onClick.AddListener(OnOptions);
+        hubLevelButton.onClick.AddListener(OnHubLevel);
         quitButton.onClick.AddListener(OnQuit);
     }
 
@@ -61,8 +61,9 @@ public class InGamePauseMenu : MonoBehaviour
     }
 
     // Options button action (not implemented yet)
-    private void OnOptions()
+    private void OnHubLevel()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("HubLevel");
         Debug.Log("Options button pressed.");
     }
