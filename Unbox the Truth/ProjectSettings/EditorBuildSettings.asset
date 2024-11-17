@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/CompanionAppMenu.unity
     guid: 3089fe94c04bc704ea440e450b740f93
   - enabled: 1
-    path: Assets/Scenes/camera testing.unity
+    path: Assets/Scenes/Levels/Level4.unity
     guid: 2b17144a8c2b30f48a3233b4890170d6
   m_configObjects: {}
