@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.228509, y: 36.407913, z: 0}
-  m_LocalScale: {x: 0.3433, y: 0.7056, z: 1}
+  m_LocalScale: {x: 12.28393, y: 0.1514923, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4079217436006413054}
@@ -223,12 +223,12 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.321
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00024998188, y: -0.02880001, z: 0}
-    m_Extent: {x: 1.78045, y: 1.8096, z: 0}
+    m_Center: {x: -0.00034999847, y: 0.19289994, z: 0}
+    m_Extent: {x: 1.77965, y: 3.1771, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -240,8 +240,10 @@ MonoBehaviour:
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.0029444797, y: -1.7066799, z: 0}
   - {x: 0.5, y: -0.5615622, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0, y: 2.090452, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
 --- !u!114 &8857941610769587543
 MonoBehaviour:
