@@ -149,7 +149,7 @@ public class Movement : MonoBehaviour
     }
     private void Jump()
     {
-
+        
         // Check if the player is grounded using a circle overlap
         _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
@@ -158,7 +158,9 @@ public class Movement : MonoBehaviour
 
         // If the player is grounded and presses the jump button (space)
         if (_isGrounded && Input.GetButtonDown("Jump"))
-        {
+        {   
+            //_rb.simulated = true;
+            _rb.velocity = Vector2.zero;
             // Apply an upward force to the player's Rigidbody2D to make them jump
             _rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }

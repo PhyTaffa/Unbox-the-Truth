@@ -68,7 +68,7 @@ public class WorldRotation : MonoBehaviour
             if(canRotate && !playerMoveComponent.isCarryingObject)
             {
                //if setting the parent is heavy we can perform an early check.
-                player.transform.SetParent(null);
+                //player.transform.SetParent(null);
                 
                 rotationDirection = Vector3.forward;
                 rotationCorrectionDirection = Vector3.back;
@@ -85,7 +85,7 @@ public class WorldRotation : MonoBehaviour
 
             if(canRotate && !playerMoveComponent.isCarryingObject)
             {
-                player.transform.SetParent(null);
+                //player.transform.SetParent(null);
             
                 rotationDirection = Vector3.back;
                 rotationCorrectionDirection = Vector3.forward;
