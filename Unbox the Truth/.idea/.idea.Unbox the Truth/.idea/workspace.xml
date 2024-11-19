@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/URP/DEFAULT_URP_ASSET.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/URP/DEFAULT_URP_ASSET.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level4.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +82,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.45f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -94,7 +90,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.45f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -106,9 +102,6 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
-      <option name="runtimes">
-        <list />
-      </option>
       <option name="selectedOptions">
         <list />
       </option>
@@ -119,9 +112,6 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
-      <option name="runtimes">
-        <list />
-      </option>
       <option name="selectedOptions">
         <list />
       </option>
@@ -149,6 +139,7 @@
       <workItem from="1731175611051" duration="14222000" />
       <workItem from="1731681782708" duration="8398000" />
       <workItem from="1731789703166" duration="15992000" />
+      <workItem from="1732038898790" duration="2369000" />
     </task>
     <servers />
   </component>
@@ -179,27 +170,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/PressurePlate/PressurePlate.cs</url>
-          <line>99</line>
-          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\PressurePlate\PressurePlate.cs" containingFunctionPresentation="Method 'OnCollisionStay2D'">
-            <startOffsets>
-              <option value="3352" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3403" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs</url>
-          <line>42</line>
+          <line>43</line>
           <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Player\PickUp.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="1384" />
+              <option value="1497" />
             </startOffsets>
             <endOffsets>
-              <option value="1478" />
+              <option value="1528" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
