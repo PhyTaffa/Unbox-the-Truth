@@ -69,8 +69,7 @@ public class Movement : MonoBehaviour
         
     }
 
-    /*
-    private void PlatformJump()
+    /*private void PlatformJump()
     {
         if(Input.GetKeyDown(KeyCode.X))
         {
@@ -199,7 +198,7 @@ public class Movement : MonoBehaviour
         
         // Check if the player is grounded using a circle overlap
         
-
+        _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         // Debugging output
        // Debug.Log("Is Grounded: " + _isGrounded);
 

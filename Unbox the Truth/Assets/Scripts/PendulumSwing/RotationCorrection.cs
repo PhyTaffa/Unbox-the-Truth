@@ -91,7 +91,7 @@ public class RotationCorrection : MonoBehaviour
         {
             notEnter = true;
             Vector2 playerPosOld = player.transform.position;
-            player.transform.position += Vector3.up*0.1f;
+            player.transform.position += Vector3.up*0.2f;
             Vector2 playerPosNew = player.transform.position;
 
             playerRB.simulated = true;
@@ -102,7 +102,7 @@ public class RotationCorrection : MonoBehaviour
             playerMovement.SetUsePlatformMechanics(true);
             playerMovement.SetIsGrounded(false);
 
-            playerRB.velocity = (playerPosNew - playerPosOld)*100;
+            playerRB.velocity = (playerPosNew - playerPosOld)*50;
             float limitedYVel = Mathf.Clamp(platformRB.velocity.y, 0, 100);
             playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y + limitedYVel);
         }
