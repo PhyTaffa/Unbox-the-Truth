@@ -10,6 +10,8 @@ public class RotationCorrection : MonoBehaviour
     private GameObject player;
     private Rigidbody2D playerRB;
 
+    private Rigidbody2D platformRB;
+
     private bool leftPlatform;
     private Vector2 pendulumUp;
     private Vector2 pendulumStart;
@@ -31,6 +33,7 @@ public class RotationCorrection : MonoBehaviour
         groundCheck = player.transform.Find("groundCheck");
 
         pendulumStart = new Vector2(0, -1);
+        platformRB = GetComponent<Rigidbody2D>();
 
         hingeJoint2D = GetComponent<HingeJoint2D>();
 
@@ -82,15 +85,24 @@ public class RotationCorrection : MonoBehaviour
             notEnter = true;
             Debug.Log("Keydown working");
             //playerRB.velocity = new Vector2(0, 0);
+            Vector2 playerPosOld = player.transform.position;
+            player.transform.position += Vector3.up*0.1f;
+            Vector2 playerPosNew = player.transform.position;
             playerRB.simulated = true;
+            player.transform.parent = null;
+            player.transform.localScale = new Vector3(1,1,1);
+            //Debug.Log(platformRB.velocity);
+            playerRB.velocity = (playerPosNew - playerPosOld)*100;
+            playerRB.velocity = new Vector2(10, playerRB.velocity.y);
+            Debug.Log(playerRB.velocity);
             if(jump == null){
-                jump = StartCoroutine(Jump());
+                //jump = StartCoroutine(Jump());
             }
         }
     }
 
     private IEnumerator Jump()
-    {
+    { 
         yield return new WaitForSeconds(2f);
         Debug.Log("Force Applied");
         playerRB.AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
