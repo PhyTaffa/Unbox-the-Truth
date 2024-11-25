@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     //Gizmo for jumping
     public LayerMask groundLayer;          // Layer to identify ground
     [SerializeField] private Transform groundCheck;           // Transform to check if the player is grounded
-    [SerializeField] internal float groundCheckRadius = 0.2f; // Radius of ground check
+    [SerializeField] internal float groundCheckRadius = 0.05f; // Radius of ground check
 
     private Rigidbody2D _rb;                // Reference to the Rigidbody2D component
     private bool _isGrounded;               // Is the player on the ground?
@@ -34,9 +34,10 @@ public class Movement : MonoBehaviour
     [Header("Sprites")]
     [SerializeField] private Sprite HidingSprite;
     [SerializeField] private Sprite DefaultSprite;
-    
+    private bool _isOnPlatform;
 
-    
+    private bool usePlatformMechanics;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
@@ -53,14 +54,60 @@ public class Movement : MonoBehaviour
     {
         Hide();
         
-        if(!IsHiding)
+        if(!IsHiding && !usePlatformMechanics)
         {
             Move();  // Call the Move function to handle player movement
             Jump();  // Call the Jump function to handle jumping
             testDirection();
+        }else if(usePlatformMechanics)
+        {
+            //Debug.Log("Use Platform Mechanics");
+            //PlatformMove();
+            //PlatformJump();
+            testDirection();
         }
         
     }
+
+    /*
+    private void PlatformJump()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            notEnter = true;
+            Debug.Log("Keydown working");
+            Vector2 playerPosOld = transform.position;
+            transform.position += Vector3.up*0.1f;
+            Vector2 playerPosNew = transform.position;
+            _rb.simulated = true;
+            transform.parent = null;
+            transform.localScale = new Vector3(1,1,1);
+            SetUsePlatformMechanics(true);
+            SetIsGrounded(false);
+            _rb.velocity = (playerPosNew - playerPosOld)*100;
+            float limitedYVel = Mathf.Clamp(platformRB.velocity.y, 0, 100);
+            playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y + limitedYVel);
+            //playerRB.velocity = new Vector2(10, playerRB.velocity.y);
+            Debug.Log(playerRB.velocity);
+            //if(jump == null){
+                //jump = StartCoroutine(Jump());
+            //}
+        }
+    }
+
+    private void PlatformMove()
+    {
+        if(Input.GetKey(KeyCode.G))
+        {
+            transform.position -= transform.right * Time.deltaTime * moveSpeed;
+        }
+
+        if(Input.GetKey(KeyCode.H))
+        {
+            transform.position += transform.right * Time.deltaTime * moveSpeed;
+        }
+    }
+    */
 
     private void Hide()
     {
@@ -129,7 +176,7 @@ public class Movement : MonoBehaviour
         
         // Move the player
 
-        if (_isGrounded)
+        if (_isGrounded && !usePlatformMechanics)
         {
             _rb.velocity = new Vector2(moveInput * moveSpeed, _rb.velocity.y);
             return;
@@ -151,14 +198,19 @@ public class Movement : MonoBehaviour
     {
         
         // Check if the player is grounded using a circle overlap
-        _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        
 
         // Debugging output
        // Debug.Log("Is Grounded: " + _isGrounded);
 
         // If the player is grounded and presses the jump button (space)
-        if (_isGrounded && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {   
+            _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            if(!_isGrounded)
+            {
+                return;
+            }
             //_rb.simulated = true;
             _rb.velocity = Vector2.zero;
             // Apply an upward force to the player's Rigidbody2D to make them jump
@@ -168,6 +220,14 @@ public class Movement : MonoBehaviour
 
     public bool GetIsHiding(){
         return IsHiding;
+    }
+
+    public void SetUsePlatformMechanics(bool value){
+        usePlatformMechanics = value;
+    }
+
+    public void SetIsGrounded(bool value){
+        _isGrounded = value;
     }
 
     // Optional: Visualize the ground check in the Scene view

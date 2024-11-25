@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class RotationCorrection : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 8f;
     private GameObject player;
+    private Movement playerMovement;
     private Rigidbody2D playerRB;
 
     private Rigidbody2D platformRB;
@@ -25,11 +27,14 @@ public class RotationCorrection : MonoBehaviour
     private Coroutine jump;
 
     private Boolean notEnter;
+    private bool usePlatformMechanics;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerRB = player.GetComponent<Rigidbody2D>();
+        playerMovement = player.GetComponent<Movement>();
         groundCheck = player.transform.Find("groundCheck");
 
         pendulumStart = new Vector2(0, -1);
@@ -37,8 +42,8 @@ public class RotationCorrection : MonoBehaviour
 
         hingeJoint2D = GetComponent<HingeJoint2D>();
 
-        leftPlatform = false;
-
+        leftPlatform = true;
+        usePlatformMechanics = false;
         notEnter = false;
     }
 
@@ -51,53 +56,55 @@ public class RotationCorrection : MonoBehaviour
                 playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
                 player.transform.parent = null;
                 player.transform.localScale = new Vector3(1,1,1);
+                //playerMovement.SetIsOnPlatfrom(false);
                 //playerRB.bodyType = RigidbodyType2D.Dynamic;
-                //playerRB.simulated = true;
+                playerRB.simulated = true;
+                usePlatformMechanics = false;
+                playerMovement.SetUsePlatformMechanics(usePlatformMechanics);
                 notEnter = false;
+                leftPlatform = false;
             }
         }
 
         
 
         //platformJump();
-        platformMove();
-        platformJump();
+        if(usePlatformMechanics){
+            platformMove();
+            platformJump();
+        }
+        
     }
 
     private void platformMove()
     {
-        if(Input.GetKey(KeyCode.G))
-        {
-            player.transform.position -= player.transform.right * Time.deltaTime * moveSpeed;
-        }
 
-        if(Input.GetKey(KeyCode.H))
-        {
-            player.transform.position += player.transform.right * Time.deltaTime * moveSpeed;
-        }
+        float moveInput = Input.GetAxis("Horizontal"); 
+
+        player.transform.position += player.transform.right * moveInput * Time.deltaTime * moveSpeed;
         
     }
 
     private void platformJump()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetButtonDown("Jump"))
         {
             notEnter = true;
-            Debug.Log("Keydown working");
-            //playerRB.velocity = new Vector2(0, 0);
             Vector2 playerPosOld = player.transform.position;
             player.transform.position += Vector3.up*0.1f;
             Vector2 playerPosNew = player.transform.position;
+
             playerRB.simulated = true;
+
             player.transform.parent = null;
             player.transform.localScale = new Vector3(1,1,1);
-            //Debug.Log(platformRB.velocity);
+
+            playerMovement.SetUsePlatformMechanics(true);
+            playerMovement.SetIsGrounded(false);
+
             playerRB.velocity = (playerPosNew - playerPosOld)*100;
-            playerRB.velocity = new Vector2(10, playerRB.velocity.y);
-            Debug.Log(playerRB.velocity);
-            if(jump == null){
-                //jump = StartCoroutine(Jump());
-            }
+            float limitedYVel = Mathf.Clamp(platformRB.velocity.y, 0, 100);
+            playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y + limitedYVel);
         }
     }
 
@@ -124,7 +131,9 @@ public class RotationCorrection : MonoBehaviour
                 }
                 
             }
-
+            leftPlatform = false;
+            usePlatformMechanics = true;
+            playerMovement.SetUsePlatformMechanics(usePlatformMechanics);
             player.transform.parent = insideTransform;
         }
     }
