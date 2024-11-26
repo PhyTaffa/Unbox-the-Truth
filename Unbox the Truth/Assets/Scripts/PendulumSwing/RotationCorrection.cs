@@ -28,6 +28,7 @@ public class RotationCorrection : MonoBehaviour
 
     private Boolean notEnter;
     private bool usePlatformMechanics;
+    private bool jumped;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +46,14 @@ public class RotationCorrection : MonoBehaviour
         leftPlatform = true;
         usePlatformMechanics = false;
         notEnter = false;
+        jumped = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(leftPlatform){
+            playerMovement.SetUsePlatformMechanics(true);
             if(!Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)){
                 player.transform.rotation = Quaternion.Euler(0, 0, 0);   
                 playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
@@ -63,13 +66,15 @@ public class RotationCorrection : MonoBehaviour
                 playerMovement.SetUsePlatformMechanics(usePlatformMechanics);
                 notEnter = false;
                 leftPlatform = false;
+                jumped = false;
             }
+            
         }
 
         
 
         //platformJump();
-        if(usePlatformMechanics){
+        if(usePlatformMechanics && !jumped){
             platformMove();
             platformJump();
         }
@@ -105,6 +110,7 @@ public class RotationCorrection : MonoBehaviour
             playerRB.velocity = (playerPosNew - playerPosOld)*50;
             float limitedYVel = Mathf.Clamp(platformRB.velocity.y, 0, 100);
             playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y + limitedYVel);
+            jumped = true;
         }
     }
 
