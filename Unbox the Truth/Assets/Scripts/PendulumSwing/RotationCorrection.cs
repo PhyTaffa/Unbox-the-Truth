@@ -30,6 +30,10 @@ public class RotationCorrection : MonoBehaviour
     private bool usePlatformMechanics;
     private bool jumped;
 
+    private WorldRotation  worldRotation;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +51,9 @@ public class RotationCorrection : MonoBehaviour
         usePlatformMechanics = false;
         notEnter = false;
         jumped = false;
+
+        GameObject worldRotationGO = GameObject.FindWithTag("WorldRoot");
+        worldRotation = worldRotationGO.GetComponent<WorldRotation>();
     }
 
     // Update is called once per frame
@@ -67,6 +74,8 @@ public class RotationCorrection : MonoBehaviour
                 notEnter = false;
                 leftPlatform = false;
                 jumped = false;
+            }else{
+                worldRotation.SetCanRotate(true);
             }
             
         }
@@ -126,6 +135,7 @@ public class RotationCorrection : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player")) //&& direction == Vector3.down
         {
+            Debug.Log("Collision");
             pendulumUp = transform.up;
             RotateToMatchPendulum(player.transform, pendulumUp);
             if(playerRB != null){
@@ -133,6 +143,7 @@ public class RotationCorrection : MonoBehaviour
                 
                 if(!notEnter){
                     playerRB.simulated = false;
+                    //playerRB.bodyType = RigidbodyType2D.Static;
                     playerRB.constraints = RigidbodyConstraints2D.None;  
                 }
                 
