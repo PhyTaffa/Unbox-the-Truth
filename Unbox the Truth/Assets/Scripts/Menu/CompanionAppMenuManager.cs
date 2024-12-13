@@ -21,6 +21,8 @@ public class CompanionAppMenuManager : MonoBehaviour
     [SerializeField] private Sprite sprite2; // Set in Inspector for the options button sprite
     [SerializeField] private Sprite defaultSprite;
 
+    
+    private Dictionary<int, Sprite> playerSpriteDictionary;
     private bool a;
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,15 @@ public class CompanionAppMenuManager : MonoBehaviour
         //maneges conncetion
         connectButton.onClick.AddListener(OnConnectButtonClicked);
         disconnectButton.onClick.AddListener(OnDisconnectButtonClicked);
+
         
+        
+        playerSpriteDictionary = new Dictionary<int, Sprite>
+        {
+            { 0, defaultSprite },
+            { 1, sprite1 },
+            { 2, sprite2 }
+        };
     }
 
     private void OnDisconnectButtonClicked()
@@ -48,8 +58,8 @@ public class CompanionAppMenuManager : MonoBehaviour
         skin2Button.interactable = false;
         
         //resets the skin to default
-        SpriteManager.SetSprite(defaultSprite);
-        Debug.Log("Stored sprite: " + defaultSprite.name);
+        SpriteManager.SetSprite(playerSpriteDictionary[0]);
+        Debug.Log($"Stored sprite: {defaultSprite.name}");
     }
 
     private void OnConnectButtonClicked()
@@ -61,16 +71,16 @@ public class CompanionAppMenuManager : MonoBehaviour
     private void OnSkin1ButtonClicked()
     {
         Debug.Log("SKin 1 Selected");
-        SpriteManager.SetSprite(sprite1);
-        Debug.Log("Stored sprite: " + sprite1.name);
+        SpriteManager.SetSprite(playerSpriteDictionary[1]);
+        Debug.Log($"Stored sprite: {sprite1.name}");
         // Load the "Game" scene (replace with your actual scene name)
     }
     
     private void OnSkin2ButtonClicked()
     {
         Debug.Log("Skin 2 Selected");
-        SpriteManager.SetSprite(sprite2);
-        Debug.Log("Stored sprite: " + sprite2.name);
+        SpriteManager.SetSprite(playerSpriteDictionary[2]);
+        Debug.Log($"Stored sprite: {sprite2.name}");
         // Load the "Game" scene (replace with your actual scene name)
     }
     
@@ -79,7 +89,7 @@ public class CompanionAppMenuManager : MonoBehaviour
     {
         Debug.Log("Default skin selected");
         SpriteManager.SetSprite(defaultSprite);
-        Debug.Log("Stored sprite: " + defaultSprite.name);
+        Debug.Log($"Stored sprite: {defaultSprite.name}");
         // Load the "Game" scene (replace with your actual scene name)
     }
     
