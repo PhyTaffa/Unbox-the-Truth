@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7633091091774276705}
   - component: {fileID: 8135007135998638826}
-  - component: {fileID: 215872977448810470}
   m_Layer: 0
   m_Name: Light 2D (1)
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2860918435793487312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.048035845}
+  m_LocalPosition: {x: 0, y: 0.19, z: -0.048035845}
   m_LocalScale: {x: 4.443344, y: 9.399378, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,17 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_LightType: 1
+  m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.456
   m_Color: {r: 0.3254902, g: 0, b: 0, a: 1}
-  m_Intensity: 19.38
+  m_Intensity: 30.45
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
+  m_LightCookieSprite: {fileID: 7482667652216324306, guid: f189785fc2a0a554ba5c4b8f698b8d4e, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 91
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
@@ -67,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0158, y: 0.00065000355, z: 0}
-    m_Extent: {x: 0.289, y: 0.14415, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -87,18 +86,6 @@ MonoBehaviour:
   - {x: -0.10643022, y: 0.05451368, z: 0}
   - {x: -0.17651586, y: 0.02892829, z: -0.000000014901161}
   - {x: -0.18400702, y: -0.028192459, z: -0.000000014901161}
---- !u!114 &215872977448810470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2860918435793487312}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0580fb855537a428aa7055369530f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6455957460057684886
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1999485, y: -2.53539, z: 0}
-  m_LocalScale: {x: 0.2081, y: 0.498, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7633091091774276705}
@@ -177,8 +164,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.509434, g: 0.006728347, b: 0.006728347, a: 1}
+  m_Sprite: {fileID: -1079022353, guid: 7ce3dc5e502fbfa4f80098a754a1fdf9, type: 3}
+  m_Color: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -224,7 +211,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.032258, y: 1.032258}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -299,7 +286,7 @@ MonoBehaviour:
   - {x: 0.5000005, y: -0.5000005, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -19332
+  m_InstanceId: -38950
   m_LocalBounds:
     m_Center: {x: 0.00000023841858, y: -0.00000023841858, z: 0}
     m_Extent: {x: 0.50000024, y: 0.50000024, z: 0}

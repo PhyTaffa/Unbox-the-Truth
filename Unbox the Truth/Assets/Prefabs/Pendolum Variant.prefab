@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1912240078860185775, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_InstanceId
-      value: -1506
+      value: -27432
       objectReference: {fileID: 0}
     - target: {fileID: 2326397256404698275, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_BodyType
@@ -60,24 +60,28 @@ PrefabInstance:
       value: Pendolum Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8527387037016728788, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 770dc05c11107d44e9192cda3f24df3e, type: 3}
+    - target: {fileID: 8527387037016728788, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_Color.b
-      value: 0.37891603
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8527387037016728788, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_Color.g
-      value: 0.6132076
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8527387037016728788, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_Color.r
-      value: 0.40733752
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8949352811083681153, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.7717376
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8949352811083681153, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4214047
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8949352811083681153, guid: e71316a3659f186488ecfb66bfd5e5ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -165,7 +169,7 @@ HingeJoint2D:
   m_BreakAction: 2
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 10}
-  m_ConnectedAnchor: {x: 9.999999, y: 4.214047}
+  m_ConnectedAnchor: {x: 9.999999, y: 10}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -195,7 +199,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be72f4429b00f23418b629d230665ad4, type: 2}
+  - {fileID: 2100000, guid: 1926f38f2fecea54ab342d4fd8d43488, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,8 +243,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.4245283, g: 0.27690688, b: 0.122152, a: 1}
-      key1: {r: 0.4245283, g: 0.27690688, b: 0.122152, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -263,7 +267,7 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
