@@ -1,5 +1,6 @@
 
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -43,10 +44,11 @@ public class Movement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
         playerSprite = GetComponent<SpriteRenderer>();
         
+        
         //debug
         // if (SpriteManager.selectedSprite != null)
         // {
-        //     SpriteManager.SetSprite(DefaultSprite);
+        //     
         // }
     }
 
@@ -64,7 +66,7 @@ public class Movement : MonoBehaviour
             //Debug.Log("Use Platform Mechanics");
             //PlatformMove();
             //PlatformJump();
-            testDirection();
+            //testDirection();
         }
         
     }
@@ -144,7 +146,7 @@ public class Movement : MonoBehaviour
         return direction;
     }
 
-    private void testDirection()
+    public void testDirection()
     {
         if(getLastDirection() == 1)
         {
@@ -157,6 +159,20 @@ public class Movement : MonoBehaviour
             //GetComponent<SpriteRenderer>().color = Color.red;
             
         }
+    }
+
+    public void flipSprite(int direction){
+        if(direction == 1)
+        {
+            //GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if(direction == -1)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            //GetComponent<SpriteRenderer>().color = Color.red;
+            
+        }   
     }
     
     private void Move()

@@ -12,7 +12,7 @@ public static class SpriteManager
     static SpriteManager()
     {
         // This is a fallback if you don't assign a sprite in the Inspector
-        selectedSprite = Resources.Load<Sprite>("Images/ritagliato 2"); // This assumes you have a sprite named "ritagliato 2" in Resources folder
+        selectedSprite = Resources.Load<Sprite>("Assets/Tilemaps/customTiles/player/player_default.psd"); // This assumes you have a sprite named "ritagliato 2" in Resources folder
         if (selectedSprite == null)
         {
             Debug.LogError("Default sprite not found. Please assign a default sprite.");

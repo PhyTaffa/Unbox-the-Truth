@@ -32,7 +32,7 @@ public class RotationCorrection : MonoBehaviour
 
     private WorldRotation  worldRotation;
 
-    
+    private int direction = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -94,7 +94,13 @@ public class RotationCorrection : MonoBehaviour
     {
 
         float moveInput = Input.GetAxis("Horizontal"); 
-
+        if(moveInput > 0){
+            direction = 1;
+            }
+        else if(moveInput < 0){
+                direction = -1;
+            }
+        playerMovement.flipSprite(direction);
         player.transform.position += player.transform.right * moveInput * Time.deltaTime * moveSpeed;
         
     }
