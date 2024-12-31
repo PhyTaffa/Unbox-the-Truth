@@ -65,7 +65,7 @@ public class RotationCorrection : MonoBehaviour
                 player.transform.rotation = Quaternion.Euler(0, 0, 0);   
                 playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
                 player.transform.parent = null;
-                player.transform.localScale = new Vector3(1,1,1);
+                //player.transform.localScale = new Vector3(1,1,1);
                 //playerMovement.SetIsOnPlatfrom(false);
                 //playerRB.bodyType = RigidbodyType2D.Dynamic;
                 playerRB.simulated = true;
@@ -117,7 +117,7 @@ public class RotationCorrection : MonoBehaviour
             playerRB.simulated = true;
 
             player.transform.parent = null;
-            player.transform.localScale = new Vector3(1,1,1);
+            //player.transform.localScale = new Vector3(1,1,1);
 
             playerMovement.SetUsePlatformMechanics(true);
             playerMovement.SetIsGrounded(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,6 +11,10 @@ public class IBox : MonoBehaviour, IInteractibles
     [SerializeField] private bool isBeingCarried = false;
     private WorldRotation worldRotation;
     private Rigidbody2D boxRB;
+
+    private BoxCollider2D playerCollider;
+
+    private Transform playerTransform;
     
     private float boxHeight;
     
@@ -23,6 +28,9 @@ public class IBox : MonoBehaviour, IInteractibles
         boxHeight = boxCol.size.y;
         
         boxRB = GetComponent<Rigidbody2D>();
+
+        playerTransform = GameObject.FindWithTag("Player").transform;
+        playerCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider2D>();
     }
 
     public void Interact(GameObject instigator)
@@ -33,8 +41,23 @@ public class IBox : MonoBehaviour, IInteractibles
         
         GettingPickedUp(instigator);
         Parenting(instigator);
+        UpdatePlayerCollider();
     }
-    
+
+    private void UpdatePlayerCollider()
+    {
+        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y + boxHeight);
+        playerCollider.size = playerColliderSize;
+        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y + boxHeight/2);
+    }
+
+    private void ResetPlayerCollider()
+    {
+        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y - boxHeight);
+        playerCollider.size = playerColliderSize;
+        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y - boxHeight/2);
+    }
+
     //mystical polymorphism
     public void Interact(GameObject instigator, Vector3 trajectory)
     {
@@ -42,20 +65,22 @@ public class IBox : MonoBehaviour, IInteractibles
         Movement playerProperty = instigator.GetComponent<Movement>();
         
         playerProperty.isCarryingObject = false;
-        GettingThrown(trajectory);
+        ResetPlayerCollider();
         DeParenting();
+        GettingThrown(trajectory);
     }
 
 
     private void Parenting(GameObject player)
     {
         transform.parent = player.transform;
+        boxRB.simulated = false;
     }
 
     private void GettingPickedUp(GameObject player)
     {
         //Calculating the appropriate position
-        Vector3 pickUpPosition = player.transform.position + new Vector3(0, boxHeight, 0);
+        Vector3 pickUpPosition = player.transform.position + new Vector3(0, (playerTransform.localScale.y + boxHeight)/2, 0);
 
         //velocity of box 0
         boxRB.velocity = Vector2.zero;
@@ -68,6 +93,7 @@ public class IBox : MonoBehaviour, IInteractibles
     private void DeParenting()
     {
         transform.parent = worldRotation.transform;
+        boxRB.simulated = true;
     }
 
     public void GettingThrown(Vector3 thrownDirection)
