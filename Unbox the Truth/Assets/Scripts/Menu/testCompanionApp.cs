@@ -1,135 +1,135 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class testCompanionApp : MonoBehaviour
+
+public class TestCompanionApp : MonoBehaviour
 {
-    private readonly int jsonLength = 7;
-    private Canvas canvas;
-    // Start is called before the first frame update
-    private GameObject[] buttonArray;
-    private List<GameObject> buttonList;
+    private int JsonLength = 3; // Number of buttons to create
+    private Canvas canvas;           // Reference to the Canvas
+    private GameObject[] buttonArray; // Array to store initial buttons
+    private List<GameObject> buttonList; // List to store instantiated buttons
+    private UnityEngine.UI.Button selectedButton; // Reference for button manipulations
+    private Dictionary<int, string> playerSpriteDictionary; // Dictionary for sprite data
+    private Sprite selectedSprite; // Sprite used for disabled buttons
     
-    private UnityEngine.UI.Button  selectedButton;
-    private Dictionary<int, String> playerSpriteDictionary = new Dictionary<int, String>();
-
-    private Sprite selectedSprite;
-    
-    void Start()
+    async void Start()
     {
-        //canvas = gameObject.GetComponent<Canvas>();
+        InitializeCanvas();
+        InitializeButtonArray();
+        InitializeDictionary();
+        LoadResources();
+        
+        EndpointCalls ep = new EndpointCalls();
+        JsonLength = await ep.GetNumberChallenges();
+        
+        CreateButtons();
+        TestButtonInteractions(buttonList);
+    }
+
+    /// <summary>
+    /// Finds and assigns the Canvas object.
+    /// </summary>
+    private void InitializeCanvas()
+    {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        
+    }
+
+    /// <summary>
+    /// Finds and assigns the initial set of buttons based on their tag.
+    /// </summary>
+    private void InitializeButtonArray()
+    {
         buttonArray = GameObject.FindGameObjectsWithTag("Skin button");
-        //buttonArray = currButton;
         buttonList = new List<GameObject>();
-        
-        foreach (var currButton in buttonArray)
+
+        // Log the names of all found buttons
+        foreach (var button in buttonArray)
         {
-            Debug.Log(currButton.name);
+            Debug.Log($"Found button: {button.name}");
         }
+    }
 
-        int canvasHeght = Screen.height;
-        RectTransform buttonSelectedRectTransf = buttonArray[0].GetComponent<RectTransform>();
-        float currButtonHeight = buttonSelectedRectTransf.sizeDelta.y;
-        float currButtonY = Screen.height/ jsonLength;
-
-        
-                
-        playerSpriteDictionary = new Dictionary<int, String>
+    /// <summary>
+    /// Populates the player sprite dictionary with test data.
+    /// </summary>
+    private void InitializeDictionary()
+    {
+        playerSpriteDictionary = new Dictionary<int, string>
         {
             { 0, "defaultSprite" },
             { 1, "sprite1" },
-            { 2, "sprite2" }
+            { 2, "sprite2" },
+            { 3, "sprite3" }
         };
+    }
 
+    /// <summary>
+    /// Loads required resources such as sprites.
+    /// </summary>
+    private void LoadResources()
+    {
         selectedSprite = Resources.Load<Sprite>("Images/amogus");
-         
-        // for (int i = 0; i < jsonLength; i++)
-        // {
-        //     
-        //     Vector2 currPosition = new Vector2(canvas.transform.position.x, currButtonY * i + currButtonY/2);
-        //     
-        //     GameObject currButton = Instantiate(buttonArray[0], currPosition, buttonArray[0].transform.rotation, canvas.transform);
-        //     
-        //     currButton.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonSelectedRectTransf.sizeDelta.x, currButtonY);
-        //     //currButton.transform.GetChild(0).GetComponent<Image>().sprite = currButton.GetComponent<Image>().sprite;
-        //     
-        //     currButton.name = "Skin button " + i;
-        //     //currButton.transform.SetParent(canvas.transform, false);
-        //
-        //     //currButton.transform.position.Set(buttonArray[0].transform.position.x, i* currButtonHeight, 0);
-        //     
-        //     //Button aButton = new Button();
-        //     //aButton.name = "Button" + i;
-        //     
-        //     
-        //     //canvas.transform.IsChildOf(aButton.Children());
-        //     buttonList.Add(currButton);
-        //     Debug.Log(currButton.name);    
-        //     
-        // }
-        
-        for (int i = 0; i < jsonLength; i++)
+    }
+
+    /// <summary>
+    /// Dynamically creates buttons and assigns functionality to them.
+    /// </summary>
+    private void CreateButtons()
+    {
+        float buttonHeight = Screen.height / JsonLength;
+        RectTransform buttonTemplateRect = buttonArray[0].GetComponent<RectTransform>();
+
+        for (int i = 0; i < JsonLength; i++)
         {
-            // Calculate the position for the new button
-            Vector2 currPosition = new Vector2(canvas.transform.position.x, currButtonY * i + currButtonY / 2);
+            // Calculate position and instantiate button
+            Vector2 position = new Vector2(canvas.transform.position.x, buttonHeight * i + buttonHeight / 2);
+            GameObject newButton = Instantiate(buttonArray[0], position, buttonArray[0].transform.rotation, canvas.transform);
 
-            // Instantiate a new button from the array
-            GameObject currButton = Instantiate(buttonArray[0], currPosition, buttonArray[0].transform.rotation, canvas.transform);
+            // Adjust button size and name
+            RectTransform newButtonRect = newButton.GetComponent<RectTransform>();
+            newButtonRect.sizeDelta = new Vector2(buttonTemplateRect.sizeDelta.x, buttonHeight);
+            newButton.name = $"Skin button {i}";
 
-            // Adjust button size
-            currButton.GetComponent<RectTransform>().sizeDelta = new Vector2(buttonSelectedRectTransf.sizeDelta.x, currButtonY);
+            // Assign text and click functionality
+            UnityEngine.UI.Button buttonComponent = newButton.GetComponent<UnityEngine.UI.Button>();
+            TextMeshProUGUI buttonText = buttonComponent.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = $"Skin {i}";
 
-            // Set button name
-            currButton.name = $"Skin button {i}";
-
-            // Get the Button component
-            UnityEngine.UI.Button buttonComponent = currButton.GetComponent<UnityEngine.UI.Button>();
-            TextMeshProUGUI text = buttonComponent.GetComponentInChildren<TextMeshProUGUI>();
-            
-            text.text = $"Skin {i}";
-            // Capture the current index to bind it to the event
-            int index = i; // Important to avoid closure issues
-
-            // Add the event to the button's OnClick
+            // Capture the current index to avoid closure issues
+            int index = i;
             buttonComponent.onClick.AddListener(() =>
             {
-                if (playerSpriteDictionary.TryGetValue(index, out String sprite))
+                if (playerSpriteDictionary.TryGetValue(index, out string sprite))
                 {
                     Debug.Log($"Button {index} clicked. Sprite: {sprite}");
-                    // Example action: change the player's sprite
-                    // playerSpriteRenderer.sprite = sprite;
                 }
                 else
                 {
-                    Debug.Log($"Button {index} clicked. Sprite not found in dictionary.");
+                    Debug.Log($"Button {index} clicked. Sprite not found.");
                 }
             });
 
             // Add the button to the list
-            buttonList.Add(currButton);
-
-            Debug.Log(currButton.name);
+            buttonList.Add(newButton);
+            Debug.Log($"Created: {newButton.name}");
         }
-
-        
-        Testicle(buttonList);
     }
 
-    private void Testicle(List<GameObject> buttons)
+    /// <summary>
+    /// Randomly disables or enables buttons and modifies their appearance.
+    /// </summary>
+    /// <param name="buttons">List of buttons to modify.</param>
+    private void TestButtonInteractions(List<GameObject> buttons)
     {
         foreach (var button in buttons)
         {
-            selectedButton = button.GetComponent<UnityEngine.UI.Button >();
-            
-            int r = Random.Range(0, 10);
-            if (r < 5)
+            selectedButton = button.GetComponent<UnityEngine.UI.Button>();
+            int randomValue = Random.Range(0, 10);
+
+            if (randomValue < 5)
             {
                 selectedButton.interactable = false;
                 selectedButton.image.sprite = selectedSprite;
@@ -138,9 +138,6 @@ public class testCompanionApp : MonoBehaviour
             {
                 selectedButton.interactable = true;
             }
-
-            
-            
         }
     }
 }

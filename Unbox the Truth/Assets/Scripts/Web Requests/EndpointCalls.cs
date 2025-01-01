@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -34,21 +35,33 @@ public class ChallengeList
 }
 
 
-public class EndpointCalls : MonoBehaviour
+public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
 
-    private void Start()
-    {
-        // Example GET request
-        GetUserByIdAsync(4);
-
-        // Example POST request
-        //var formData = new Dictionary<string, string> { { "userId", "4" } };
-        //PostDataAsync($"{BaseUrl}/", formData);
-
-        GetNumberChallenges();
-    }
+    // private async void Start()
+    // {
+    //     // Example GET request
+    //     GetUserByIdAsync(4);
+    //
+    //     // Example POST request
+    //     //var formData = new Dictionary<string, string> { { "userId", "4" } };
+    //     //PostDataAsync($"{BaseUrl}/", formData);
+    //
+    //     int n = await GetNumberChallenges();
+    //     
+    //     if (n != -1)
+    //     {
+    //         Debug.Log($"Number of challenges: {n}");
+    //         
+    //         await Task.Delay(1000);
+    //         Debug.Log(" a second waited");
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Failed to retrieve the number of challenges.");
+    //     }
+    // }
 
     private async void GetUserByIdAsync(int userId)
     {
@@ -128,7 +141,7 @@ public class EndpointCalls : MonoBehaviour
     //     }
     // }
 
-    private async void GetNumberChallenges()
+    internal async Task<int> GetNumberChallenges()
     {
         string endpoint = $"{BaseUrl}/challenge/all";
 
@@ -142,16 +155,18 @@ public class EndpointCalls : MonoBehaviour
             // Deserialize JSON into ChallengeList
             ChallengeList challengeList = JsonUtility.FromJson<ChallengeList>(json);
 
-            Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
+            //Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
             // foreach (Challenge challenge in challengeList.challenges)
             // {
             //     Debug.Log("Challenge Title: " + challenge.sc_title);
             // }
+            return challengeList.challenges.Length;
         }
         catch (Exception ex)
         {
             Debug.LogError($"Error in GET request: {ex.Message}");
             //should change some ui elements to let the user know that the requests has gone wrong
+            return -1;
         }
     }
 }
