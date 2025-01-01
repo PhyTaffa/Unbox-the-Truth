@@ -15,9 +15,28 @@ public class UserData
     public int ui_uniqueId;
 }
 
+[Serializable]
+public class Challenge
+{
+    public int sc_id;                // Challenge ID
+    public string sc_title;          // Title of the challenge
+    public string sc_description;    // Description of the challenge
+    public int sc_assets;            // Asset ID
+    public int sc_skin;              // Skin ID
+    public int sc_difficulty;        // Difficulty level
+    public int sc_stepsToReach;      // Steps required to complete
+    public int sc_timeLimit;         // Time limit for the challenge
+}
+[System.Serializable]
+public class ChallengeList
+{
+    public Challenge[] challenges;
+}
+
+
 public class EndpointCalls : MonoBehaviour
 {
-    private const string BaseUrl = "https://serve-the-truth.vercel.app/api/userInfo";
+    private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
 
     private void Start()
     {
@@ -27,11 +46,13 @@ public class EndpointCalls : MonoBehaviour
         // Example POST request
         //var formData = new Dictionary<string, string> { { "userId", "4" } };
         //PostDataAsync($"{BaseUrl}/", formData);
+
+        GetNumberChallenges();
     }
 
     private async void GetUserByIdAsync(int userId)
     {
-        string endpoint = $"{BaseUrl}/getById/?userId={userId}";
+        string endpoint = $"{BaseUrl}userInfo/getById/?userId={userId}";
         try
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
@@ -42,10 +63,10 @@ public class EndpointCalls : MonoBehaviour
             jsonDict.Add("id", userData);
             
             Debug.Log($"GET Response: {jsonResponse}");
-            // Count properties
-            int propertyCount = jsonDict.Count;
-            Debug.Log($"Number of properties: {propertyCount}");
-            Debug.Log($"MessageID: {userData.ui_email}");
+            // // Count properties
+            // int propertyCount = jsonDict.Count;
+            // Debug.Log($"Number of properties: {propertyCount}");
+            // Debug.Log($"MessageID: {userData.ui_email}");
         }
         catch (Exception ex)
         {
@@ -54,18 +75,18 @@ public class EndpointCalls : MonoBehaviour
         }
     }
 
-    private async void PostDataAsync(string endpoint, Dictionary<string, string> formData)
-    {
-        try
-        {
-            string jsonResponse = await SendPostRequestAsync(endpoint, formData);
-            Debug.Log($"POST Response: {jsonResponse}");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Error in POST request: {ex.Message}");
-        }
-    }
+    // private async void PostDataAsync(string endpoint, Dictionary<string, string> formData)
+    // {
+    //     // try
+    //     // {
+    //     //     string jsonResponse = await SendPostRequestAsync(endpoint, formData);
+    //     //     Debug.Log($"POST Response: {jsonResponse}");
+    //     // }
+    //     // catch (Exception ex)
+    //     // {
+    //     //     Debug.LogError($"Error in POST request: {ex.Message}");
+    //     // }
+    // }
 
     private async Task<string> SendGetRequestAsync(string uri)
     {
@@ -84,26 +105,53 @@ public class EndpointCalls : MonoBehaviour
         }
     }
 
-    private async Task<string> SendPostRequestAsync(string uri, Dictionary<string, string> formData)
+    // private async Task<string> SendPostRequestAsync(string uri, Dictionary<string, string> formData)
+    // {
+    //     WWWForm form = new WWWForm();
+    //     foreach (var field in formData)
+    //     {
+    //         form.AddField(field.Key, field.Value);
+    //     }
+    //
+    //     using (UnityWebRequest request = UnityWebRequest.Post(uri, form))
+    //     {
+    //         var operation = request.SendWebRequest();
+    //         while (!operation.isDone)
+    //             await Task.Yield();
+    //
+    //         if (request.result != UnityWebRequest.Result.Success)
+    //         {
+    //             throw new Exception($"POST request failed: {request.error}");
+    //         }
+    //
+    //         return request.downloadHandler.text;
+    //     }
+    // }
+
+    private async void GetNumberChallenges()
     {
-        WWWForm form = new WWWForm();
-        foreach (var field in formData)
+        string endpoint = $"{BaseUrl}/challenge/all";
+
+        try
         {
-            form.AddField(field.Key, field.Value);
+            string jsonResponse = await SendGetRequestAsync(endpoint);
+            
+            // Wrap the JSON array in a single object
+            string json = $"{{ \"challenges\": {jsonResponse} }}";
+
+            // Deserialize JSON into ChallengeList
+            ChallengeList challengeList = JsonUtility.FromJson<ChallengeList>(json);
+
+            Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
+            // foreach (Challenge challenge in challengeList.challenges)
+            // {
+            //     Debug.Log("Challenge Title: " + challenge.sc_title);
+            // }
         }
-
-        using (UnityWebRequest request = UnityWebRequest.Post(uri, form))
+        catch (Exception ex)
         {
-            var operation = request.SendWebRequest();
-            while (!operation.isDone)
-                await Task.Yield();
-
-            if (request.result != UnityWebRequest.Result.Success)
-            {
-                throw new Exception($"POST request failed: {request.error}");
-            }
-
-            return request.downloadHandler.text;
+            Debug.LogError($"Error in GET request: {ex.Message}");
+            //should change some ui elements to let the user know that the requests has gone wrong
         }
     }
 }
