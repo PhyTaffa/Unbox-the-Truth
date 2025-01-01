@@ -12,6 +12,7 @@ TagManager:
   - Box
   - Interactable
   - GroundCheck
+  - Skin button
   layers:
   - Default
   - TransparentFX
