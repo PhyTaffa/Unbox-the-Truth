@@ -12,7 +12,9 @@ public class RestAPI : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(GetRequest("https://serve-the-truth.vercel.app/api/userInfo/getById/?userId=4"));
+        string baseUrl = "https://serve-the-truth.vercel.app/api/";
+        
+        StartCoroutine(GetRequest($"{baseUrl}userInfo/getById/?userId=4"));
         WWWForm formData = new WWWForm();
         formData.AddField("userId", 4);
 
