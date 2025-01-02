@@ -183,6 +183,10 @@ public class TestCompanionApp : MonoBehaviour
             {
                 selectedButton.interactable = true;
             }
+            else
+            {
+                selectedButton.interactable = false;
+            }
         }
     }
 }

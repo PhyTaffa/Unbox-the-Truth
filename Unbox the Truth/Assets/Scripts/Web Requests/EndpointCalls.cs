@@ -121,38 +121,42 @@ public class EndpointCalls
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
         bool[] challengesMetArray = new bool[challengesLength];
+        bool[] challengeDefaultValue = { false, false, false, false, false, false, false};
         
         try
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
 
-            //Debug.Log($"GET Response: {jsonResponse}");
-
-            string json = $"{{ \"challengesMetArr\": {jsonResponse} }}";
-            
-            Debug.Log($"GET Response Wrapped: {json}");
-
-            //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
-            ChallengeCompletedArray challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json);
-            
-            // Update challengesMetArray based on the received data
-            for (int i = 0; i < challengesLength; i++)
+            if (!string.IsNullOrEmpty(jsonResponse))
             {
-                Debug.Log(challengesCompleted.challengesMetArr[i]);
-                challengesMetArray[i] = challengesCompleted.challengesMetArr[i].challengeMet;
-            }
+                
+                //Debug.Log($"GET Response: {jsonResponse}");
+
+                string json = $"{{ \"challengesMetArr\": {jsonResponse} }}";
             
-            return challengesMetArray;
+                Debug.Log($"GET Response Wrapped: {json}");
+
+                //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
+                ChallengeCompletedArray challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json);
+            
+                // Update challengesMetArray based on the received data
+                for (int i = 0; i < challengesLength; i++)
+                {
+                    Debug.Log(challengesCompleted.challengesMetArr[i]);
+                    challengesMetArray[i] = challengesCompleted.challengesMetArr[i].challengeMet;
+                }
+            
+                return challengesMetArray;
+            }
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Error in GET request: {ex.Message}");
-            foreach (bool challenge in challengesMetArray)
-            {
-                Debug.LogError($"challenge : {challenge}");
-            }
-            return challengesMetArray;
+            Debug.Log($"Error in GET request: {ex.Message}");
+
+            //return challengeDefaultValue;
         }
+        
+        return challengeDefaultValue;
     }
     
     
