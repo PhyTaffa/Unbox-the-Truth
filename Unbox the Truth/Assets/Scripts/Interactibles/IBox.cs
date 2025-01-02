@@ -15,6 +15,8 @@ public class IBox : MonoBehaviour, IInteractibles
     private BoxCollider2D playerCollider;
 
     private Transform playerTransform;
+
+    private Movement playerMovement;
     
     private float boxHeight;
     
@@ -31,6 +33,7 @@ public class IBox : MonoBehaviour, IInteractibles
 
         playerTransform = GameObject.FindWithTag("Player").transform;
         playerCollider = GameObject.FindWithTag("Player").GetComponent<BoxCollider2D>();
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<Movement>();
     }
 
     public void Interact(GameObject instigator)
@@ -46,16 +49,17 @@ public class IBox : MonoBehaviour, IInteractibles
 
     private void UpdatePlayerCollider()
     {
-        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y + boxHeight);
+        //Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y + boxHeight*transform.localScale.y);
+        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y + boxHeight*transform.localScale.y);
         playerCollider.size = playerColliderSize;
-        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y + boxHeight/2);
+        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y + boxHeight*transform.localScale.y/2);
     }
 
     private void ResetPlayerCollider()
     {
-        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y - boxHeight);
+        Vector3 playerColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y - boxHeight*transform.localScale.y);
         playerCollider.size = playerColliderSize;
-        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y - boxHeight/2);
+        playerCollider.offset = new Vector2(playerCollider.offset.x, playerCollider.offset.y - boxHeight*transform.localScale.y/2);
     }
 
     //mystical polymorphism
@@ -80,8 +84,11 @@ public class IBox : MonoBehaviour, IInteractibles
     private void GettingPickedUp(GameObject player)
     {
         //Calculating the appropriate position
-        Vector3 pickUpPosition = player.transform.position + new Vector3(0, (playerTransform.localScale.y + boxHeight)/2, 0);
+        Vector3 pickUpPosition = player.transform.position + new Vector3(0, playerCollider.size.y * playerTransform.localScale.y + playerCollider.offset.y, 0);
 
+        GetComponent<SpriteRenderer>().flipX = player.GetComponent<SpriteRenderer>().flipX;
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         //velocity of box 0
         boxRB.velocity = Vector2.zero;
         
