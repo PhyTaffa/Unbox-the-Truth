@@ -59,10 +59,14 @@ public class TestCompanionApp : MonoBehaviour
     {
         playerSpriteDictionary = new Dictionary<int, string>
         {
-            { 0, "defaultSprite" },
-            { 1, "sprite1" },
-            { 2, "sprite2" },
-            { 3, "sprite3" }
+            { 0, "sprite Default" },
+            { 1, "sprite 1" },
+            { 2, "sprite 2" },
+            { 3, "sprite 3" },
+            { 4, "sprite 4" },
+            { 5, "sprite 5" },
+            { 6, "sprite 6" },
+            { 7, "sprite 7" },
         };
     }
 
@@ -71,7 +75,9 @@ public class TestCompanionApp : MonoBehaviour
     /// </summary>
     private void LoadResources()
     {
-        selectedSprite = Resources.Load<Sprite>("Images/amogus");
+        //selectedSprite = Resources.Load<Sprite>("Images/amogus");
+        selectedSprite = Resources.Load<Sprite>("Images/LegallyDistinctLogos/AKT-logo");
+        //selectedSprite = Resources.Load<Sprite>("Images/brt-logo");
     }
 
     /// <summary>

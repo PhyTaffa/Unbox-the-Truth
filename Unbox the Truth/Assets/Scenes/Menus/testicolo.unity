@@ -1550,26 +1550,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1982624816}
-  - component: {fileID: 1982624815}
   m_Layer: 0
   m_Name: GenericMfHodlingStuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1982624815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982624814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7abc3ae4d18a42e4f891b10222ed7974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_IsActive: 0
 --- !u!4 &1982624816
 Transform:
   m_ObjectHideFlags: 0
