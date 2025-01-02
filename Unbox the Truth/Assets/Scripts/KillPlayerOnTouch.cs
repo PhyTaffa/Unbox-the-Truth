@@ -12,19 +12,21 @@ public class KillPlayerOnTouch : MonoBehaviour
     protected GameManager gms;
 
     private GameObject player;
+    private Cheats playerCheat;
     
     private void Start()
     {
         gm = GameObject.FindWithTag("GM");
         gms = gm.GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
+        playerCheat = player.gameObject.GetComponent<Cheats>();
     }
     
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
 
-        if (collider.gameObject.CompareTag("Player") && player.gameObject.GetComponent<Cheats>().isKillable == true)
+        if (collider.gameObject.CompareTag("Player") && playerCheat.isKillable == true)
         {
             gms.OnPlayerDied();
             //onPlayerDiedEvent.Invoke();
@@ -34,7 +36,7 @@ public class KillPlayerOnTouch : MonoBehaviour
 
     void Update()
     {
-        if(Physics2D.OverlapCircle(player.transform.position, 0.5f, LayerMask.GetMask("Kill")) && player.gameObject.GetComponent<Cheats>().isKillable == true)
+        if(Physics2D.OverlapCircle(player.transform.position, 0.5f, LayerMask.GetMask("Kill")) && playerCheat.isKillable == true)
         {
             gms.OnPlayerDied();
         }

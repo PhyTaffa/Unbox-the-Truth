@@ -13,6 +13,7 @@ TagManager:
   - Interactable
   - GroundCheck
   - Skin button
+  - Input Code
   layers:
   - Default
   - TransparentFX

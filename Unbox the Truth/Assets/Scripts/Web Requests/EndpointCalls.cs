@@ -169,4 +169,35 @@ public class EndpointCalls
             return -1;
         }
     }
+
+    internal async void GetNumberChallengesWithUserUniqueId(int userUniqueId)
+    {
+        string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
+
+        try
+        {
+            string jsonResponse = await SendGetRequestAsync(endpoint);
+            
+            // Wrap the JSON array in a single object
+            string json = $"{{ \"challenges\": {jsonResponse} }}";
+
+            Debug.Log($"GET Response: {jsonResponse}");
+            // Deserialize JSON into ChallengeList
+            //ChallengeList challengeList = JsonUtility.FromJson<ChallengeList>(json);
+
+            //Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
+            // foreach (Challenge challenge in challengeList.challenges)
+            // {
+            //     Debug.Log("Challenge Title: " + challenge.sc_title);
+            // }
+            //return challengeList.challenges.Length;
+        }
+        catch (Exception ex)
+        {
+            Debug.Log($"Error in GET request: {ex.Message}");
+            //should change some ui elements to let the user know that the requests has gone wrong
+            //return -1;
+        }
+    }
+    
 }
