@@ -41,12 +41,10 @@ public class ChallengeCompleted
 {
     public bool challengeMet;
 }
-
-
 [Serializable]
 public class ChallengeCompletedArray
 {
-    public ChallengeCompleted[] areChallengesCompleted;
+    public ChallengeCompleted[] challengesMetArr;
 }
 
 public class EndpointCalls
@@ -140,15 +138,13 @@ public class EndpointCalls
             //Debug.Log($"GET Response Wrapped: {json}");
 
             //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
-            ChallengeCompleted[] challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json).areChallengesCompleted;
+            ChallengeCompletedArray challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json);
             
             // Update challengesMetArray based on the received data
-            for (int i = 0; i < challengesCompleted.Length; i++)
+            for (int i = 0; i < challengesLength; i++)
             {
-                if (i < challengesMetArray.Length) // Ensure we don't exceed array bounds
-                {
-                    challengesMetArray[i] = challengesCompleted[i].challengeMet;
-                }
+                Debug.Log(challengesCompleted.challengesMetArr[i]);
+                challengesMetArray[i] = challengesCompleted.challengesMetArr[i].challengeMet;
             }
             
             return challengesMetArray;
@@ -156,13 +152,13 @@ public class EndpointCalls
         catch (Exception ex)
         {
             Debug.LogError($"Error in GET request: {ex.Message}");
-
-            // Log the current state of challengesMetArray
-            for (int i = 0; i < challengesMetArray.Length; i++)
+            foreach (bool challenge in challengesMetArray)
             {
-                Debug.Log($"Challenge {i}: {challengesMetArray[i]}");
+                Debug.LogError($"challenge : {challenge}");
             }
             return challengesMetArray;
         }
     }
+    
+    
 }
