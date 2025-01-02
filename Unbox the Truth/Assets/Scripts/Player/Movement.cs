@@ -39,16 +39,11 @@ public class Movement : MonoBehaviour
 
     private bool usePlatformMechanics;
 
-    private BoxCollider2D playerBoxCollider;
-
-    private float playerBoxColliderXOffset;
-
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
         playerSprite = GetComponent<SpriteRenderer>();
-        playerBoxCollider = GetComponent<BoxCollider2D>();
-        playerBoxColliderXOffset = playerBoxCollider.offset.x;
+        
         
         //debug
         // if (SpriteManager.selectedSprite != null)
@@ -146,10 +141,6 @@ public class Movement : MonoBehaviour
         }
         else if(moveInput * direction < 0)
         {
-            if(isCarryingObject){
-                IBox box = GetComponentInChildren<IBox>();
-                box.GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
-            }
             direction = -direction; 
         }
         return direction;
@@ -157,21 +148,17 @@ public class Movement : MonoBehaviour
 
     public void testDirection()
     {
-        /*if(getLastDirection() == 1)
+        if(getLastDirection() == 1)
         {
             //GetComponent<SpriteRenderer>().color = Color.yellow;
             GetComponent<SpriteRenderer>().flipX = false;
-            playerBoxCollider.offset = new Vector2(playerBoxColliderXOffset, playerBoxCollider.offset.y);
         }
         else
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            playerBoxCollider.offset = new Vector2(-playerBoxColliderXOffset, playerBoxCollider.offset.y);
             //GetComponent<SpriteRenderer>().color = Color.red;
             
-        }*/
-
-        flipSprite(getLastDirection());
+        }
     }
 
     public void flipSprite(int direction){
@@ -179,21 +166,12 @@ public class Movement : MonoBehaviour
         {
             //GetComponent<SpriteRenderer>().color = Color.yellow;
             GetComponent<SpriteRenderer>().flipX = false;
-            playerBoxCollider.offset = new Vector2(playerBoxColliderXOffset, playerBoxCollider.offset.y);
-            if(isCarryingObject){
-                IBox box = GetComponentInChildren<IBox>();
-                box.GetComponent<BoxCollider2D>().offset = new Vector2(playerBoxColliderXOffset, box.GetComponent<BoxCollider2D>().offset.y);
-            }
         }
         else if(direction == -1)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            playerBoxCollider.offset = new Vector2(-playerBoxColliderXOffset, playerBoxCollider.offset.y);
-            if(isCarryingObject){
-                IBox box = GetComponentInChildren<IBox>();
-                box.GetComponent<BoxCollider2D>().offset = new Vector2(-playerBoxColliderXOffset, box.GetComponent<BoxCollider2D>().offset.y);
-            }
             //GetComponent<SpriteRenderer>().color = Color.red;
+            
         }   
     }
     
