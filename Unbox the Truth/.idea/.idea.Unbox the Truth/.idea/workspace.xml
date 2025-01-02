@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/CompanionAppMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/CompanionAppMenuManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" afterDir="false" />
     </list>
@@ -164,7 +161,7 @@
       <workItem from="1731789703166" duration="15992000" />
       <workItem from="1732038898790" duration="2369000" />
       <workItem from="1733243024634" duration="4171000" />
-      <workItem from="1735592404756" duration="46357000" />
+      <workItem from="1735592404756" duration="47008000" />
     </task>
     <servers />
   </component>

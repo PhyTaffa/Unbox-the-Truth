@@ -193,6 +193,7 @@ public class EndpointCalls
 
         //Declare list and fill it with 
         List<bool> challengeMet = new List<bool>();
+        //challengeMet[0] = false;
         challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
 
         

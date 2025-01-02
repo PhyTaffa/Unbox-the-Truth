@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
@@ -149,10 +150,10 @@ public class TestCompanionApp : MonoBehaviour
         }
     }
     
-    private async Task TestButtonInteractions()
+    private async void TestButtonInteractions()
     {
-        List<bool> boolList = new List<bool>();
-        boolList = await ep.GetNumberChallengesWithUserUniqueId(44);
+        //List<bool> boolList = new List<bool>();
+        //boolList = await ep.GetNumberChallengesWithUserUniqueId(44);
         
         for (int i = 0; i < buttonList.Count; i++)
         {
@@ -171,14 +172,12 @@ public class TestCompanionApp : MonoBehaviour
     internal void EnableButton(List<bool> userChallengesCompleteStatus)
     {
         List<bool> challengeMet = new List<bool>();
-        //challengeMet = await ep.GetNumberChallengesWithUserUniqueId();
-        //challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
-        
-        int i = 0;
-        while (i < JsonLength)
+
+        for (int i = 0; i < JsonLength; i++)
         {
+            Debug.Log(userChallengesCompleteStatus[i]);
             var button = buttonList[i];
-            selectedButton = button.GetComponent<UnityEngine.UI.Button>();
+            selectedButton = button.GetComponent<Button>();
 
             if (userChallengesCompleteStatus[i])
             {
