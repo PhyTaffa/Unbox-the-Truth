@@ -160,7 +160,7 @@ public class TestCompanionApp : MonoBehaviour
             var button = buttonList[i];
             selectedButton = button.GetComponent<UnityEngine.UI.Button>();
 
-            selectedButton.interactable = true;
+            selectedButton.interactable = false;
 
             if (buttonSpriteDictionary.TryGetValue(i, out string sprite))
             {
@@ -169,13 +169,13 @@ public class TestCompanionApp : MonoBehaviour
         }
     }
 
-    internal void EnableButton(List<bool> userChallengesCompleteStatus)
+    internal void EnableButton(bool[] userChallengesCompleteStatus)
     {
         List<bool> challengeMet = new List<bool>();
 
         for (int i = 0; i < JsonLength; i++)
         {
-            Debug.Log(userChallengesCompleteStatus[i]);
+            //Debug.Log(userChallengesCompleteStatus[i]);
             var button = buttonList[i];
             selectedButton = button.GetComponent<Button>();
 
