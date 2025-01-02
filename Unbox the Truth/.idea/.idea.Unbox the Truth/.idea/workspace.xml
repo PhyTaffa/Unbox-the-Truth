@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +49,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/49d2932cd88a4a50b42f7f35b500dafd20a00/e9/fb1a4da0/RaycastHit2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/57c7546e8d664fe0a0c0c6d7d3ae99a43c00/6e/b71be617/NativeInputSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/5f/d74e6bf8/String.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/0a/1c393992/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/44/b9554769/Thread.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/9f/71db1525/IntPtr.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/ab/29dfb582/List`1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -80,7 +79,7 @@
     "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.1989899",
+    "XThreadsFramesViewSplitterKey": "0.23393317",
     "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -123,10 +122,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21168">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="33576">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="21168" />
+      <option name="pid" value="33576" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
         <list>
@@ -162,7 +161,7 @@
       <workItem from="1731789703166" duration="15992000" />
       <workItem from="1732038898790" duration="2369000" />
       <workItem from="1733243024634" duration="4171000" />
-      <workItem from="1735592404756" duration="49049000" />
+      <workItem from="1735592404756" duration="52817000" />
     </task>
     <servers />
   </component>
@@ -205,6 +204,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs</url>
+          <line>146</line>
+          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Web Requests\EndpointCalls.cs" containingFunctionPresentation="Method 'GetNumberChallengesWithUserUniqueId'">
+            <startOffsets>
+              <option value="4977" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5019" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs</url>
+          <line>138</line>
+          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Web Requests\EndpointCalls.cs" containingFunctionPresentation="Method 'GetNumberChallengesWithUserUniqueId'">
+            <startOffsets>
+              <option value="4596" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4689" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

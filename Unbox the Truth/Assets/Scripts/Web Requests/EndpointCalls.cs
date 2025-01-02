@@ -36,10 +36,10 @@ public class ChallengeList
 }
 public class ChallengeCompleted
 {
-    public bool challengeMetBool;
+    public bool challengeMet;
 }
 
-public class ChallengeListCompleted
+public class ChallengesCompletedList
 {
     public ChallengeCompleted[] challengesMet;
 }
@@ -48,6 +48,7 @@ public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
     private int challengesLength = 7;
+    private List<bool> challegesMetList;
     
     private async void GetUserByIdAsync(int userId)
     {
@@ -121,43 +122,56 @@ public class EndpointCalls
     internal async Task<List<bool>> GetNumberChallengesWithUserUniqueId(int userUniqueId)
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
-        List<bool> challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
-
+        challegesMetList = Enumerable.Repeat(false, challengesLength).ToList();
+        ChallengesCompletedList challengesCompleted = new ChallengesCompletedList();
+        
         try
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
 
-            Debug.Log($"GET Response: {jsonResponse}");
+            //Debug.Log($"GET Response: {jsonResponse}");
 
-            string json = $"{{ \"challengesCompleted\": {jsonResponse} }}";
+            string json = $"{{ \"ChallengesCompleted\": {jsonResponse} }}";
             // Deserialize the JSON array directly into a ChallengeCompleted array
-            ChallengeListCompleted challengesCompleted = JsonUtility.FromJson<ChallengeListCompleted>(jsonResponse);
+            Debug.Log($" wrapped response: {json}");
+            
+            
+            challengesCompleted = JsonUtility.FromJson<ChallengesCompletedList>(json);
 
-            if (challengesCompleted == null || challengesCompleted.challengesMet.Length == 0)
+            challengesCompleted.challengesMet = JsonUtility.FromJson<ChallengeCompleted[]>(jsonResponse);
+            
+            // if (challengesCompleted == null || challengesCompleted.ChallengesMet.Length == 0)
+            // {
+            //     Debug.LogError("No challenges completed data found in response.");
+            //     return challegesMetList;
+            // }
+
+            for (int i = 0; i < challengesLength; i++)
             {
-                Debug.LogError("No challenges completed data found in response.");
-                return challengeMet;
+                // if (i >= challegesMetList.Count)
+                // {
+                //     Debug.LogError($"Index {i} out of range for challengeMet list.");
+                //     break;
+                // }
+
+                //ChallengeCompleted challenge = challengesCompleted.challengesMet[i];
+                //Debug.Log($"challenge {i} : {challenge.challengeMet}");
+                challegesMetList[i] = challengesCompleted.challengesMet[i].challengeMet;
             }
 
-            for (int i = 0; i < challengesCompleted.challengesMet.Length; i++)
-            {
-                if (i >= challengeMet.Count)
-                {
-                    Debug.LogError($"Index {i} out of range for challengeMet list.");
-                    break;
-                }
-
-                ChallengeCompleted challenge = challengesCompleted.challengesMet[i];
-                Debug.Log($"challenge {i} : {challenge.challengeMetBool}");
-                challengeMet[i] = challenge.challengeMetBool;
-            }
-
-            return challengeMet;
+            return challegesMetList;
         }
         catch (Exception ex)
         {
             Debug.LogError($"Error in GET request: {ex.Message}");
-            return challengeMet;
+            foreach (bool challenge in challegesMetList)
+            {
+                Debug.LogError($"challenge : {challenge}");
+            }
+            //Debug.Log($"challengeMet list: {challegesMetList}");
+            return challegesMetList;
         }
     }
+    
+    
 }
