@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/IPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/IPlayer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +61,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/IPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/zToBeDeleted/LightButtonInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SpriteManagerSingleton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -159,7 +163,7 @@
       <workItem from="1731789703166" duration="15992000" />
       <workItem from="1732038898790" duration="2369000" />
       <workItem from="1733243024634" duration="4171000" />
-      <workItem from="1735592404756" duration="33630000" />
+      <workItem from="1735592404756" duration="37083000" />
     </task>
     <servers />
   </component>

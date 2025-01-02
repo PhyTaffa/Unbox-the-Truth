@@ -12,20 +12,32 @@ public class TestCompanionApp : MonoBehaviour
     private GameObject[] buttonArray; // Array to store initial buttons
     private List<GameObject> buttonList; // List to store instantiated buttons
     private UnityEngine.UI.Button selectedButton; // Reference for button manipulations
-    private Dictionary<int, string> playerSpriteDictionary; // Dictionary for sprite data
+    private Dictionary<int, string> buttonSpriteDictionary; // Dictionary for sprite data
     private Sprite selectedSprite; // Sprite used for disabled buttons
-    
+    private Dictionary<int, string> playerSpriteDictionary;
+
     async void Start()
     {
         InitializeCanvas();
         InitializeButtonArray();
         InitializeDictionary();
+
+        //InstantiateSpriteManagerSingleton();
         
         EndpointCalls ep = new EndpointCalls();
         JsonLength = await ep.GetNumberChallenges();
         
         CreateButtons();
         TestButtonInteractions();
+    }
+
+    private void InstantiateSpriteManagerSingleton()
+    {
+        if (SpriteManagerSingleton.Instance == null)
+        {
+            Instantiate(Resources.Load<GameObject>($"Prefabs/SpriteManager"));
+            Debug.LogError("Sprite Manager Singleton Not Found");
+        }
     }
 
     /// <summary>
@@ -56,6 +68,18 @@ public class TestCompanionApp : MonoBehaviour
     /// </summary>
     private void InitializeDictionary()
     {
+        buttonSpriteDictionary = new Dictionary<int, string>
+        {
+            { 0, "Images/LegallyDistinctLogos/AKT-logo" },
+            { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
+            { 2, "Images/LegallyDistinctLogos/pff-log" },
+            { 3, "Images/LegallyDistinctLogos/tfr-logo" },
+            { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
+            { 5, "Images/amogus" },
+            { 6, "Images/ritagliato 2" },
+        };
+
+        //missing actual sprites
         playerSpriteDictionary = new Dictionary<int, string>
         {
             { 0, "Images/LegallyDistinctLogos/AKT-logo" },
@@ -97,14 +121,23 @@ public class TestCompanionApp : MonoBehaviour
             int index = i;
             buttonComponent.onClick.AddListener(() =>
             {
-                if (playerSpriteDictionary.TryGetValue(index, out string sprite))
+                if (buttonSpriteDictionary.TryGetValue(index, out string buttonSpritePath))
                 {
-                    Debug.Log($"Button {index} clicked. Sprite: {sprite}");
+                    Debug.Log($"Button {index} clicked. Sprite: {buttonSpritePath}");
                 }
                 else
                 {
                     Debug.Log($"Button {index} clicked. Sprite not found.");
                 }
+                
+                if(playerSpriteDictionary.TryGetValue(index, out string playerSpritePath))
+                {
+                    Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
+                    SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
+                    
+                    Debug.Log($"Loaded sprite in the singleton: {loadedSprite.name}");
+                }
+                
             });
 
             // Add the button to the list
@@ -122,7 +155,7 @@ public class TestCompanionApp : MonoBehaviour
 
             selectedButton.interactable = true;
 
-            if (playerSpriteDictionary.TryGetValue(i, out string sprite))
+            if (buttonSpriteDictionary.TryGetValue(i, out string sprite))
             {
                 selectedButton.image.sprite = Resources.Load<Sprite>(sprite);
             }
