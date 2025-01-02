@@ -51,7 +51,6 @@ public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
     private int challengesLength = 7;
-    //private List<bool> challegesMetList;
     
     private async void GetUserByIdAsync(int userId)
     {
@@ -121,11 +120,7 @@ public class EndpointCalls
     internal async Task<bool[]> GetNumberChallengesWithUserUniqueId(int userUniqueId)
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
-        //challegesMetList = Enumerable.Repeat(false, challengesLength).ToList();
-        
         bool[] challengesMetArray = new bool[challengesLength];
-        
-        //ChallengesCompletedList challengesCompleted = new ChallengesCompletedList();
         
         try
         {
@@ -133,9 +128,9 @@ public class EndpointCalls
 
             //Debug.Log($"GET Response: {jsonResponse}");
 
-            string json = $"{{ \"challengesCompletedArray\": {jsonResponse} }}";
+            string json = $"{{ \"challengesMetArr\": {jsonResponse} }}";
             
-            //Debug.Log($"GET Response Wrapped: {json}");
+            Debug.Log($"GET Response Wrapped: {json}");
 
             //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
             ChallengeCompletedArray challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json);
