@@ -9,7 +9,7 @@ public class CompanionAppMenuManager : MonoBehaviour
 {
     // Add public buttons to connect them in the Inspector
     [Header("Companion App Button Manager")]
-    [SerializeField] private Button skin1Button;
+    private Button skin1Button;
     [SerializeField] private Button skin2Button;
     [SerializeField] private Button skinDefaultButton;
     [SerializeField] private Button quitToMMButton;
@@ -28,12 +28,12 @@ public class CompanionAppMenuManager : MonoBehaviour
     void Start()
     {
         
-        skin1Button.interactable = false;
+        //skin1Button.interactable = false;
         skin2Button.interactable = false;
         
         
         // Add listeners to each button's onClick event
-        skin1Button.onClick.AddListener(OnSkin1ButtonClicked);
+        //skin1Button.onClick.AddListener(OnSkin1ButtonClicked);
         skin2Button.onClick.AddListener(OnSkin2ButtonClicked);
         skinDefaultButton.onClick.AddListener(OnSkinDefaultButtonClicked);
         quitToMMButton.onClick.AddListener(OnQuitToMMButtonClicked);

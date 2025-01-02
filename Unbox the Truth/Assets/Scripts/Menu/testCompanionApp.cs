@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,7 +16,8 @@ public class TestCompanionApp : MonoBehaviour
     private Dictionary<int, string> buttonSpriteDictionary; // Dictionary for sprite data
     private Sprite selectedSprite; // Sprite used for disabled buttons
     private Dictionary<int, string> playerSpriteDictionary;
-
+    private EndpointCalls ep;
+    
     async void Start()
     {
         InitializeCanvas();
@@ -24,7 +26,7 @@ public class TestCompanionApp : MonoBehaviour
 
         //InstantiateSpriteManagerSingleton();
         
-        EndpointCalls ep = new EndpointCalls();
+        ep = new EndpointCalls();
         JsonLength = await ep.GetNumberChallenges();
         
         CreateButtons();
@@ -98,12 +100,13 @@ public class TestCompanionApp : MonoBehaviour
     /// </summary>
     private void CreateButtons()
     {
-        float buttonHeight = Screen.height / JsonLength;
+        float buttonHeight = 100f;
         RectTransform buttonTemplateRect = buttonArray[0].GetComponent<RectTransform>();
 
         for (int i = 0; i < JsonLength; i++)
         {
             // Calculate position and instantiate button
+            // To do better
             Vector2 position = new Vector2(canvas.transform.position.x, buttonHeight * i + buttonHeight / 2);
             GameObject newButton = Instantiate(buttonArray[0], position, buttonArray[0].transform.rotation, canvas.transform);
 
@@ -146,18 +149,40 @@ public class TestCompanionApp : MonoBehaviour
         }
     }
     
-    private void TestButtonInteractions()
+    private async Task TestButtonInteractions()
     {
+        List<bool> boolList = new List<bool>();
+        boolList = await ep.GetNumberChallengesWithUserUniqueId(44);
+        
         for (int i = 0; i < buttonList.Count; i++)
         {
             var button = buttonList[i];
             selectedButton = button.GetComponent<UnityEngine.UI.Button>();
 
-            selectedButton.interactable = true;
+            selectedButton.interactable = false;
 
             if (buttonSpriteDictionary.TryGetValue(i, out string sprite))
             {
                 selectedButton.image.sprite = Resources.Load<Sprite>(sprite);
+            }
+        }
+    }
+
+    internal void EnableButton(List<bool> userChallengesCompleteStatus)
+    {
+        List<bool> challengeMet = new List<bool>();
+        //challengeMet = await ep.GetNumberChallengesWithUserUniqueId();
+        //challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
+        
+        int i = 0;
+        while (i < JsonLength)
+        {
+            var button = buttonList[i];
+            selectedButton = button.GetComponent<UnityEngine.UI.Button>();
+
+            if (userChallengesCompleteStatus[i])
+            {
+                selectedButton.interactable = true;
             }
         }
     }

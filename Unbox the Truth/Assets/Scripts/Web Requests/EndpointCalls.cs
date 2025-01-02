@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -34,11 +35,24 @@ public class ChallengeList
     public Challenge[] challenges;
 }
 
+public class ChallengeCompletedList
+{
+    public ChallengeCompleted[] challengesCompleted;
+}
+public class ChallengeCompleted
+{
+    public int sc_id;                // Challenge ID
+    public string sc_title;
+    public int sc_currSteps;
+    public int sc_stepsToReach;      // Steps required to complete
+    public bool challengeMet;
+}
 
 public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
 
+    private int challengesLength = 7;
     // private async void Start()
     // {
     //     // Example GET request
@@ -160,6 +174,9 @@ public class EndpointCalls
             // {
             //     Debug.Log("Challenge Title: " + challenge.sc_title);
             // }
+            
+            challengesLength = challengeList.challenges.Length;
+            
             return challengeList.challenges.Length;
         }
         catch (Exception ex)
@@ -170,34 +187,42 @@ public class EndpointCalls
         }
     }
 
-    internal async void GetNumberChallengesWithUserUniqueId(int userUniqueId)
+    internal async Task<List<bool>> GetNumberChallengesWithUserUniqueId(int userUniqueId)
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
 
+        //Declare list and fill it with 
+        List<bool> challengeMet = new List<bool>();
+        challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
+
+        
         try
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
             
             // Wrap the JSON array in a single object
-            string json = $"{{ \"challenges\": {jsonResponse} }}";
+            string json = $"{{ \"challengesCompleted\": {jsonResponse} }}";
 
             Debug.Log($"GET Response: {jsonResponse}");
             // Deserialize JSON into ChallengeList
-            //ChallengeList challengeList = JsonUtility.FromJson<ChallengeList>(json);
+            ChallengeCompletedList challengeCompletedList = JsonUtility.FromJson<ChallengeCompletedList>(json);
 
-            //Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
-            // foreach (Challenge challenge in challengeList.challenges)
-            // {
-            //     Debug.Log("Challenge Title: " + challenge.sc_title);
-            // }
-            //return challengeList.challenges.Length;
+
+            int i = 0;
+            foreach (ChallengeCompleted challenge in challengeCompletedList.challengesCompleted)
+            {
+                challengeMet[i] = challenge.challengeMet;
+                i++;
+            }
+
+            return challengeMet;
         }
         catch (Exception ex)
         {
             Debug.Log($"Error in GET request: {ex.Message}");
-            //should change some ui elements to let the user know that the requests has gone wrong
-            //return -1;
         }
+        
+        return challengeMet;
     }
     
 }
