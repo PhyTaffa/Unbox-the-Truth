@@ -29,31 +29,26 @@ public class Challenge
     public int sc_stepsToReach;      // Steps required to complete
     public int sc_timeLimit;         // Time limit for the challenge
 }
-
 [System.Serializable]
 public class ChallengeList
 {
     public Challenge[] challenges;
 }
-
-[Serializable]
 public class ChallengeCompleted
 {
     public bool challengeMet;
 }
 
-
-[Serializable]
-public class ChallengeCompletedArray
+public class ChallengesCompletedList
 {
-    public ChallengeCompleted[] areChallengesCompleted;
+    public ChallengeCompleted[] challengesMet;
 }
 
 public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
     private int challengesLength = 7;
-    //private List<bool> challegesMetList;
+    private List<bool> challegesMetList;
     
     private async void GetUserByIdAsync(int userId)
     {
@@ -68,6 +63,10 @@ public class EndpointCalls
             jsonDict.Add("id", userData);
             
             Debug.Log($"GET Response: {jsonResponse}");
+            // // Count properties
+            // int propertyCount = jsonDict.Count;
+            // Debug.Log($"Number of properties: {propertyCount}");
+            // Debug.Log($"MessageID: {userData.ui_email}");
         }
         catch (Exception ex)
         {
@@ -120,14 +119,11 @@ public class EndpointCalls
         }
     }
 
-    internal async Task<bool[]> GetNumberChallengesWithUserUniqueId(int userUniqueId)
+    internal async Task<List<bool>> GetNumberChallengesWithUserUniqueId(int userUniqueId)
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
-        //challegesMetList = Enumerable.Repeat(false, challengesLength).ToList();
-        
-        bool[] challengesMetArray = new bool[challengesLength];
-        
-        //ChallengesCompletedList challengesCompleted = new ChallengesCompletedList();
+        challegesMetList = Enumerable.Repeat(false, challengesLength).ToList();
+        ChallengesCompletedList challengesCompleted = new ChallengesCompletedList();
         
         try
         {
@@ -135,34 +131,47 @@ public class EndpointCalls
 
             //Debug.Log($"GET Response: {jsonResponse}");
 
-            string json = $"{{ \"challengesCompletedArray\": {jsonResponse} }}";
+            string json = $"{{ \"ChallengesCompleted\": {jsonResponse} }}";
+            // Deserialize the JSON array directly into a ChallengeCompleted array
+            Debug.Log($" wrapped response: {json}");
             
-            //Debug.Log($"GET Response Wrapped: {json}");
+            
+            challengesCompleted = JsonUtility.FromJson<ChallengesCompletedList>(json);
 
-            //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
-            ChallengeCompleted[] challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json).areChallengesCompleted;
+            challengesCompleted.challengesMet = JsonUtility.FromJson<ChallengeCompleted[]>(jsonResponse);
             
-            // Update challengesMetArray based on the received data
-            for (int i = 0; i < challengesCompleted.Length; i++)
+            // if (challengesCompleted == null || challengesCompleted.ChallengesMet.Length == 0)
+            // {
+            //     Debug.LogError("No challenges completed data found in response.");
+            //     return challegesMetList;
+            // }
+
+            for (int i = 0; i < challengesLength; i++)
             {
-                if (i < challengesMetArray.Length) // Ensure we don't exceed array bounds
-                {
-                    challengesMetArray[i] = challengesCompleted[i].challengeMet;
-                }
+                // if (i >= challegesMetList.Count)
+                // {
+                //     Debug.LogError($"Index {i} out of range for challengeMet list.");
+                //     break;
+                // }
+
+                //ChallengeCompleted challenge = challengesCompleted.challengesMet[i];
+                //Debug.Log($"challenge {i} : {challenge.challengeMet}");
+                challegesMetList[i] = challengesCompleted.challengesMet[i].challengeMet;
             }
-            
-            return challengesMetArray;
+
+            return challegesMetList;
         }
         catch (Exception ex)
         {
             Debug.LogError($"Error in GET request: {ex.Message}");
-
-            // Log the current state of challengesMetArray
-            for (int i = 0; i < challengesMetArray.Length; i++)
+            foreach (bool challenge in challegesMetList)
             {
-                Debug.Log($"Challenge {i}: {challengesMetArray[i]}");
+                Debug.LogError($"challenge : {challenge}");
             }
-            return challengesMetArray;
+            //Debug.Log($"challengeMet list: {challegesMetList}");
+            return challegesMetList;
         }
     }
+    
+    
 }

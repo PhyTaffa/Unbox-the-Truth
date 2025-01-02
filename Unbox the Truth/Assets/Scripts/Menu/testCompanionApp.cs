@@ -169,13 +169,13 @@ public class TestCompanionApp : MonoBehaviour
         }
     }
 
-    internal void EnableButton(bool[] userChallengesCompleteStatus)
+    internal void EnableButton(List<bool> userChallengesCompleteStatus)
     {
         List<bool> challengeMet = new List<bool>();
 
         for (int i = 0; i < JsonLength; i++)
         {
-            //Debug.Log(userChallengesCompleteStatus[i]);
+            Debug.Log(userChallengesCompleteStatus[i]);
             var button = buttonList[i];
             selectedButton = button.GetComponent<Button>();
 

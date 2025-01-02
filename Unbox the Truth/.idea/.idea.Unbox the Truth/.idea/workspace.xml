@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +20,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/5de6964a4d2145d69462316ed6cd43689a000/74/fc330396/0200006Cpdb37.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0ab653b677424c84aa7f1e3350b765bc957a00/a7/9660c537/SerializedObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0b78209fd00d4f419f30dd210cbab239176600/00/47a7fef4/Random.cs" root0="FORCE_HIGHLIGHTING" />
@@ -58,7 +54,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/9f/71db1525/IntPtr.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/ab/29dfb582/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8ce0bd04a7a04b4b9395538239d3fdd846ac00/fe/e0d27acd/SynchronizationContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e7c3216c9a8e45e393371c423412f6853600/b9/970bd9cd/JsonUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/InGamePauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/IPlayer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -81,11 +76,9 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor &amp; Play.executor&quot;: &quot;Debug&quot;,
     &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Standalone Player.Start Unity.executor&quot;: &quot;Run&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.23393317&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -129,15 +122,13 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="53900">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="53900" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list>
-          <MonoRuntime />
-        </list>
+        <list />
       </option>
       <option name="selectedOptions">
         <list />
@@ -168,9 +159,7 @@
       <workItem from="1731789703166" duration="15992000" />
       <workItem from="1732038898790" duration="2369000" />
       <workItem from="1733243024634" duration="4171000" />
-      <workItem from="1735592404756" duration="55262000" />
-      <workItem from="1735846021238" duration="213000" />
-      <workItem from="1735846426130" duration="956000" />
+      <workItem from="1735592404756" duration="52817000" />
     </task>
     <servers />
   </component>
@@ -202,17 +191,43 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs</url>
-          <line>137</line>
-          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Web Requests\EndpointCalls.cs" containingFunctionPresentation="Method 'GetNumberChallengesWithUserUniqueId'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs</url>
+          <line>43</line>
+          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Player\PickUp.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="4207" />
+              <option value="1497" />
             </startOffsets>
             <endOffsets>
-              <option value="4275" />
+              <option value="1528" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs</url>
+          <line>146</line>
+          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Web Requests\EndpointCalls.cs" containingFunctionPresentation="Method 'GetNumberChallengesWithUserUniqueId'">
+            <startOffsets>
+              <option value="4977" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5019" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs</url>
+          <line>138</line>
+          <properties documentPath="C:\Users\filip_4stbv0n\OneDrive\Documenti\GitHub\Unbox-the-Truth\Unbox the Truth\Assets\Scripts\Web Requests\EndpointCalls.cs" containingFunctionPresentation="Method 'GetNumberChallengesWithUserUniqueId'">
+            <startOffsets>
+              <option value="4596" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4689" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
