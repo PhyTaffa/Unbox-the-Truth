@@ -20,13 +20,12 @@ public class TestCompanionApp : MonoBehaviour
         InitializeCanvas();
         InitializeButtonArray();
         InitializeDictionary();
-        LoadResources();
         
         EndpointCalls ep = new EndpointCalls();
         JsonLength = await ep.GetNumberChallenges();
         
         CreateButtons();
-        TestButtonInteractions(buttonList);
+        TestButtonInteractions();
     }
 
     /// <summary>
@@ -59,25 +58,15 @@ public class TestCompanionApp : MonoBehaviour
     {
         playerSpriteDictionary = new Dictionary<int, string>
         {
-            { 0, "sprite Default" },
-            { 1, "sprite 1" },
-            { 2, "sprite 2" },
-            { 3, "sprite 3" },
-            { 4, "sprite 4" },
-            { 5, "sprite 5" },
-            { 6, "sprite 6" },
-            { 7, "sprite 7" },
+            { 0, "Images/LegallyDistinctLogos/AKT-logo" },
+            { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
+            { 2, "Images/LegallyDistinctLogos/pff-log" },
+            { 3, "Images/LegallyDistinctLogos/tfr-logo" },
+            { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
+            { 5, "Images/amogus" },
+            { 6, "Images/ritagliato 2" },
         };
-    }
 
-    /// <summary>
-    /// Loads required resources such as sprites.
-    /// </summary>
-    private void LoadResources()
-    {
-        //selectedSprite = Resources.Load<Sprite>("Images/amogus");
-        selectedSprite = Resources.Load<Sprite>("Images/LegallyDistinctLogos/AKT-logo");
-        //selectedSprite = Resources.Load<Sprite>("Images/brt-logo");
     }
 
     /// <summary>
@@ -123,26 +112,19 @@ public class TestCompanionApp : MonoBehaviour
             Debug.Log($"Created: {newButton.name}");
         }
     }
-
-    /// <summary>
-    /// Randomly disables or enables buttons and modifies their appearance.
-    /// </summary>
-    /// <param name="buttons">List of buttons to modify.</param>
-    private void TestButtonInteractions(List<GameObject> buttons)
+    
+    private void TestButtonInteractions()
     {
-        foreach (var button in buttons)
+        for (int i = 0; i < buttonList.Count; i++)
         {
+            var button = buttonList[i];
             selectedButton = button.GetComponent<UnityEngine.UI.Button>();
-            int randomValue = Random.Range(0, 10);
 
-            if (randomValue < 5)
+            selectedButton.interactable = true;
+
+            if (playerSpriteDictionary.TryGetValue(i, out string sprite))
             {
-                selectedButton.interactable = false;
-                selectedButton.image.sprite = selectedSprite;
-            }
-            else
-            {
-                selectedButton.interactable = true;
+                selectedButton.image.sprite = Resources.Load<Sprite>(sprite);
             }
         }
     }
