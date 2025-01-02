@@ -62,7 +62,7 @@ public class TestCompanionApp : MonoBehaviour
         // Log the names of all found buttons
         foreach (var button in buttonArray)
         {
-            Debug.Log($"Found button: {button.name}");
+            //Debug.Log($"Found button: {button.name}");
         }
     }
 
@@ -125,28 +125,28 @@ public class TestCompanionApp : MonoBehaviour
             int index = i;
             buttonComponent.onClick.AddListener(() =>
             {
-                if (buttonSpriteDictionary.TryGetValue(index, out string buttonSpritePath))
-                {
-                    Debug.Log($"Button {index} clicked. Sprite: {buttonSpritePath}");
-                }
-                else
-                {
-                    Debug.Log($"Button {index} clicked. Sprite not found.");
-                }
+                // if (buttonSpriteDictionary.TryGetValue(index, out string buttonSpritePath))
+                // {
+                //     Debug.Log($"Button {index} clicked. Sprite: {buttonSpritePath}");
+                // }
+                // else
+                // {
+                //     Debug.Log($"Button {index} clicked. Sprite not found.");
+                // }
                 
                 if(playerSpriteDictionary.TryGetValue(index, out string playerSpritePath))
                 {
                     Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
                     SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
                     
-                    Debug.Log($"Loaded sprite in the singleton: {loadedSprite.name}");
+                    //Debug.Log($"Loaded sprite in the singleton: {loadedSprite.name}");
                 }
                 
             });
 
             // Add the button to the list
             buttonList.Add(newButton);
-            Debug.Log($"Created: {newButton.name}");
+            //Debug.Log($"Created: {newButton.name}");
         }
     }
     

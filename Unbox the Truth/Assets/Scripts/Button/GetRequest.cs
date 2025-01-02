@@ -39,7 +39,7 @@ public class GetRequest : MonoBehaviour
             List<bool> challengeMet = new List<bool>();
             //TestCompanionApp cpa = GetComponent<TestCompanionApp>();
             challengeMet = await endpointCalls.GetNumberChallengesWithUserUniqueId(int.Parse(uniqueId));
-            tcp.EnableButton(challengeMet);
+            //tcp.EnableButton(challengeMet);
             
         }
         catch (Exception ex)

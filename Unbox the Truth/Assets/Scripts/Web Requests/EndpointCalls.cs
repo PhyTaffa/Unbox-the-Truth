@@ -34,49 +34,21 @@ public class ChallengeList
 {
     public Challenge[] challenges;
 }
-
-public class ChallengeCompletedList
-{
-    public ChallengeCompleted[] challengesCompleted;
-}
 public class ChallengeCompleted
 {
-    public int sc_id;                // Challenge ID
-    public string sc_title;
-    public int sc_currSteps;
-    public int sc_stepsToReach;      // Steps required to complete
-    public bool challengeMet;
+    public bool challengeMetBool;
+}
+
+public class ChallengeListCompleted
+{
+    public ChallengeCompleted[] challengesMet;
 }
 
 public class EndpointCalls
 {
     private const string BaseUrl = "https://serve-the-truth.vercel.app/api/";
-
     private int challengesLength = 7;
-    // private async void Start()
-    // {
-    //     // Example GET request
-    //     GetUserByIdAsync(4);
-    //
-    //     // Example POST request
-    //     //var formData = new Dictionary<string, string> { { "userId", "4" } };
-    //     //PostDataAsync($"{BaseUrl}/", formData);
-    //
-    //     int n = await GetNumberChallenges();
-    //     
-    //     if (n != -1)
-    //     {
-    //         Debug.Log($"Number of challenges: {n}");
-    //         
-    //         await Task.Delay(1000);
-    //         Debug.Log(" a second waited");
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("Failed to retrieve the number of challenges.");
-    //     }
-    // }
-
+    
     private async void GetUserByIdAsync(int userId)
     {
         string endpoint = $"{BaseUrl}userInfo/getById/?userId={userId}";
@@ -102,19 +74,6 @@ public class EndpointCalls
         }
     }
 
-    // private async void PostDataAsync(string endpoint, Dictionary<string, string> formData)
-    // {
-    //     // try
-    //     // {
-    //     //     string jsonResponse = await SendPostRequestAsync(endpoint, formData);
-    //     //     Debug.Log($"POST Response: {jsonResponse}");
-    //     // }
-    //     // catch (Exception ex)
-    //     // {
-    //     //     Debug.LogError($"Error in POST request: {ex.Message}");
-    //     // }
-    // }
-
     private async Task<string> SendGetRequestAsync(string uri)
     {
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
@@ -132,29 +91,6 @@ public class EndpointCalls
         }
     }
 
-    // private async Task<string> SendPostRequestAsync(string uri, Dictionary<string, string> formData)
-    // {
-    //     WWWForm form = new WWWForm();
-    //     foreach (var field in formData)
-    //     {
-    //         form.AddField(field.Key, field.Value);
-    //     }
-    //
-    //     using (UnityWebRequest request = UnityWebRequest.Post(uri, form))
-    //     {
-    //         var operation = request.SendWebRequest();
-    //         while (!operation.isDone)
-    //             await Task.Yield();
-    //
-    //         if (request.result != UnityWebRequest.Result.Success)
-    //         {
-    //             throw new Exception($"POST request failed: {request.error}");
-    //         }
-    //
-    //         return request.downloadHandler.text;
-    //     }
-    // }
-
     internal async Task<int> GetNumberChallenges()
     {
         string endpoint = $"{BaseUrl}/challenge/all";
@@ -169,18 +105,13 @@ public class EndpointCalls
             // Deserialize JSON into ChallengeList
             ChallengeList challengeList = JsonUtility.FromJson<ChallengeList>(json);
 
-            //Debug.Log($"GET Response Length: {challengeList.challenges.Length}");
-            // foreach (Challenge challenge in challengeList.challenges)
-            // {
-            //     Debug.Log("Challenge Title: " + challenge.sc_title);
-            // }
-            
             challengesLength = challengeList.challenges.Length;
             
             return challengeList.challenges.Length;
         }
         catch (Exception ex)
         {
+            
             Debug.LogError($"Error in GET request: {ex.Message}");
             //should change some ui elements to let the user know that the requests has gone wrong
             return -1;
@@ -190,40 +121,43 @@ public class EndpointCalls
     internal async Task<List<bool>> GetNumberChallengesWithUserUniqueId(int userUniqueId)
     {
         string endpoint = $"{BaseUrl}/challenge/getCompletedChallengesByUniqueId/?uiUniqueId={userUniqueId}";
+        List<bool> challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
 
-        //Declare list and fill it with 
-        List<bool> challengeMet = new List<bool>();
-        //challengeMet[0] = false;
-        challengeMet = Enumerable.Repeat(false, challengesLength).ToList();
-
-        
         try
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
-            
-            // Wrap the JSON array in a single object
-            string json = $"{{ \"challengesCompleted\": {jsonResponse} }}";
 
             Debug.Log($"GET Response: {jsonResponse}");
-            // Deserialize JSON into ChallengeList
-            ChallengeCompletedList challengeCompletedList = JsonUtility.FromJson<ChallengeCompletedList>(json);
 
+            string json = $"{{ \"challengesCompleted\": {jsonResponse} }}";
+            // Deserialize the JSON array directly into a ChallengeCompleted array
+            ChallengeListCompleted challengesCompleted = JsonUtility.FromJson<ChallengeListCompleted>(jsonResponse);
 
-            int i = 0;
-            foreach (ChallengeCompleted challenge in challengeCompletedList.challengesCompleted)
+            if (challengesCompleted == null || challengesCompleted.challengesMet.Length == 0)
             {
-                challengeMet[i] = challenge.challengeMet;
-                i++;
+                Debug.LogError("No challenges completed data found in response.");
+                return challengeMet;
+            }
+
+            for (int i = 0; i < challengesCompleted.challengesMet.Length; i++)
+            {
+                if (i >= challengeMet.Count)
+                {
+                    Debug.LogError($"Index {i} out of range for challengeMet list.");
+                    break;
+                }
+
+                ChallengeCompleted challenge = challengesCompleted.challengesMet[i];
+                Debug.Log($"challenge {i} : {challenge.challengeMetBool}");
+                challengeMet[i] = challenge.challengeMetBool;
             }
 
             return challengeMet;
         }
         catch (Exception ex)
         {
-            Debug.Log($"Error in GET request: {ex.Message}");
+            Debug.LogError($"Error in GET request: {ex.Message}");
+            return challengeMet;
         }
-        
-        return challengeMet;
     }
-    
 }
