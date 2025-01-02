@@ -34,8 +34,6 @@ public class RotationCorrection : MonoBehaviour
 
     private int direction = 0;
 
-    private Vector3 localScaleDefault;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -56,8 +54,6 @@ public class RotationCorrection : MonoBehaviour
 
         GameObject worldRotationGO = GameObject.FindWithTag("WorldRoot");
         worldRotation = worldRotationGO.GetComponent<WorldRotation>();
-
-        localScaleDefault = player.transform.localScale;
     }
 
     // Update is called once per frame
@@ -69,7 +65,7 @@ public class RotationCorrection : MonoBehaviour
                 player.transform.rotation = Quaternion.Euler(0, 0, 0);   
                 playerRB.constraints = RigidbodyConstraints2D.FreezeRotation; 
                 player.transform.parent = null;
-                player.transform.localScale = localScaleDefault;
+                //player.transform.localScale = new Vector3(1,1,1);
                 //playerMovement.SetIsOnPlatfrom(false);
                 //playerRB.bodyType = RigidbodyType2D.Dynamic;
                 playerRB.simulated = true;
@@ -121,7 +117,7 @@ public class RotationCorrection : MonoBehaviour
             playerRB.simulated = true;
 
             player.transform.parent = null;
-            player.transform.localScale = localScaleDefault;
+            //player.transform.localScale = new Vector3(1,1,1);
 
             playerMovement.SetUsePlatformMechanics(true);
             playerMovement.SetIsGrounded(false);

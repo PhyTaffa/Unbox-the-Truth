@@ -36,10 +36,10 @@ public class GetRequest : MonoBehaviour
         //needs timer if it's already running, waits for the end to do it again.
         try
         {
-            bool[] challengeMet = new bool[]{ false };
+            List<bool> challengeMet = new List<bool>();
             //TestCompanionApp cpa = GetComponent<TestCompanionApp>();
             challengeMet = await endpointCalls.GetNumberChallengesWithUserUniqueId(int.Parse(uniqueId));
-            tcp.EnableButton(challengeMet);
+            //tcp.EnableButton(challengeMet);
             
         }
         catch (Exception ex)
