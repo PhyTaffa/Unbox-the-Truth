@@ -17,6 +17,9 @@ public class CameraEnemy : MonoBehaviour
     private Light2D spotLight;
     public OnPlayerDied onPlayerDiedEvent;
 
+    private float RotationCorrection;
+
+
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -27,13 +30,19 @@ public class CameraEnemy : MonoBehaviour
         spotLight.pointLightOuterRadius = viewDistance;
         spotLight.pointLightOuterAngle = fovAngle+1;
         spotLight.pointLightInnerAngle = fovAngle;
+
+        WorldRotation worldRotation = FindObjectOfType<WorldRotation>();
+        worldRotation.onWorldRotationChangedEvent.AddListener(OnWorldRotationChanged);
+
+        RotationCorrection = 0;
     }
 
         void Update()
     {
+        
         // Rotate the camera back and forth
         float angle = Mathf.Sin(Time.time * rotationSpeed) * rotationAngle;
-        transform.rotation = Quaternion.Euler(0, 0, startAngle + angle);
+        transform.rotation = Quaternion.Euler(0, 0, startAngle + angle - RotationCorrection);
 
         // Check if the player is within the field of view
         if(!playerMovement.GetIsHiding()){
@@ -90,5 +99,17 @@ public class CameraEnemy : MonoBehaviour
         } 
         return false;
         
+    }
+
+       private void OnWorldRotationChanged(Vector3 pivot, Vector3 direction, float angle)
+    {
+        if(direction == Vector3.forward)
+        {
+            RotationCorrection += -90f;
+        }
+        else if(direction == Vector3.back)
+        {
+            RotationCorrection += 90f;
+        }
     }
 }

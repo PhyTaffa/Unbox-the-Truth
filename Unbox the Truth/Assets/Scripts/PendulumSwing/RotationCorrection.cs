@@ -78,6 +78,7 @@ public class RotationCorrection : MonoBehaviour
                 notEnter = false;
                 leftPlatform = false;
                 jumped = false;
+                playerRB.velocity = new Vector2(playerRB.velocity.x, Mathf.Clamp(playerRB.velocity.y, 0, 100));
             }else{
                 worldRotation.SetCanRotate(true);
             }
