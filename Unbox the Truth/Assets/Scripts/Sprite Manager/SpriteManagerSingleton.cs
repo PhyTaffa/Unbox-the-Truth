@@ -20,6 +20,6 @@ public class SpriteManagerSingleton : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         //default sprite
-        SelectedSprite = Resources.Load<Sprite>("Images/player/player_default");
+        SelectedSprite = Resources.Load<Sprite>("Images/player/player_default_v2");
     }
 }

@@ -38,8 +38,8 @@ public class ChallengeCompleted
 {
     public bool challengeMet;
 }
-
-public class ChallengesCompletedList
+[Serializable]
+public class ChallengeCompletedArray
 {
     public ChallengeCompleted[] challengesMet;
 }
@@ -129,37 +129,36 @@ public class EndpointCalls
         {
             string jsonResponse = await SendGetRequestAsync(endpoint);
 
-            //Debug.Log($"GET Response: {jsonResponse}");
+            Debug.Log($"GET Response: {jsonResponse}");
 
             string json = $"{{ \"ChallengesCompleted\": {jsonResponse} }}";
             // Deserialize the JSON array directly into a ChallengeCompleted array
             Debug.Log($" wrapped response: {json}");
             
-            
-            challengesCompleted = JsonUtility.FromJson<ChallengesCompletedList>(json);
+            Debug.Log($"GET Response Wrapped: {json}");
 
-            challengesCompleted.challengesMet = JsonUtility.FromJson<ChallengeCompleted[]>(jsonResponse);
-            
-            // if (challengesCompleted == null || challengesCompleted.ChallengesMet.Length == 0)
-            // {
-            //     Debug.LogError("No challenges completed data found in response.");
-            //     return challegesMetList;
-            // }
+            //THIS ARRAY OF SHIT IS NULL, im going to commit arson.
+
+            //ChallengeCompleted[] challengesCompleted = JsonUtility.FromJson<ChallengeCompletedArray>(json).areChallengesCompleted;
+
+            ChallengeCompletedArray challengesCompletedArray = JsonUtility.FromJson<ChallengeCompletedArray>(json);
 
             for (int i = 0; i < challengesLength; i++)
             {
-                // if (i >= challegesMetList.Count)
-                // {
-                //     Debug.LogError($"Index {i} out of range for challengeMet list.");
-                //     break;
-                // }
-
-                //ChallengeCompleted challenge = challengesCompleted.challengesMet[i];
-                //Debug.Log($"challenge {i} : {challenge.challengeMet}");
-                challegesMetList[i] = challengesCompleted.challengesMet[i].challengeMet;
+                Debug.Log(challengesCompletedArray.areChallengesCompleted[i]);
+                challengesMetArray[i] = challengesCompletedArray.areChallengesCompleted[i].challengeMet;
             }
-
-            return challegesMetList;
+            
+            // // Update challengesMetArray based on the received data
+            // for (int i = 0; i < challengesCompleted.Length; i++)
+            // {
+            //     if (i < challengesMetArray.Length) // Ensure we don't exceed array bounds
+            //     {
+            //         challengesMetArray[i] = challengesCompleted[i].challengeMet;
+            //     }
+            // }
+            
+            return challengesMetArray;
         }
         catch (Exception ex)
         {

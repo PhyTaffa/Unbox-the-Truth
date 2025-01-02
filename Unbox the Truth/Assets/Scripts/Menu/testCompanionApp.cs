@@ -160,7 +160,7 @@ public class TestCompanionApp : MonoBehaviour
             var button = buttonList[i];
             selectedButton = button.GetComponent<UnityEngine.UI.Button>();
 
-            selectedButton.interactable = false;
+            selectedButton.interactable = true;
 
             if (buttonSpriteDictionary.TryGetValue(i, out string sprite))
             {
