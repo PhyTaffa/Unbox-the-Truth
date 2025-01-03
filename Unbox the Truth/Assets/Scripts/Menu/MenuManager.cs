@@ -10,21 +10,27 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button companionAppButton;
     [SerializeField] private Button quitButton;
+    //private AudioSource m_MyAudioSource;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //m_MyAudioSource = GetComponent<AudioSource>();
+        
         // Add listeners to each button's onClick event
         playButton.onClick.AddListener(OnPlayButtonClicked);
         optionsButton.onClick.AddListener(OnOptionsButtonClicked);
         companionAppButton.onClick.AddListener(OnCompanionAppButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
+        
+        
     }
 
     // Load the scene corresponding to "Play"
     private void OnPlayButtonClicked()
     {
+        
         Debug.Log("Play button clicked");
         // Load the "Game" scene (replace with your actual scene name)
         SceneManager.LoadScene("HubLevel");
@@ -34,8 +40,8 @@ public class MenuManager : MonoBehaviour
     private void OnOptionsButtonClicked()
     {
         Debug.Log("Options button clicked");
+        //m_MyAudioSource.Play();
 
-        // Load the "Options" scene (replace with your actual scene name)
         //SceneManager.LoadScene("Options");
     }
 
