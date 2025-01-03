@@ -27,44 +27,44 @@ public class MenuManager : MonoBehaviour
         
     }
 
+    private void PlaySound()
+    {
+        //m_MyAudioSource.Play();
+    }
+    
     // Load the scene corresponding to "Play"
     private void OnPlayButtonClicked()
     {
-        
-        Debug.Log("Play button clicked");
-        // Load the "Game" scene (replace with your actual scene name)
+        PlaySound();
+
         SceneManager.LoadScene("HubLevel");
     }
 
     // Load the "Options" scene
     private void OnOptionsButtonClicked()
     {
-        Debug.Log("Options button clicked");
-        //m_MyAudioSource.Play();
-
+        PlaySound();
+        
         //SceneManager.LoadScene("Options");
     }
 
     // Open the Companion App (this could be a separate application or feature)
     private void OnCompanionAppButtonClicked()
     {
-        Debug.Log("Companion App button clicked");
+        PlaySound();
         SceneManager.LoadScene("CompanionAppMenu");
-
-        // Optionally, you can load the companion app scene, or open an external link
-        // Example: SceneManager.LoadScene("CompanionApp");
     }
 
     // Quit the game
     private void OnQuitButtonClicked()
     {
-        Debug.Log("Quit button clicked");
-        // Quit the game (only works in a built application, not in the editor)
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
+        PlaySound();
+        
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
             Application.Quit();
-#endif
+        #endif
     }
 }
 

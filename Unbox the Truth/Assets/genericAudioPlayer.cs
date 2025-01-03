@@ -11,23 +11,27 @@ public class genericAudioPlayer : MonoBehaviour
     private bool m_Play;
     //Detect when you use the toggle, ensures music isn’t played multiple times
     private bool m_ToggleChange;
-    // Start is called before the first frame update
-    private Button m_Button;
+
+    private Button[] m_Button;
     void Start()
     {
         //Fetch the AudioSource from the GameObject
         m_MyAudioSource = GetComponent<AudioSource>();
         //Ensure the toggle is set to true for the music to play at start-up
         m_Play = false;
-        
-        m_Button = GetComponent<Button>();
+
+        m_Button = GetComponentsInChildren<Button>();
         
         
         //on click event
-        m_Button.onClick.AddListener(() =>
+        foreach (Button b in m_Button)
         {
-            m_MyAudioSource.Play();
-        });
+            b.onClick.AddListener(() =>
+            {
+                m_MyAudioSource.Play();
+            });
+        }
+
     }
     
     // void OnGUI()
