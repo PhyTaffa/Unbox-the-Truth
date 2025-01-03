@@ -18,16 +18,19 @@ public class TestCompanionApp : MonoBehaviour
     private Sprite selectedSprite; // Sprite used for disabled buttons
     private Dictionary<int, string> playerSpriteDictionary;
     private EndpointCalls ep;
+    private genericAudioPlayer gap;
     
     async void Start()
     {
-        InitializeCanvas();
+
+        
+        InitializeVariousThings();
         InitializeButtonArray();
         InitializeDictionary();
 
         //InstantiateSpriteManagerSingleton();
         
-        ep = new EndpointCalls();
+        
         JsonLength = await ep.GetNumberChallenges();
         
         CreateButtons();
@@ -46,9 +49,11 @@ public class TestCompanionApp : MonoBehaviour
     /// <summary>
     /// Finds and assigns the Canvas object.
     /// </summary>
-    private void InitializeCanvas()
+    private void InitializeVariousThings()
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        ep = new EndpointCalls();
+        gap = canvas.GetComponent<genericAudioPlayer>();
     }
 
     /// <summary>
@@ -141,13 +146,17 @@ public class TestCompanionApp : MonoBehaviour
                     
                     //Debug.Log($"Loaded sprite in the singleton: {loadedSprite.name}");
                 }
-                
+
+                gap.m_MyAudioSource.Play();
             });
 
             // Add the button to the list
             buttonList.Add(newButton);
+            //gap.AddButton(newButton.GetComponent<UnityEngine.UI.Button>());
             //Debug.Log($"Created: {newButton.name}");
         }
+
+        //gap.GenerateButtonArray();
     }
     
     private async void TestButtonInteractions()

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/MenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/CompanionAppMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/CompanionAppMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/genericAudioPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/genericAudioPlayer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +169,7 @@
       <workItem from="1735592404756" duration="55262000" />
       <workItem from="1735846021238" duration="213000" />
       <workItem from="1735846426130" duration="956000" />
-      <workItem from="1735931795786" duration="3905000" />
+      <workItem from="1735931795786" duration="7733000" />
     </task>
     <servers />
   </component>

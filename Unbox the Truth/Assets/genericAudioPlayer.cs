@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class genericAudioPlayer : MonoBehaviour
 {
-    AudioSource m_MyAudioSource;
+    internal AudioSource m_MyAudioSource;
 
     //Play the music
-    private bool m_Play;
+    internal bool m_Play;
     //Detect when you use the toggle, ensures music isn’t played multiple times
     private bool m_ToggleChange;
 
@@ -19,8 +19,8 @@ public class genericAudioPlayer : MonoBehaviour
         m_MyAudioSource = GetComponent<AudioSource>();
         //Ensure the toggle is set to true for the music to play at start-up
         m_Play = false;
-
-        m_Button = GetComponentsInChildren<Button>();
+        
+        GenerateButtonArray();
         
         
         //on click event
@@ -32,6 +32,18 @@ public class genericAudioPlayer : MonoBehaviour
             });
         }
 
+    }
+
+    internal void GenerateButtonArray()
+    {
+        m_Button = null;
+        m_Button = GetComponentsInChildren<Button>();
+    }
+
+    internal void AddButton(Button button)
+    {
+        int i = m_Button.Length;
+        m_Button[i] = button;
     }
     
     // void OnGUI()
