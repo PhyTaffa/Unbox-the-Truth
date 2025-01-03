@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/testCompanionApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Web Requests/EndpointCalls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
