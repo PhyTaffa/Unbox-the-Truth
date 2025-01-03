@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 0569cd79a3ea3f94cadfe7104d8906ad
   - enabled: 1
     path: Assets/Scenes/Menus/CompanionAppMenu.unity
-    guid: 3089fe94c04bc704ea440e450b740f93
+    guid: accae22c3c8749a4aa4cbdd68666ce98
   - enabled: 1
     path: Assets/Scenes/Levels/HubLevel.unity
     guid: ff5b92ff810931249823c567ffec5b4e

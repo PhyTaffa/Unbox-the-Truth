@@ -152,6 +152,7 @@ public class TestCompanionApp : MonoBehaviour
 
             // Add the button to the list
             buttonList.Add(newButton);
+            DontDestroyOnLoad(newButton);
             //gap.AddButton(newButton.GetComponent<UnityEngine.UI.Button>());
             //Debug.Log($"Created: {newButton.name}");
         }

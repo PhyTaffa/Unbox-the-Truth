@@ -11,7 +11,7 @@ public class CompanionAppMenuManager : MonoBehaviour
     [Header("Button Navigation")]
     [SerializeField] private Button skinDefaultButton;
     [SerializeField] private Button quitToMMButton;
-    private genericAudioPlayer gap;
+    //private genericAudioPlayer gap;
     
     private Dictionary<int, Sprite> playerSpriteDictionary;
     private bool a;
@@ -19,7 +19,7 @@ public class CompanionAppMenuManager : MonoBehaviour
     void Start()
     {
 
-        gap = GetComponent<genericAudioPlayer>();
+        //gap = GetComponent<genericAudioPlayer>();
         
         skinDefaultButton.onClick.AddListener(OnSkinDefaultButtonClicked);
         quitToMMButton.onClick.AddListener(OnQuitToMMButtonClicked);
@@ -33,7 +33,7 @@ public class CompanionAppMenuManager : MonoBehaviour
     
     private void OnQuitToMMButtonClicked()
     {
-        gap.m_MyAudioSource.Play();
+        //gap.m_MyAudioSource.Play();
         SceneManager.LoadScene("MainMenu");
     }
     
