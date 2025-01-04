@@ -18,19 +18,16 @@ public class TestCompanionApp : MonoBehaviour
     private Sprite selectedSprite; // Sprite used for disabled buttons
     private Dictionary<int, string> playerSpriteDictionary;
     private EndpointCalls ep;
-    private genericAudioPlayer gap;
     
     async void Start()
     {
-
-        
-        InitializeVariousThings();
+        InitializeCanvas();
         InitializeButtonArray();
         InitializeDictionary();
 
         //InstantiateSpriteManagerSingleton();
         
-        
+        ep = new EndpointCalls();
         JsonLength = await ep.GetNumberChallenges();
         
         CreateButtons();
@@ -49,11 +46,9 @@ public class TestCompanionApp : MonoBehaviour
     /// <summary>
     /// Finds and assigns the Canvas object.
     /// </summary>
-    private void InitializeVariousThings()
+    private void InitializeCanvas()
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        ep = new EndpointCalls();
-        gap = canvas.GetComponent<genericAudioPlayer>();
     }
 
     /// <summary>
@@ -78,87 +73,85 @@ public class TestCompanionApp : MonoBehaviour
     {
         buttonSpriteDictionary = new Dictionary<int, string>
         {
-            { 0, "Images/LegallyDistinctLogos/AKT-logo" },
+            { 6, "Images/LegallyDistinctLogos/AKT-logo" },
             { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
             { 2, "Images/LegallyDistinctLogos/pff-log" },
             { 3, "Images/LegallyDistinctLogos/tfr-logo" },
             { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
             { 5, "Images/amogus" },
-            { 6, "Images/ritagliato 2" },
+            { 0, "Images/ritagliato 2" },
         };
 
         //missing actual sprites
         playerSpriteDictionary = new Dictionary<int, string>
         {
-            { 0, "Images/LegallyDistinctLogos/AKT-logo" },
+            { 6, "Images/LegallyDistinctLogos/AKT-logo" },
             { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
             { 2, "Images/LegallyDistinctLogos/pff-log" },
             { 3, "Images/LegallyDistinctLogos/tfr-logo" },
             { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
             { 5, "Images/amogus" },
-            { 6, "Images/ritagliato 2" },
+            { 0, "Images/ritagliato 2" },
         };
 
     }
 
     /// <summary>
-    /// Dynamically creates buttons and assigns functionality to them.
-    /// </summary>
-    private void CreateButtons()
+/// Dynamically creates buttons in a grid layout and assigns functionality to them.
+/// </summary>
+private void CreateButtons()
+{
+    int columns = 2; // Number of columns in the grid
+    float buttonWidth = 300f; // Width of each button
+    float buttonHeight = 150f; // Height of each button
+    float spacingX = 20f; // Horizontal spacing between buttons
+    float spacingY = 20f; // Vertical spacing between buttons
+
+    // Starting position for the grid (adjust as needed)
+    Vector2 startPosition = new Vector2(440f, 100f);
+
+    for (int i = 0; i < JsonLength; i++)
     {
-        float buttonHeight = 100f;
-        RectTransform buttonTemplateRect = buttonArray[0].GetComponent<RectTransform>();
+        // Calculate row and column
+        int row = i / columns;
+        int column = i % columns;
 
-        for (int i = 0; i < JsonLength; i++)
+        // Calculate button position
+        Vector2 position = new Vector2(
+            startPosition.x + (column * (buttonWidth + spacingX)),
+            startPosition.y - (row * (buttonHeight + spacingY))
+        );
+
+        // Instantiate button
+        GameObject newButton = Instantiate(buttonArray[0], canvas.transform);
+        RectTransform newButtonRect = newButton.GetComponent<RectTransform>();
+        newButtonRect.sizeDelta = new Vector2(buttonWidth, buttonHeight);
+        newButtonRect.anchoredPosition = position;
+
+        // Update button properties
+        newButton.name = $"Skin button {i}";
+        UnityEngine.UI.Button buttonComponent = newButton.GetComponent<UnityEngine.UI.Button>();
+        TextMeshProUGUI buttonText = buttonComponent.GetComponentInChildren<TextMeshProUGUI>();
+        buttonText.text = $"Skin {i}";
+
+        // Add click functionality
+        int index = i;
+        buttonComponent.onClick.AddListener(() =>
         {
-            // Calculate position and instantiate button
-            // To do better
-            Vector2 position = new Vector2(canvas.transform.position.x, buttonHeight * i + buttonHeight / 2);
-            GameObject newButton = Instantiate(buttonArray[0], position, buttonArray[0].transform.rotation, canvas.transform);
-
-            // Adjust button size and name
-            RectTransform newButtonRect = newButton.GetComponent<RectTransform>();
-            newButtonRect.sizeDelta = new Vector2(buttonTemplateRect.sizeDelta.x, buttonHeight);
-            newButton.name = $"Skin button {i}";
-
-            // Assign text and click functionality
-            UnityEngine.UI.Button buttonComponent = newButton.GetComponent<UnityEngine.UI.Button>();
-            TextMeshProUGUI buttonText = buttonComponent.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = $"Skin {i}";
-
-            // Capture the current index to avoid closure issues
-            int index = i;
-            buttonComponent.onClick.AddListener(() =>
+            if (playerSpriteDictionary.TryGetValue(index, out string playerSpritePath))
             {
-                // if (buttonSpriteDictionary.TryGetValue(index, out string buttonSpritePath))
-                // {
-                //     Debug.Log($"Button {index} clicked. Sprite: {buttonSpritePath}");
-                // }
-                // else
-                // {
-                //     Debug.Log($"Button {index} clicked. Sprite not found.");
-                // }
-                
-                if(playerSpriteDictionary.TryGetValue(index, out string playerSpritePath))
-                {
-                    Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
-                    SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
-                    
-                    //Debug.Log($"Loaded sprite in the singleton: {loadedSprite.name}");
-                }
+                Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
+                SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
 
-                gap.m_MyAudioSource.Play();
-            });
+                Debug.Log($"Skin {index} selected with sprite: {playerSpritePath}");
+            }
+        });
 
-            // Add the button to the list
-            buttonList.Add(newButton);
-            DontDestroyOnLoad(newButton);
-            //gap.AddButton(newButton.GetComponent<UnityEngine.UI.Button>());
-            //Debug.Log($"Created: {newButton.name}");
-        }
-
-        //gap.GenerateButtonArray();
+        // Add the button to the list
+        buttonList.Add(newButton);
     }
+}
+
     
     private async void TestButtonInteractions()
     {
