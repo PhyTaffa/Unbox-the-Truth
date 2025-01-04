@@ -33,6 +33,8 @@ public class WorldRotation : MonoBehaviour
     //Cheats
     private Cheats cheats;
     
+    //sound
+    private GenericAudioPlayerRotation gapr;
     void Start()
     {
         //Get the player and world objects by tag
@@ -52,6 +54,8 @@ public class WorldRotation : MonoBehaviour
         }
         
         cheats = player.GetComponent<Cheats>();
+        
+        gapr = GetComponent<GenericAudioPlayerRotation>();
     }
 
     // Update is called once per frame
@@ -77,6 +81,8 @@ public class WorldRotation : MonoBehaviour
                 }
                 canRotate = false;
                 StartRotation();
+                
+                gapr.PlaySpecificSoundRotation(GenericAudioPlayerRotation.Action.Left);
             }
             
         } 
@@ -94,6 +100,8 @@ public class WorldRotation : MonoBehaviour
                 }
                 canRotate = false;
                 StartRotation();
+                
+                gapr.PlaySpecificSoundRotation(GenericAudioPlayerRotation.Action.Right);
             } 
         }
     }
