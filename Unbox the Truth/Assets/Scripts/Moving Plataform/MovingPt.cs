@@ -5,25 +5,28 @@ public class MovingPt : MonoBehaviour
     public int startingPoint; 
     public Transform[] points;
     private int i;
+    private genericAudioPlayerLevels gapl;
 
     private GameObject worldRoot;
     void Start()
 
     {
-        //transform.position = points[startingPoint].position;
-        i = startingPoint; 
+        i = startingPoint;
         
         worldRoot = GameObject.FindGameObjectWithTag("WorldRoot");
+        
+        gapl = GetComponent<genericAudioPlayerLevels>();
     }
     void Update()
     {
         if (Vector2.Distance(transform.position, points[i].position) > 0.2f)
-
         {
             transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
         }
         else
         {
+            
+            gapl.DJPPPPlayThatShid();
             i++;
             if (i == points.Length)
             {

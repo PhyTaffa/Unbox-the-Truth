@@ -33,6 +33,11 @@ public class IPlayer : MonoBehaviour, IPressurePlateTrigger
         
         playerSprite = GetComponent<SpriteRenderer>();
 
+        // if (SpriteManagerSingleton.Instance == null)
+        // {
+        //     Instantiate(SpriteManagerSingleton);
+        // }
+        
         ApplySelectedSprite();
     }
     
@@ -41,11 +46,11 @@ public class IPlayer : MonoBehaviour, IPressurePlateTrigger
         if (SpriteManagerSingleton.Instance.SelectedSprite != null)
         {
             playerSprite.sprite = SpriteManagerSingleton.Instance.SelectedSprite;
-            Debug.Log("Applied sprite: " + playerSprite.sprite.name);
+            //Debug.Log("Applied sprite: " + playerSprite.sprite.name);
         }
         else
         {
-            Debug.LogWarning("No sprite selected in SpriteManager.");
+            //Debug.LogWarning("No sprite selected in SpriteManager.");
         }
     }
 

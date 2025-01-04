@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
@@ -17,7 +18,7 @@ public class PressurePlate : MonoBehaviour
     private bool isRotating;
 
     private Color originalColor;
-
+    private genericAudioPlayerLevels gapl;
 
     
     [SerializeField] private Vector3 spherePosition = Vector3.zero; // Position where the sphere will be drawn
@@ -38,6 +39,7 @@ public class PressurePlate : MonoBehaviour
 
         reachedTarget = false;
         
+        gapl = GetComponent<genericAudioPlayerLevels>();
     }
 
     // Update is called once per frame
@@ -95,12 +97,17 @@ public class PressurePlate : MonoBehaviour
                 else if(distance < 0.005f)
                 {
                     reachedTarget = true;
+                    gapl.DJPPPPlayThatShid();
                 }
                 
 
                 if(distance < 0.01f)
                 {
                     GetComponent<SpriteRenderer>().color = new Color(0.1f,1f,0.1f);
+                    
+                    //sound
+                    
+                    
                     interactable.Interact(interactableObject);
                 }
             }
