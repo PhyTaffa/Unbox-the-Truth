@@ -6,17 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InGamePauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InGamePauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/GameManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/GameManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Menu/In Game Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Menu/In Game Menu.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/HubLevel.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button/GetRequest.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PickUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ThrowObj.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ThrowObj.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sound.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sound/button click.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sound/button click.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +68,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/aaaaaaa.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/genericAudioPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/genericAudioPlayerLevels.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/playerSounPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Runtime/2D/Light2DManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -181,7 +176,7 @@
       <workItem from="1735592404756" duration="55262000" />
       <workItem from="1735846021238" duration="213000" />
       <workItem from="1735846426130" duration="956000" />
-      <workItem from="1735931795786" duration="21620000" />
+      <workItem from="1735931795786" duration="23521000" />
     </task>
     <servers />
   </component>

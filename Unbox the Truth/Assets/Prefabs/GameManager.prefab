@@ -59,5 +59,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   resumeButton: {fileID: 0}
-  optionsButton: {fileID: 0}
+  restartButton: {fileID: 0}
+  hubLevelButton: {fileID: 0}
   quitButton: {fileID: 0}
