@@ -10,10 +10,14 @@ public class ThrowObj : MonoBehaviour
     private GameObject player;
     private Movement move; //used to check and change the isCarryingObj
     
+    private playerSoundPlayer psp;
+    
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         move = GetComponent<Movement>();
+        
+        psp = GetComponent<playerSoundPlayer>();
     }
 
     void Update()
@@ -27,6 +31,8 @@ public class ThrowObj : MonoBehaviour
 
             if (boxTag != null)
             {
+                psp.PlaySpecificSound(playerSoundPlayer.Action.Throw);
+                
                 IBox box = boxTag.GetComponent<IBox>();
                 box.Interact(player, throwDirection);
             }

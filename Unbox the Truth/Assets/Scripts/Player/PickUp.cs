@@ -10,6 +10,7 @@ public class PickUp : MonoBehaviour
     
     [SerializeField] private float range = 1.0f;
 
+    private playerSoundPlayer psp;
     void Start()
     {
         playerMovementComponent = GetComponent<Movement>();
@@ -18,13 +19,15 @@ public class PickUp : MonoBehaviour
         BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
         width = playerCol.size.x;
 
-        
+        psp = GetComponent<playerSoundPlayer>();
     }
     
     void Update()
     {
         if (Input.GetKey(KeyCode.R))
         {
+            
+            
             playerDirection = playerMovementComponent.getLastDirection()*1f;
             Vector3 direction = new Vector3(playerDirection, 0, 0);
             Vector3 rayOrig = new Vector3(player.transform.position.x + (width/2 + 0.01f)*playerDirection, player.transform.position.y, 0);
@@ -45,7 +48,10 @@ public class PickUp : MonoBehaviour
                   {
                       if(HitInformation[i].collider.CompareTag("Box"))
                       {
-                        interactibleObject.Interact(gameObject);
+                          //sounding
+                          psp.PlaySpecificSound(playerSoundPlayer.Action.PickUp);
+                          
+                          interactibleObject.Interact(gameObject);
                       }
                       else if (HitInformation[i].collider.CompareTag("Interactable"))
                       {

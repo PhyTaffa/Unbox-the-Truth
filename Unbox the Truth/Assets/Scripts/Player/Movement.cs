@@ -43,6 +43,10 @@ public class Movement : MonoBehaviour
 
     private float playerBoxColliderXOffset;
 
+    private playerSoundPlayer psp;
+    private bool wasGrounded = true; // Tracks the previous grounded state
+    private bool wasMoving = false; // Tracks the previous movement state
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
@@ -50,11 +54,7 @@ public class Movement : MonoBehaviour
         playerBoxCollider = GetComponent<BoxCollider2D>();
         playerBoxColliderXOffset = playerBoxCollider.offset.x;
         
-        //debug
-        // if (SpriteManager.selectedSprite != null)
-        // {
-        //     
-        // }
+        psp = GetComponent<playerSoundPlayer>();
     }
 
     void Update()
@@ -63,9 +63,14 @@ public class Movement : MonoBehaviour
         
         if(!IsHiding && !usePlatformMechanics)
         {
+            HandleMovementSound();
+                
             Move();  // Call the Move function to handle player movement
             Jump();  // Call the Jump function to handle jumping
+            ClampSpeed();
             testDirection();
+            
+            HandleLandingSound();
         }else if(usePlatformMechanics)
         {
             //Debug.Log("Use Platform Mechanics");
@@ -76,65 +81,25 @@ public class Movement : MonoBehaviour
         
     }
 
-    /*private void PlatformJump()
+    private void ClampSpeed()
     {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            notEnter = true;
-            Debug.Log("Keydown working");
-            Vector2 playerPosOld = transform.position;
-            transform.position += Vector3.up*0.1f;
-            Vector2 playerPosNew = transform.position;
-            _rb.simulated = true;
-            transform.parent = null;
-            transform.localScale = new Vector3(1,1,1);
-            SetUsePlatformMechanics(true);
-            SetIsGrounded(false);
-            _rb.velocity = (playerPosNew - playerPosOld)*100;
-            float limitedYVel = Mathf.Clamp(platformRB.velocity.y, 0, 100);
-            playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y + limitedYVel);
-            //playerRB.velocity = new Vector2(10, playerRB.velocity.y);
-            Debug.Log(playerRB.velocity);
-            //if(jump == null){
-                //jump = StartCoroutine(Jump());
-            //}
-        }
+        
     }
-
-    private void PlatformMove()
-    {
-        if(Input.GetKey(KeyCode.G))
-        {
-            transform.position -= transform.right * Time.deltaTime * moveSpeed;
-        }
-
-        if(Input.GetKey(KeyCode.H))
-        {
-            transform.position += transform.right * Time.deltaTime * moveSpeed;
-        }
-    }
-    */
 
     private void Hide()
     {
-        // if(Input.GetKey(KeyCode.LeftShift))
-        // {
-        //     IsHiding = true;
-        //     playerSprite.sprite = HidingSprite;
-        //
-        // }else{
-        //     IsHiding = false;
-        //     playerSprite.sprite = DefaultSprite;
-        // }
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             IsHiding = true;
             playerSprite.sprite = HidingSprite;
-        }else if (Input.GetKeyUp(KeyCode.LeftShift))
+            psp.PlaySpecificSound(playerSoundPlayer.Action.StartDisguise);
+            
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             IsHiding = false;
             playerSprite.sprite = SpriteManager.selectedSprite;
+            psp.PlaySpecificSound(playerSoundPlayer.Action.StopDisguise);
         }
     }
 
@@ -157,20 +122,6 @@ public class Movement : MonoBehaviour
 
     public void testDirection()
     {
-        /*if(getLastDirection() == 1)
-        {
-            //GetComponent<SpriteRenderer>().color = Color.yellow;
-            GetComponent<SpriteRenderer>().flipX = false;
-            playerBoxCollider.offset = new Vector2(playerBoxColliderXOffset, playerBoxCollider.offset.y);
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-            playerBoxCollider.offset = new Vector2(-playerBoxColliderXOffset, playerBoxCollider.offset.y);
-            //GetComponent<SpriteRenderer>().color = Color.red;
-            
-        }*/
-
         flipSprite(getLastDirection());
     }
 
@@ -210,6 +161,19 @@ public class Movement : MonoBehaviour
         {
             moveSpeed = carryingMovementSpeed;
         }
+
+        // if (Math.Abs(moveInput) == 0)
+        // {
+        //     if (isNotMoving)
+        //     {
+        //         psp.StopOnLoop(psp.Action.StopMove);
+        //     }
+        //     else
+        //     {
+        //         isNotMoving = false;
+        //     }
+        //     
+        // }
         
         // Move the player
 
@@ -227,6 +191,25 @@ public class Movement : MonoBehaviour
         //_rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -5, 5), _rb.velocity.y);
         
     }
+    
+    private void HandleMovementSound()
+    {
+        bool isMoving = Mathf.Abs(moveInput) > 0.01f && _isGrounded; // Check if the player is moving and grounded
+
+        if (isMoving && !wasMoving)
+        {
+            // Player started moving
+            psp.PlayOnLoop(playerSoundPlayer.Action.StartMove);
+        }
+        else if (!isMoving && wasMoving)
+        {
+            // Player stopped moving
+            psp.StopOnLoop(playerSoundPlayer.Action.StartMove);
+            //psp.PlaySpecificSound(playerSoundPlayer.Action.StopMove);
+        }
+
+        wasMoving = isMoving;
+    }
     public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -241,19 +224,31 @@ public class Movement : MonoBehaviour
        // Debug.Log("Is Grounded: " + _isGrounded);
 
         // If the player is grounded and presses the jump button (space)
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && _isGrounded)
         {   
-            _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-            if(!_isGrounded)
-            {
-                return;
-            }
             //_rb.simulated = true;
-            _rb.velocity = Vector2.zero;
+            _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+            
             // Apply an upward force to the player's Rigidbody2D to make them jump
             _rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            
+            psp.PlaySpecificSound(playerSoundPlayer.Action.Jump);
         }
     }
+    
+    private void HandleLandingSound()
+    {
+        bool isCurrentlyGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (!wasGrounded && isCurrentlyGrounded)
+        {
+            // Player landed
+            psp.PlaySpecificSound(playerSoundPlayer.Action.Land);
+        }
+
+        wasGrounded = isCurrentlyGrounded;
+    }
+    
 
     public bool GetIsHiding(){
         return IsHiding;
