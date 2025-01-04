@@ -19,24 +19,14 @@ public class GameManager : MonoBehaviour
             CameraEnemy.onPlayerDiedEvent.AddListener(OnPlayerDied);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     public void OnPlayerDied()
     {
-        //Debug.Log("Game Over");
-        //shpuld change to the current scene
         Scene curScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(curScene.name);
     }
 
     void OnLevelExit()
     {
-        Debug.Log("Level Exit");
         SceneManager.LoadScene("HubLevel");
     }
     

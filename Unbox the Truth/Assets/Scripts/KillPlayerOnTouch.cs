@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,24 +14,27 @@ public class KillPlayerOnTouch : MonoBehaviour
 
     private GameObject player;
     private Cheats playerCheat;
+    private genericAudioPlayerLevels gapl;
     
     private void Start()
     {
         gm = GameObject.FindWithTag("GM");
         gms = gm.GetComponent<GameManager>();
+        
         player = GameObject.FindWithTag("Player");
         playerCheat = player.gameObject.GetComponent<Cheats>();
+        gapl = GetComponent<genericAudioPlayerLevels>();
     }
     
-    private void OnTriggerEnter2D(Collider2D collider)
+    private async void OnTriggerEnter2D(Collider2D collider)
     {
-
-
         if (collider.gameObject.CompareTag("Player") && playerCheat.isKillable == true)
         {
+            // the sound deons't get played since the death is istanteneous
+            gapl.DJPPPPlayThatShid();
+            //lazy way to get the sound to work and, allegedly, add a animaiton
+            await Task.Delay(50);
             gms.OnPlayerDied();
-            //onPlayerDiedEvent.Invoke();
-            //Debug.Log("Game Over");
         }
     }
 
@@ -41,7 +45,4 @@ public class KillPlayerOnTouch : MonoBehaviour
             gms.OnPlayerDied();
         }
     }
-
-
-
 }

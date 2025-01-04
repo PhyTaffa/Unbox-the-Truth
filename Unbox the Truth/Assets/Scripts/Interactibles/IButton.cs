@@ -9,10 +9,12 @@ public class IButton : MonoBehaviour, IInteractibles
     private IInteractibles willInteractWith;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-
+    private genericAudioPlayerLevels gapl;
+    
     public void Start()
     {
         willInteractWith = gameObjectToBeInteractedWith.GetComponent<IInteractibles>();
+        gapl = GetComponent<genericAudioPlayerLevels>();
     }
 
 public void Interact(GameObject Instigator)
@@ -20,34 +22,18 @@ public void Interact(GameObject Instigator)
         //instigator = player. use willInteractWith to do the funny
         if (willInteractWith != null)
         {
+            gapl.DJPPPPlayThatShid();
             willInteractWith.Interact(Instigator);
-            //MoveTheDamnDoor(willInteractWith);
         }
         else
         {
-            Debug.Log("Button binded to NOTHING.");
+            //Debug.Log("Button binded to NOTHING.");
         }
     }
 
     public void UnInteract(GameObject Instigator)
     {
-        Debug.Log("Button un-iteracted with");
+        //Debug.Log("Button un-iteracted with");
     }
-    
-    // private void MoveTheDamnDoor(GameObject door)
-    // {
-    //     OpeningGate openingGate = door.GetComponent<OpeningGate>();
-    //     if (openingGate != null)
-    //     {
-    //         openingGate.Interact();    
-    //     }
-    //     else
-    //     {
-    //         OpeningGateUsingChild openingGate2 = door.GetComponent<OpeningGateUsingChild>();
-    //         openingGate2.Interact();
-    //     }
-    //     
-    //
-    //     //GameObject endPosition = door.GetComponent<GameObject>();
-    // }
+
 }

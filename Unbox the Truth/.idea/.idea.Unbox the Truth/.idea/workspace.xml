@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/CompanionAppMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/CompanionAppMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/CompanionAppMenu.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menus/CompanionAppMenu.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menus/testicolo.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unbox the Truth/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Interactable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Interactable.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Permenet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Permenet.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Timed.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Fire/Fire Timed.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Levels/Level2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exit/Exit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exit/Exit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactibles/IButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactibles/IButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/KillPlayerOnTouch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/KillPlayerOnTouch.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +70,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/zToBeDeleted/LightButtonInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/aaaaaaa.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/genericAudioPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/genericAudioPlayerLevels.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -169,7 +175,7 @@
       <workItem from="1735592404756" duration="55262000" />
       <workItem from="1735846021238" duration="213000" />
       <workItem from="1735846426130" duration="956000" />
-      <workItem from="1735931795786" duration="8351000" />
+      <workItem from="1735931795786" duration="11673000" />
     </task>
     <servers />
   </component>
@@ -194,6 +200,17 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
