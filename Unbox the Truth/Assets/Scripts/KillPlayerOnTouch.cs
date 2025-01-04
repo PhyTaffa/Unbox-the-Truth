@@ -33,7 +33,7 @@ public class KillPlayerOnTouch : MonoBehaviour
             // the sound deons't get played since the death is istanteneous
             gapl.DJPPPPlayThatShid();
             //lazy way to get the sound to work and, allegedly, add a animaiton
-            await Task.Delay(50);
+            await Task.Delay(20);
             gms.OnPlayerDied();
         }
     }
