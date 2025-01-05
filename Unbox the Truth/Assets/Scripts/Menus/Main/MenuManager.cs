@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
     {
         PlaySound();
         
-        //SceneManager.LoadScene("Options");
+        SceneManager.LoadScene("OptionMenu");
     }
 
     // Open the Companion App (this could be a separate application or feature)
