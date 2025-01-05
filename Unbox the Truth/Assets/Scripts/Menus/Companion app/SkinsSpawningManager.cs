@@ -77,21 +77,21 @@ public class SkinsSpawningManager : MonoBehaviour
             { 1, "Images/player/player_gls" },
             { 2, "Images/player/player_glovo" },
             { 3, "Images/player/player_ups" },
-            { 4, "Images/player/player_dhl" },
-            { 5, "Images/player/player_dhl" },
-            { 0, "Images/player/player_dhl" },
+            { 4, "Images/player/player_dpd" },
+            { 5, "Images/player/player_fedex" },
+            { 0, "Images/player/player_ctt" },
         };
 
         //missing actual sprites
         playerSpriteDictionary = new Dictionary<int, string>
         {
             { 6, "Images/player/player_dhl" },
-            { 1, "Images/player/player_dhl" },
-            { 2, "Images/player/player_dhl" },
-            { 3, "Images/player/player_dhl" },
-            { 4, "Images/player/player_dhl" },
-            { 5, "Images/player/player_dhl" },
-            { 0, "Images/player/player_dhl" },
+            { 1, "Images/player/player_gls" },
+            { 2, "Images/player/player_glovo" },
+            { 3, "Images/player/player_ups" },
+            { 4, "Images/player/player_dpd" },
+            { 5, "Images/player/player_fedex" },
+            { 0, "Images/player/player_ctt" },
         };
 
     }
@@ -107,6 +107,9 @@ private void CreateButtons()
     float spacingX = 20f; // Horizontal spacing between buttons
     float spacingY = 20f; // Vertical spacing between buttons
 
+    GameObject audioHolder = GameObject.FindGameObjectWithTag("Player");
+    AudioSource audioHeld = audioHolder.GetComponent<AudioSource>();
+    
     // Starting position for the grid (adjust as needed)
     Vector2 startPosition = new Vector2(440f, 100f);
 
@@ -144,7 +147,8 @@ private void CreateButtons()
             {
                 Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
                 SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
-
+                
+                audioHeld.Play();
                 //Debug.Log($"Skin {index} selected with sprite: {playerSpritePath}");
             }
         });
