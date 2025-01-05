@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class IBox : MonoBehaviour, IInteractibles
+public class IBox : MonoBehaviour, IInteractibles, IPressurePlateTrigger
 {
     //private IBox iBox;
     [SerializeField] private bool isBeingCarried = false;
