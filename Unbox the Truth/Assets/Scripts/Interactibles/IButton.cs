@@ -9,12 +9,12 @@ public class IButton : MonoBehaviour, IInteractibles
     private IInteractibles willInteractWith;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private genericAudioPlayerLevels gapl;
+    private GenericAudioPlayerLevels gapl;
     
     public void Start()
     {
         willInteractWith = gameObjectToBeInteractedWith.GetComponent<IInteractibles>();
-        gapl = GetComponent<genericAudioPlayerLevels>();
+        gapl = GetComponent<GenericAudioPlayerLevels>();
     }
 
 public void Interact(GameObject Instigator)

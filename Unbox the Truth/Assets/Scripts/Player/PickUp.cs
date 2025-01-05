@@ -10,7 +10,7 @@ public class PickUp : MonoBehaviour
     
     [SerializeField] private float range = 1.0f;
 
-    private playerSoundPlayer psp;
+    private PlayerSoundPlayer psp;
     void Start()
     {
         playerMovementComponent = GetComponent<Movement>();
@@ -19,7 +19,7 @@ public class PickUp : MonoBehaviour
         BoxCollider2D playerCol = player.GetComponent<BoxCollider2D>();
         width = playerCol.size.x;
 
-        psp = GetComponent<playerSoundPlayer>();
+        psp = GetComponent<PlayerSoundPlayer>();
     }
     
     void Update()
@@ -49,7 +49,7 @@ public class PickUp : MonoBehaviour
                       if(HitInformation[i].collider.CompareTag("Box"))
                       {
                           //sounding
-                          psp.PlaySpecificSound(playerSoundPlayer.Action.PickUp);
+                          psp.PlaySpecificSound(PlayerSoundPlayer.Action.PickUp);
                           
                           interactibleObject.Interact(gameObject);
                       }

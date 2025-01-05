@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
 
     private float playerBoxColliderXOffset;
 
-    private playerSoundPlayer psp;
+    private PlayerSoundPlayer psp;
     private bool wasGrounded = true; // Tracks the previous grounded state
     private bool wasMoving = false; // Tracks the previous movement state
 
@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
         playerBoxCollider = GetComponent<BoxCollider2D>();
         playerBoxColliderXOffset = playerBoxCollider.offset.x;
         
-        psp = GetComponent<playerSoundPlayer>();
+        psp = GetComponent<PlayerSoundPlayer>();
     }
 
     void Update()
@@ -92,14 +92,14 @@ public class Movement : MonoBehaviour
         {
             IsHiding = true;
             playerSprite.sprite = HidingSprite;
-            psp.PlaySpecificSound(playerSoundPlayer.Action.StartDisguise);
+            psp.PlaySpecificSound(PlayerSoundPlayer.Action.StartDisguise);
             
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             IsHiding = false;
             playerSprite.sprite = SpriteManager.selectedSprite;
-            psp.PlaySpecificSound(playerSoundPlayer.Action.StopDisguise);
+            psp.PlaySpecificSound(PlayerSoundPlayer.Action.StopDisguise);
         }
     }
 
@@ -199,12 +199,12 @@ public class Movement : MonoBehaviour
         if (isMoving && !wasMoving)
         {
             // Player started moving
-            psp.PlayOnLoop(playerSoundPlayer.Action.StartMove);
+            psp.PlayOnLoop(PlayerSoundPlayer.Action.StartMove);
         }
         else if (!isMoving && wasMoving)
         {
             // Player stopped moving
-            psp.StopOnLoop(playerSoundPlayer.Action.StartMove);
+            psp.StopOnLoop(PlayerSoundPlayer.Action.StartMove);
             //psp.PlaySpecificSound(playerSoundPlayer.Action.StopMove);
         }
 
@@ -232,7 +232,7 @@ public class Movement : MonoBehaviour
             // Apply an upward force to the player's Rigidbody2D to make them jump
             _rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             
-            psp.PlaySpecificSound(playerSoundPlayer.Action.Jump);
+            psp.PlaySpecificSound(PlayerSoundPlayer.Action.Jump);
         }
     }
     
@@ -243,7 +243,7 @@ public class Movement : MonoBehaviour
         if (!wasGrounded && isCurrentlyGrounded)
         {
             // Player landed
-            psp.PlaySpecificSound(playerSoundPlayer.Action.Land);
+            psp.PlaySpecificSound(PlayerSoundPlayer.Action.Land);
         }
 
         wasGrounded = isCurrentlyGrounded;

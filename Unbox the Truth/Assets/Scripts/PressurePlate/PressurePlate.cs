@@ -18,7 +18,7 @@ public class PressurePlate : MonoBehaviour
     private bool isRotating;
 
     private Color originalColor;
-    private genericAudioPlayerLevels gapl;
+    private GenericAudioPlayerLevels gapl;
 
     
     [SerializeField] private Vector3 spherePosition = Vector3.zero; // Position where the sphere will be drawn
@@ -39,7 +39,7 @@ public class PressurePlate : MonoBehaviour
 
         reachedTarget = false;
         
-        gapl = GetComponent<genericAudioPlayerLevels>();
+        gapl = GetComponent<GenericAudioPlayerLevels>();
     }
 
     // Update is called once per frame

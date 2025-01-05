@@ -5,7 +5,7 @@ public class MovingPt : MonoBehaviour
     public int startingPoint; 
     public Transform[] points;
     private int i;
-    private genericAudioPlayerLevels gapl;
+    private GenericAudioPlayerLevels gapl;
 
     private GameObject worldRoot;
     void Start()
@@ -15,7 +15,7 @@ public class MovingPt : MonoBehaviour
         
         worldRoot = GameObject.FindGameObjectWithTag("WorldRoot");
         
-        gapl = GetComponent<genericAudioPlayerLevels>();
+        gapl = GetComponent<GenericAudioPlayerLevels>();
     }
     void Update()
     {
