@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="" />
+    <list default="true" id="32879f79-cece-471c-a3e4-80afcdf74c87" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Movement.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +165,7 @@
       <workItem from="1735846021238" duration="213000" />
       <workItem from="1735846426130" duration="956000" />
       <workItem from="1735931795786" duration="39405000" />
-      <workItem from="1736105974306" duration="716000" />
+      <workItem from="1736105974306" duration="1328000" />
     </task>
     <servers />
   </component>
