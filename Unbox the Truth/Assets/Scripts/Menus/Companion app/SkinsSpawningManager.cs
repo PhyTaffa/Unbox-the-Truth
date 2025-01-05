@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class SkinsSpawningManager : MonoBehaviour
 {
-    private int JsonLength = 3; // Number of buttons to create
+    private int JsonLength = 7; // Number of buttons to create
     private Canvas canvas;           // Reference to the Canvas
     private GameObject[] buttonArray; // Array to store initial buttons
     private List<GameObject> buttonList; // List to store instantiated buttons
@@ -132,8 +132,10 @@ private void CreateButtons()
         newButton.name = $"Skin button {i}";
         UnityEngine.UI.Button buttonComponent = newButton.GetComponent<UnityEngine.UI.Button>();
         TextMeshProUGUI buttonText = buttonComponent.GetComponentInChildren<TextMeshProUGUI>();
-        buttonText.text = $"Skin {i}";
-
+        buttonText.text = "";
+        //buttonComponent
+        
+        
         // Add click functionality
         int index = i;
         buttonComponent.onClick.AddListener(() =>
@@ -143,7 +145,7 @@ private void CreateButtons()
                 Sprite loadedSprite = Resources.Load<Sprite>(playerSpritePath);
                 SpriteManagerSingleton.Instance.SelectedSprite = loadedSprite;
 
-                Debug.Log($"Skin {index} selected with sprite: {playerSpritePath}");
+                //Debug.Log($"Skin {index} selected with sprite: {playerSpritePath}");
             }
         });
 
@@ -190,6 +192,20 @@ private void CreateButtons()
             {
                 selectedButton.interactable = false;
             }
+        }
+    }
+    
+    private void Update()
+    {
+        // Check if the M key is pressed
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            JsonLength = 7;
+            CreateButtons();
+            TestButtonInteractions();
+            bool[] scheating = {true, true, true, true, true, true, true,};
+            EnableButton(scheating);
+
         }
     }
 }
