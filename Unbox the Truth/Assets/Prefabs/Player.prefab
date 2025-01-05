@@ -85,7 +85,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: dc555b5797555aa46a21c6131373694f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -320,7 +320,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.713
   m_Pitch: 1
@@ -420,15 +420,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionSounds:
   - action: 0
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: 197575e72facf85419c80b548b406057, type: 3}
   - action: 1
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: a99faef16c6ca6946a4ba47f587db3e0, type: 3}
   - action: 2
     clip: {fileID: 8300000, guid: 197575e72facf85419c80b548b406057, type: 3}
   - action: 3
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: 4fb1752e526c97a40b87a8404ca71a48, type: 3}
   - action: 4
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: 4fb1752e526c97a40b87a8404ca71a48, type: 3}
   - action: 5
     clip: {fileID: 8300000, guid: a9d6e36b299b7414cb836756fd6613f4, type: 3}
   - action: 6
