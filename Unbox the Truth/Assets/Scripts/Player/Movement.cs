@@ -53,7 +53,8 @@ public class Movement : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
         playerBoxColliderXOffset = playerBoxCollider.offset.x;
-        
+
+        playerBoxCollider.enabled = true;
         psp = GetComponent<PlayerSoundPlayer>();
     }
 

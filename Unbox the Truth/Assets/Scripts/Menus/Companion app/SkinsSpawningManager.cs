@@ -73,25 +73,25 @@ public class SkinsSpawningManager : MonoBehaviour
     {
         buttonSpriteDictionary = new Dictionary<int, string>
         {
-            { 6, "Images/LegallyDistinctLogos/AKT-logo" },
-            { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
-            { 2, "Images/LegallyDistinctLogos/pff-log" },
-            { 3, "Images/LegallyDistinctLogos/tfr-logo" },
-            { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
-            { 5, "Images/amogus" },
-            { 0, "Images/ritagliato 2" },
+            { 6, "Images/player/player_dhl" },
+            { 1, "Images/player/player_gls" },
+            { 2, "Images/player/player_glovo" },
+            { 3, "Images/player/player_ups" },
+            { 4, "Images/player/player_dhl" },
+            { 5, "Images/player/player_dhl" },
+            { 0, "Images/player/player_dhl" },
         };
 
         //missing actual sprites
         playerSpriteDictionary = new Dictionary<int, string>
         {
-            { 6, "Images/LegallyDistinctLogos/AKT-logo" },
-            { 1, "Images/LegallyDistinctLogos/LocRx-logo" },
-            { 2, "Images/LegallyDistinctLogos/pff-log" },
-            { 3, "Images/LegallyDistinctLogos/tfr-logo" },
-            { 4, "Images/LegallyDistinctLogos/Yangtze-logo" },
-            { 5, "Images/amogus" },
-            { 0, "Images/ritagliato 2" },
+            { 6, "Images/player/player_dhl" },
+            { 1, "Images/player/player_dhl" },
+            { 2, "Images/player/player_dhl" },
+            { 3, "Images/player/player_dhl" },
+            { 4, "Images/player/player_dhl" },
+            { 5, "Images/player/player_dhl" },
+            { 0, "Images/player/player_dhl" },
         };
 
     }

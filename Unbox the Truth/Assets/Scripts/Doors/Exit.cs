@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine.Events;
 using UnityEngine;
 
@@ -22,12 +23,14 @@ public class Exit : MonoBehaviour
         gapl = GetComponent<GenericAudioPlayerLevels>();
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    async void OnTriggerStay2D(Collider2D col)
     {
         // Check if the player is in the trigger and the correct key is pressed
         if (Input.GetKeyDown(KeyCode.C))
         {
             gapl.DJPPPPlayThatShid();
+            await Task.Delay(450);
+            
             // Check if the object entering the trigger is on the playerLayer
             if (((1 << col.gameObject.layer) & playerLayer) != 0 && col.CompareTag("Player"))
             {

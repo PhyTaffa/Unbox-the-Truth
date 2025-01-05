@@ -23,7 +23,7 @@ public class LevelLoader : MonoBehaviour
             {
                 gapl.DJPPPPlayThatShid();
                 
-                await Task.Delay(150);
+                await Task.Delay(450);
                 
                 SceneManager.LoadScene(sceneName);
             }

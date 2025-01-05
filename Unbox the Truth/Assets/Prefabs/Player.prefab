@@ -322,7 +322,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.713
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -424,17 +424,17 @@ MonoBehaviour:
   - action: 1
     clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
   - action: 2
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: 197575e72facf85419c80b548b406057, type: 3}
   - action: 3
     clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
   - action: 4
     clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
   - action: 5
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: a9d6e36b299b7414cb836756fd6613f4, type: 3}
   - action: 6
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: 6e374d6838b154f4bab6224f2bf3f6a3, type: 3}
   - action: 7
-    clip: {fileID: 8300000, guid: ac3ccbdeefcc6cc4caa4355b3f2dd537, type: 3}
+    clip: {fileID: 8300000, guid: d0ea54fbf5f990c4a836fe955ee1a176, type: 3}
 --- !u!1 &2019995352763996908
 GameObject:
   m_ObjectHideFlags: 0
