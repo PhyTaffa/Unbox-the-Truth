@@ -111,7 +111,7 @@ public class EndpointCalls
         catch (Exception ex)
         {
             
-            Debug.LogError($"Error in GET request: {ex.Message}");
+            Debug.Log($"Error in GET request: {ex.Message}");
             //should change some ui elements to let the user know that the requests has gone wrong
             return -1;
         }
