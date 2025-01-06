@@ -586,6 +586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unbox_The_Truth
       objectReference: {fileID: 0}
+    - target: {fileID: 8995145653158913904, guid: c95cb828b943d2441b1c32f76acccc45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
