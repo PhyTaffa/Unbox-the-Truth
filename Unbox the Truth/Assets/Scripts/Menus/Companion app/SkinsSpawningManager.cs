@@ -73,25 +73,25 @@ public class SkinsSpawningManager : MonoBehaviour
     {
         buttonSpriteDictionary = new Dictionary<int, string>
         {
-            { 6, "Images/player/player_dhl" },
+            { 0, "Images/player/player_dhl" },
             { 1, "Images/player/player_gls" },
             { 2, "Images/player/player_glovo" },
             { 3, "Images/player/player_ups" },
             { 4, "Images/player/player_dpd" },
             { 5, "Images/player/player_fedex" },
-            { 0, "Images/player/player_ctt" },
+            { 6, "Images/player/player_ctt" },
         };
 
         //missing actual sprites
         playerSpriteDictionary = new Dictionary<int, string>
         {
-            { 6, "Images/player/player_dhl" },
+            { 0, "Images/player/player_dhl" },
             { 1, "Images/player/player_gls" },
             { 2, "Images/player/player_glovo" },
             { 3, "Images/player/player_ups" },
             { 4, "Images/player/player_dpd" },
             { 5, "Images/player/player_fedex" },
-            { 0, "Images/player/player_ctt" },
+            { 6, "Images/player/player_ctt" },
         };
 
     }
